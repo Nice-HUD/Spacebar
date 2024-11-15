@@ -353,35 +353,36 @@ public class GameScreen extends Screen {
 			this.feverTimeItem.update();
 			this.enemyShipFormation.update();
 			this.enemyShipFormation.shoot(this.bullets);
+
+			if (player2 != null) {
+				// Player 2 movement and shooting
+				boolean moveRight2 = inputManager.isKeyDown(KeyEvent.VK_C);
+				boolean moveLeft2 = inputManager.isKeyDown(KeyEvent.VK_Z);
+
+				if (moveRight2 && player2.getPositionX() + player2.getWidth() < width) {
+					player2.moveRight();
+				}
+				if (moveLeft2 && player2.getPositionX() > 0) {
+					player2.moveLeft();
+				}
+				if (inputManager.isKeyDown(KeyEvent.VK_X)) {
+					player2.shoot(bullets);
+				}
+
+				// Player 2 bullet collision handling
+				handleBulletCollisionsForPlayer2(this.bullets, player2);
+
+				// 장애물과 아이템 상호작용 추가
+				handleObstacleCollisionsForPlayer2(this.obstacles, player2);
+				handleItemCollisionsForPlayer2(player2);
+			}
 		}
 		//manageCollisions();
 		manageCollisions_add_item(); //by Enemy team
 		cleanBullets();
 		cleanObstacles();
 		this.itemManager.cleanItems(); //by Enemy team
-		
-		if (player2 != null) {
-			// Player 2 movement and shooting
-			boolean moveRight2 = inputManager.isKeyDown(KeyEvent.VK_C);
-			boolean moveLeft2 = inputManager.isKeyDown(KeyEvent.VK_Z);
-			
-			if (moveRight2 && player2.getPositionX() + player2.getWidth() < width) {
-				player2.moveRight();
-			}
-			if (moveLeft2 && player2.getPositionX() > 0) {
-				player2.moveLeft();
-			}
-			if (inputManager.isKeyDown(KeyEvent.VK_X)) {
-				player2.shoot(bullets);
-			}
-			
-			// Player 2 bullet collision handling
-			handleBulletCollisionsForPlayer2(this.bullets, player2);
-			
-			// 장애물과 아이템 상호작용 추가
-			handleObstacleCollisionsForPlayer2(this.obstacles, player2);
-			handleItemCollisionsForPlayer2(player2);
-		}
+
 		draw();
 		
 		/**
