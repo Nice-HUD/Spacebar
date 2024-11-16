@@ -21,7 +21,7 @@ public class Ship extends Entity {
 	/** Time spent inactive between hits. */
 	private Cooldown destructionCooldown;
 	/** PlayerGrowth 인스턴스 / PlayerGrowth instance */
-	private PlayerGrowth growth;
+	public static PlayerGrowth growth;
 	/** ShipStaus instance*/
 	private ShipStatus shipStatus;
 	/** Item */
