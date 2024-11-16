@@ -16,6 +16,9 @@ import java.util.Set;
  *
  */
 public class Ship extends Entity {
+
+	private boolean isActive = true;
+
 	/** Minimum time between shots. */
 	private Cooldown shootingCooldown;
 	/** Time spent inactive between hits. */
@@ -134,6 +137,7 @@ public class Ship extends Entity {
 	 */
 	public final void destroy() {
 		this.destructionCooldown.reset();
+		this.isActive = true;
 		// Sound Operator
 		sm = SoundManager.getInstance();
 		sm.playES("ally_airship_damage");
@@ -202,4 +206,11 @@ public class Ship extends Entity {
 	}	// Team Inventory(Item)
 
 
+	public boolean isActive() {
+		return isActive;
+	}
+
+	public void setActive(boolean active) {
+		isActive = active;
+	}
 }
