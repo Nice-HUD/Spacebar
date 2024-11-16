@@ -12,7 +12,7 @@ public class SubShip extends Entity {
     
     private static final int SHOOTING_INTERVAL = 750;
     private static final int BULLET_SPEED = -4;
-    private final PlayerGrowth subGrowth = Ship.growth;
+    private static final int MOVEMENT_SPEED = 2;
     
     
     private Cooldown shootingCooldown;
@@ -27,11 +27,11 @@ public class SubShip extends Entity {
     }
     
     public final void moveRight() {
-        this.positionX += subGrowth.getMoveSpeed();
+        this.positionX += MOVEMENT_SPEED;
     }
     
     public final void moveLeft() {
-        this.positionX -= subGrowth.getMoveSpeed();
+        this.positionX -= MOVEMENT_SPEED;
     }
     
     public final boolean shoot(final Set<PiercingBullet> bullets) {
@@ -60,6 +60,6 @@ public class SubShip extends Entity {
     }
     
     public final double getSpeed() {
-        return subGrowth.getMoveSpeed();
+        return MOVEMENT_SPEED;
     }
 }
