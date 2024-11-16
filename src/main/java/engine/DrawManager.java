@@ -114,7 +114,11 @@ public class DrawManager {
 		AddSign,
 		/** Gem - Added by CtrlS */
 		Gem,
-		ItemSpeedUp, ItemSpeedSlow, Obstacle
+		ItemSpeedUp, ItemSpeedSlow, Obstacle,
+		/** 보조 비행기 **/
+		SubShip,
+		/** 파괴된 보조 비행기 **/
+		SubShipDestroyed,
 		
 	};
 	
@@ -161,6 +165,9 @@ public class DrawManager {
 			spriteMap.put(SpriteType.ItemPierce, new boolean[7][7]);
 			spriteMap.put(SpriteType.ItemSpeedUp, new boolean[9][9]);
 			spriteMap.put(SpriteType.ItemSpeedSlow, new boolean[9][9]);
+			spriteMap.put(SpriteType.SubShip, new boolean[5][5]);
+			spriteMap.put(SpriteType.SubShipDestroyed, new boolean[5][5]);
+			
 			
 			fileManager.loadSprite(spriteMap);
 			logger.info("Finished loading the sprites.");
