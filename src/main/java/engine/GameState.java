@@ -10,6 +10,8 @@ import engine.achievement.ScoreManager;
  */
 public class GameState {
 
+	private boolean twoPlayerMode;
+
 	/** Current game level. */
 	private int level;
 	/** Current score. */
@@ -66,7 +68,8 @@ public class GameState {
 	 */
 	public GameState(final int level, final int score,
 					 final int livesRemaining, final int livestwoRemaining, final int bulletsShot,
-					 final int shipsDestroyed, final int playTime, final int coin, final int gem, final int hitCount, final int coinItemsCollected) {
+					 final int shipsDestroyed, final int playTime, final int coin, final int gem, final int hitCount, final int coinItemsCollected,
+					 final boolean twoPlayerMode) {
 		this.level = level;
 		this.score = score;
 		this.livesRemaining = livesRemaining;
@@ -79,6 +82,7 @@ public class GameState {
 		this.hitCount = hitCount; // Ctrl-S
 		this.scoreManager = new ScoreManager(level, score);
 		this.coinItemsCollected = coinItemsCollected; // Ctrl-S
+		this.twoPlayerMode = twoPlayerMode;
 	}
 
 	// TEAM CLOVER : Added two static below
@@ -182,4 +186,13 @@ public class GameState {
 	 */
 	// Team-Ctrl-S(Currency)
 	public int getCoinItemsCollected() { return coinItemsCollected; }
+
+
+	public boolean isTwoPlayerMode() {
+		return this.twoPlayerMode;
+	}
+
+	public void setTwoPlayerMode(boolean twoPlayerMode) {
+		this.twoPlayerMode = twoPlayerMode;
+	}
 }

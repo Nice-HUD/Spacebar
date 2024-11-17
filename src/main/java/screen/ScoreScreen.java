@@ -154,8 +154,8 @@ public class ScoreScreen extends Screen {
 				saveRecentScore(); // Team Clove
 			} else if (inputManager.isKeyDown(KeyEvent.VK_SPACE)) {
 				// Play again.
-				System.out.println(this.isTwoPlayerMode());
-				if (this.isTwoPlayerMode()){
+				System.out.println("Is Two Player Mode: " + this.isTwoPlayerMode()); // 상태 확인
+				if (gameState.isTwoPlayerMode()){
 					this.returnCode = 4;
 				} else {
 					this.returnCode = 2;

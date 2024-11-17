@@ -892,7 +892,8 @@ public class GameScreen extends Screen {
      */
     public final GameState getGameState() {
         return new GameState(this.level, this.scoreManager.getAccumulatedScore(), this.lives, this.livestwo,
-                this.bulletsShot, this.shipsDestroyed, this.playTime, this.coin, this.gem, this.hitCount, this.coinItemsCollected); // Team-Ctrl-S(Currency)
+                this.bulletsShot, this.shipsDestroyed, this.playTime, this.coin, this.gem, this.hitCount, this.coinItemsCollected,
+                this.twoPlayerMode); // Team-Ctrl-S(Currency)
     }
 
     public int getLives() {
