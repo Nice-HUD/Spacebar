@@ -69,6 +69,11 @@ public class GameScreen extends Screen {
      * Player's ship.
      */
     private Ship ship;
+    // 오른쪽 보조 비행기 생성
+    private SubShip rightSubShip;
+    // 왼쪽 보조 비행기 생성
+    private SubShip leftSubShip;
+    
     public Ship player2;
     /**
      * Bonus enemy ship that appears sometimes.
@@ -283,7 +288,9 @@ public class GameScreen extends Screen {
         enemyShipFormation.setScoreManager(this.scoreManager);//add by team Enemy
         enemyShipFormation.attach(this);
         this.ship = new Ship(this.width / 2, this.height - 30, Color.RED); // add by team HUD
-
+        this.rightSubShip = new SubShip(this.width / 2 + 25, this.height - 90, Color.RED);//보조 비행기 생성
+        this.leftSubShip = new SubShip(this.width / 2 - 10, this.height - 90, Color.RED);//보조 비행기 생성
+        
         /** initialize itemManager */
         this.itemManager = new ItemManager(this.height, drawManager, this); //by Enemy team
         this.itemManager.initialize(); //by Enemy team
@@ -384,18 +391,29 @@ public class GameScreen extends Screen {
 
                 if (moveRight && !isRightBorder) {
                     this.ship.moveRight();
+                    this.rightSubShip.moveRight();
+                    this.leftSubShip.moveRight();
                     this.backgroundMoveRight = true;
                 }
                 if (moveLeft && !isLeftBorder) {
                     this.ship.moveLeft();
+                    this.rightSubShip.moveLeft();
+                    this.leftSubShip.moveLeft();
                     this.backgroundMoveLeft = true;
                 }
-                if (inputManager.isKeyDown(KeyEvent.VK_ENTER))
+                if (inputManager.isKeyDown(KeyEvent.VK_ENTER)) {
                     if (this.ship.shoot(this.bullets)) {
                         this.bulletsShot++;
                         this.fire_id++;
                         this.logger.info("Bullet's fire_id is " + fire_id);
                     }
+                    if (this.rightSubShip.shoot(this.bullets)) {
+                        this.bulletsShot++;
+                    }
+                    if (this.leftSubShip.shoot(this.bullets)) {
+                        this.bulletsShot++;
+                    }
+                }
             } else if (this.lives <= 0 && this.ship.isActive()){
                 this.ship.setActive(false);
             }
@@ -424,6 +442,8 @@ public class GameScreen extends Screen {
 
             this.item.updateBarrierAndShip(this.ship);   // team Inventory
             this.speedItem.update();         // team Inventory
+            this.rightSubShip.update();
+            this.leftSubShip.update();
             this.feverTimeItem.update();
             this.enemyShipFormation.update();
             this.enemyShipFormation.shoot(this.bullets);
@@ -532,6 +552,8 @@ public class GameScreen extends Screen {
         if (this.ship != null && this.ship.isActive()){
             drawManager.drawEntity(this.ship, this.ship.getPositionX(),
                     this.ship.getPositionY());
+            drawManager.drawEntity(this.rightSubShip, this.rightSubShip.getPositionX(), this.rightSubShip.getPositionY());
+            drawManager.drawEntity(this.leftSubShip, this.leftSubShip.getPositionX(), this.leftSubShip.getPositionY());
         }
 
         if (player2 != null) {
@@ -663,6 +685,8 @@ public class GameScreen extends Screen {
                     recyclable.add(bullet);
                     if (!this.ship.isDestroyed() && !this.item.isbarrierActive()) {    // team Inventory
                         this.ship.destroy();
+                        this.rightSubShip.destroy();
+                        this.leftSubShip.destroy();
                         this.lives--;
                         this.logger.info("Hit on player ship, " + this.lives
                                 + " lives remaining.");
@@ -709,6 +733,8 @@ public class GameScreen extends Screen {
                     recyclable.add(bullet);
                     if (!this.ship.isDestroyed() && !this.item.isbarrierActive()) {    // team Inventory
                         this.ship.destroy();
+                        this.rightSubShip.destroy();
+                        this.leftSubShip.destroy();
                         this.lives--;
                         this.logger.info("Hit on player ship, " + this.lives
                                 + " lives remaining.");
@@ -828,6 +854,8 @@ public class GameScreen extends Screen {
                     this.lives--;
                     if (!this.ship.isDestroyed()) {
                         this.ship.destroy();  // Optionally, destroy the ship or apply other effects.
+                        this.rightSubShip.destroy();
+                        this.leftSubShip.destroy();
                     }
                     obstacle.destroy();  // Destroy obstacle
                     this.logger.info("Ship hit an obstacle, " + this.lives + " lives remaining.");
