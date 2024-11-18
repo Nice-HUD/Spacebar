@@ -5,6 +5,7 @@ import java.awt.event.KeyEvent;
 import java.util.*;
 
 import java.io.IOException;
+import java.util.concurrent.TimeUnit;
 
 import engine.*;
 import engine.achievement.AchievementConditions;
@@ -15,6 +16,9 @@ import entity.*;
 // Sound Operator
 import engine.SoundManager;
 
+import java.awt.Robot;
+import java.awt.event.KeyEvent;
+
 
 /**
  * Implements the game screen, where the action happens.
@@ -23,7 +27,10 @@ import engine.SoundManager;
  *
  */
 public class GameScreen extends Screen {
-	
+
+	private boolean isPaused = false;
+	private long pausedTime = 0;
+
 	/** Milliseconds until the screen accepts user input. */
 	private static final int INPUT_DELAY = 6000;
 	/** Bonus score for each life remaining at the end of the level. */
@@ -262,10 +269,28 @@ public class GameScreen extends Screen {
 	 * @return Next screen code.
 	 */
 	public final int run() {
-		super.run();
-		
+//		super.run();
+
+		this.isRunning = true;
+
+		while (this.isRunning) {
+			long time = System.currentTimeMillis();
+
+			update(); // 게임 업데이트
+
+			time = (1000 / this.fps) - (System.currentTimeMillis() - time);
+			if (time > 0) {
+				try {
+					TimeUnit.MILLISECONDS.sleep(time);
+				} catch (InterruptedException e) {
+					return 0;
+				}
+			}
+		}
+
 		this.score += LIFE_SCORE * (this.lives - 1);
 		this.logger.info("Screen cleared with a score of " + this.scoreManager.getAccumulatedScore());
+		this.logger.info("game screen return code: "+ this.returnCode);
 		
 		return this.returnCode;
 	}
@@ -275,7 +300,7 @@ public class GameScreen extends Screen {
 	 */
 	protected void update() {
 		super.update();
-		
+
 		if (this.inputDelay.checkFinished() && !this.levelFinished) {
 			// --- OBSTACLES
 			if (this.obstacleSpawnCooldown.checkFinished()) {
@@ -383,6 +408,15 @@ public class GameScreen extends Screen {
 			handleItemCollisionsForPlayer2(player2);
 		}
 		draw();
+
+		if (inputManager.isKeyDown(KeyEvent.VK_P) || inputManager.isKeyDown(KeyEvent.VK_ESCAPE)) {
+			// Pause 상태 전환
+			isPaused = true;
+		}
+
+		if (isPaused) {
+			pauseGame();
+		}
 		
 		/**
 		 * Added by the Level Design team and edit by team Enemy
@@ -530,7 +564,12 @@ public class GameScreen extends Screen {
 		
 		// Soomin Lee / TeamHUD
 		if (this.inputDelay.checkFinished()) {
-			playTime = (int) ((System.currentTimeMillis() - playStartTime) / 1000) + playTimePre;
+			playTime = (int) ((System.currentTimeMillis() - playStartTime - pausedTime) / 1000) + playTimePre;
+		}
+
+		if (isPaused) {
+			// 일시 정지 UI 그리기
+			drawManager.drawPauseOverlay(this);
 		}
 		
 		super.drawPost();
@@ -903,6 +942,64 @@ public class GameScreen extends Screen {
 				System.out.println("Item collected by Player 2.");
 			}
 		}
+	}
+
+	private void pauseGame() {
+		try {
+			// 특정 키가 눌릴 때까지 대기
+			while (true) {
+				
+				draw();
+
+				if (inputManager.isKeyDown(KeyEvent.VK_R)) {
+					logger.info("Game resumed.");
+					isPaused = false;
+					break; // 사용자가 일시 정지 키를 다시 누르면 게임을 재개함
+				} else if (inputManager.isKeyDown(KeyEvent.VK_Q)) {
+					this.returnCode = 2;
+					this.isRunning = false;
+					isPaused = false;
+					break;
+				} else if (inputManager.isKeyDown(KeyEvent.VK_M)) {
+					this.returnCode = 1;
+					this.isRunning = false;
+					isPaused = false;
+					break;
+				}
+				Thread.sleep(100); // 0.1초 동안 대기
+				pausedTime += 100;
+			}
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+	}
+
+	// Getter for isPaused
+	public boolean getIsPaused() {
+		return this.isPaused;
+	}
+
+	// Setter for isPaused
+	public void setIsPaused(boolean isPaused) {
+		this.isPaused = isPaused;
+	}
+
+	// Getter for isRunning
+	public boolean getIsRunning() {
+		return this.isRunning;
+	}
+
+	// Setter for isRunning
+	public void setIsRunning(boolean isRunning) {
+		this.isRunning = isRunning;
+	}
+
+	public void pressPKey() throws AWTException {
+		Robot robot = new Robot();
+
+		// 'P' 키를 누름
+		robot.keyPress(KeyEvent.VK_P);
+		robot.keyRelease(KeyEvent.VK_P);
 	}
 	
 }

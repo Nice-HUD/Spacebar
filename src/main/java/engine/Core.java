@@ -1,5 +1,6 @@
 package engine;
 
+import java.awt.event.KeyEvent;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -172,9 +173,10 @@ public final class Core {
 								bonusLife, width, height, FPS, false);
 						LOGGER.info("Starting " + WIDTH + "x" + HEIGHT
 								+ " game screen at " + FPS + " fps.");
-						frame.setScreen(currentScreen);
+						returnCode = frame.setScreen(currentScreen);
 						LOGGER.info("Closing game screen.");
-						
+
+						if (returnCode == 1 || returnCode == 2) break;
 						
 						achievementManager.updateAchievements(currentScreen); // TEAM CLOVER : Achievement
 						
@@ -199,7 +201,7 @@ public final class Core {
 						LOGGER.info("Round Coin: " + roundState.getRoundCoin());
 						LOGGER.info("Round Hit Rate: " + roundState.getRoundHitRate());
 						LOGGER.info("Round Time: " + roundState.getRoundTime());
-						
+
 						try { //Clove
 							statistics.addTotalPlayTime(roundState.getRoundTime());
 							LOGGER.info("RoundTime Saving");
@@ -226,6 +228,8 @@ public final class Core {
 						
 					} while (gameState.getLivesRemaining() > 0
 							&& gameState.getLevel() <= NUM_LEVELS);
+
+					if (returnCode == 1 || returnCode == 2) break;
 					
 					LOGGER.info("Stop InGameBGM");
 					// Sound Operator
@@ -241,6 +245,7 @@ public final class Core {
 					returnCode = frame.setScreen(currentScreen);
 					LOGGER.info("Closing score screen.");
 					break;
+
 				case 3:
 					// High scores.
 					currentScreen = new HighScoreScreen(width, height, FPS);
@@ -356,6 +361,12 @@ public final class Core {
 							+ " recent record screen at " + FPS + " fps.");
 					returnCode = frame.setScreen(currentScreen);
 					LOGGER.info("Closing recent record screen.");
+					break;
+				case 6:
+					// PauseScreen으로 전환
+					currentScreen = new PauseScreen(width, height, FPS);
+					LOGGER.info("Opening pause screen.");
+					returnCode = frame.setScreen(currentScreen);
 					break;
 				default:
 					break;
