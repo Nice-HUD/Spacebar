@@ -1,8 +1,8 @@
-name: Notify Slack on PR Event and Review Event
+name: Notify Slack on PR and Review Events
 
 on:
   pull_request:
-    types: [opened, review_requested, submitted]
+    types: [opened, review_requested]
   pull_request_review:
     types: [submitted]
 
@@ -10,34 +10,36 @@ jobs:
   notify-on-pr:
     runs-on: ubuntu-latest
     steps:
-      - name: PR 이벤트 발생 시 Slack 알림 보냄
-        if: github.event_name == 'pull_request' && (github.event.action == 'opened' || github.event.action == 'review_requested')
+      - name: Notify Slack for PR Event
+        if: >
+          github.event_name == 'pull_request' &&
+          (github.event.action == 'opened' || github.event.action == 'review_requested')
         uses: slackapi/slack-github-action@v2.0.0
         with:
-          webhook-type: incoming-webhook
+          webhook-type: "incoming-webhook"
           webhook: ${{ secrets.SLACK_WEBHOOK_URL }}
           payload: |
             {
-              "attachments":[ 
+              "attachments": [
                 {
-                  "title": "*🎁 새 PR 생성*",
+                  "title": "*🎁 New Pull Request Created*",
                   "color": "#adff2f",
                   "fields": [
-                      {
-                        "title": "📑 제목",
-                        "value": "${{ github.event.pull_request.title }}",
-                        "short": true
-                      },
-                      {
-                        "title": "🧑‍💻 작성자",
-                        "value": "${{ github.event.pull_request.user.login }}",
-                        "short": true
-                      },
-                      {
-                        "title": "🛜 URL",
-                        "value": "<${{ github.event.pull_request.html_url }}|리뷰하러 가기>",
-                        "short": true
-                      }
+                    {
+                      "title": "📑 Title",
+                      "value": "${{ github.event.pull_request.title }}",
+                      "short": true
+                    },
+                    {
+                      "title": "🧑‍💻 Author",
+                      "value": "${{ github.event.pull_request.user.login }}",
+                      "short": true
+                    },
+                    {
+                      "title": "🛜 URL",
+                      "value": "<${{ github.event.pull_request.html_url }}|View PR>",
+                      "short": true
+                    }
                   ]
                 }
               ]
@@ -46,44 +48,46 @@ jobs:
   notify-on-review:
     runs-on: ubuntu-latest
     steps:
-      - name: PR 리뷰 등록
-        if: github.event_name == 'pull_request_review' && github.event.action == 'submitted'
+      - name: Notify Slack for PR Review
+        if: >
+          github.event_name == 'pull_request_review' &&
+          github.event.action == 'submitted'
         uses: slackapi/slack-github-action@v2.0.0
         with:
-          webhook-type: incoming-webhook
+          webhook-type: "incoming-webhook"
           webhook: ${{ secrets.SLACK_WEBHOOK_URL }}
           payload: |
             {
               "attachments": [
                 {
-                  "title": "*💻 PR 리뷰 등록:*",
-                  "color": "${{ github.event.review.state == 'approved' && '#36a64f' || github.event.review.state == 'changes_requested' && '#ff0000' || '#cccccc' }}",
+                  "title": "*💻 Pull Request Review Submitted*",
+                  "color": "${{ github.event.review.state == 'approved' ? '#36a64f' : github.event.review.state == 'changes_requested' ? '#ff0000' : '#cccccc' }}",
                   "fields": [
-                      {
-                        "title": "📑 PR 제목",
-                        "value": "${{ github.event.pull_request.title }}",
-                        "short": true
-                      },
-                      {
-                        "title": "🧑‍💻 PR 작성자",
-                        "value": "${{ github.event.pull_request.user.login }}",
-                        "short": true
-                      },
-                      {
-                        "title": "🧑‍💻 리뷰 작성자",
-                        "value": "${{ github.event.review.user.login }}",
-                        "short": true
-                      },
-                      {
-                        "title": "🎭 리뷰 상태",
-                        "value": "${{ github.event.review.state }}",
-                        "short": true
-                      },
-                      {
-                        "title": "🛜 URL",
-                        "value": "<${{ github.event.review.html_url }}|확인하러 가기>",
-                        "short": true
-                      }
+                    {
+                      "title": "📑 PR Title",
+                      "value": "${{ github.event.pull_request.title }}",
+                      "short": true
+                    },
+                    {
+                      "title": "🧑‍💻 PR Author",
+                      "value": "${{ github.event.pull_request.user.login }}",
+                      "short": true
+                    },
+                    {
+                      "title": "🧑‍💻 Reviewer",
+                      "value": "${{ github.event.review.user.login }}",
+                      "short": true
+                    },
+                    {
+                      "title": "🎭 Review Status",
+                      "value": "${{ github.event.review.state }}",
+                      "short": true
+                    },
+                    {
+                      "title": "🛜 URL",
+                      "value": "<${{ github.event.review.html_url }}|View Review>",
+                      "short": true
+                    }
                   ]
                 }
               ]
