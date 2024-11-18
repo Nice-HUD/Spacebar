@@ -20,6 +20,7 @@ import engine.SoundManager;
  * Implements the game screen, where the action happens.
  *
  * @author <a href="mailto:RobertoIA1987@gmail.com">Roberto Izquierdo Amo</a>
+ *
  */
 public class GameScreen extends Screen {
 
