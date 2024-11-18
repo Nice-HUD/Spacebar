@@ -1,1234 +1,163 @@
-[INFO|5:44:59]: Started loading resources. 
-[FINE|5:44:59]: Sprite Obstacle loaded. 
-[FINE|5:44:59]: Sprite Ship loaded. 
-[FINE|5:44:59]: Sprite ShipDestroyed loaded. 
-[FINE|5:44:59]: Sprite Bullet loaded. 
-[FINE|5:44:59]: Sprite EnemyBullet loaded. 
-[FINE|5:44:59]: Sprite EnemyShipA1 loaded. 
-[FINE|5:44:59]: Sprite EnemyShipA2 loaded. 
-[FINE|5:44:59]: Sprite EnemyShipB1 loaded. 
-[FINE|5:44:59]: Sprite EnemyShipB2 loaded. 
-[FINE|5:44:59]: Sprite EnemyShipC1 loaded. 
-[FINE|5:44:59]: Sprite EnemyShipC2 loaded. 
-[FINE|5:44:59]: Sprite ExplosiveEnemyShip1 loaded. 
-[FINE|5:44:59]: Sprite ExplosiveEnemyShip2 loaded. 
-[FINE|5:44:59]: Sprite EnemyShipSpecial loaded. 
-[FINE|5:44:59]: Sprite Explosion loaded. 
-[FINE|5:44:59]: Sprite Heart loaded. 
-[FINE|5:44:59]: Sprite Boss loaded. 
-[FINE|5:44:59]: Sprite Coin loaded. 
-[FINE|5:44:59]: Sprite AddSign loaded. 
-[FINE|5:44:59]: Sprite Gem loaded. 
-[FINE|5:44:59]: Sprite ItemHeart loaded. 
-[FINE|5:44:59]: Sprite ItemBarrier loaded. 
-[FINE|5:44:59]: Sprite ItemBomb loaded. 
-[FINE|5:44:59]: Sprite ShipBarrierStatus loaded. 
-[FINE|5:44:59]: Sprite ItemCoin loaded. 
-[FINE|5:44:59]: Sprite ItemFeverTime loaded. 
-[FINE|5:44:59]: Sprite ItemPierce loaded. 
-[FINE|5:44:59]: Sprite ItemSpeedUp loaded. 
-[FINE|5:44:59]: Sprite ItemSpeedSlow loaded. 
-[INFO|5:44:59]: Finished loading the sprites. 
-[INFO|5:45:00]: Finished loading the fonts. 
-[INFO|5:45:00]: Saving upgrade statuses. 
-[INFO|5:45:00]: Saving Player Statistic. 
-[INFO|5:45:00]: Reset Player Statistics 
-[INFO|5:45:00]: Loading user's coin. 
-[INFO|5:45:00]: Loading user's gem. 
-[INFO|5:45:00]: Starting 630x720 title screen at 60 fps. 
-[INFO|5:45:05]: Closing title screen. 
-[INFO|5:45:05]: Starting inGameBGM 
-[FINE|5:45:05]: start_button.wav is loading 
-[INFO|5:45:05]: Loading Player Statistic. 
-[INFO|5:45:05]: start_button.wav load complete 
-[INFO|5:45:05]: Starting 630x720 game screen at 60 fps. 
-[INFO|5:45:05]: Initializing 5x4 ship formation in (60,100) 
-[FINE|5:45:11]: 214990__peridactyloptrix__laser-blast-x3.wav is loading 
-[INFO|5:45:11]: Bullet's fire_id is 1 
-[INFO|5:45:11]: 214990__peridactyloptrix__laser-blast-x3.wav load complete 
-[FINE|5:45:13]: obstacle_explosion.wav is loading 
-[INFO|5:45:13]: obstacle_explosion.wav load complete 
-[FINE|5:45:13]: enemyGunShot01.wav is loading 
-[INFO|5:45:13]: enemyGunShot01.wav load complete 
-[INFO|5:45:14]: Bullet's fire_id is 2 
-[FINE|5:45:14]: 214990__peridactyloptrix__laser-blast-x3.wav is loading 
-[INFO|5:45:14]: 214990__peridactyloptrix__laser-blast-x3.wav load complete 
-[INFO|5:45:15]: Bullet's fire_id is 3 
-[FINE|5:45:15]: 214990__peridactyloptrix__laser-blast-x3.wav is loading 
-[INFO|5:45:15]: 214990__peridactyloptrix__laser-blast-x3.wav load complete 
-[FINE|5:45:15]: 332056__qubodup__fast-collision.wav is loading 
-[INFO|5:45:15]: Destroyed ship in (3,3) 
-[INFO|5:45:15]: Hit count! 
-[INFO|5:45:15]: 332056__qubodup__fast-collision.wav load complete 
-[INFO|5:45:15]: Bullet's fire_id is 4 
-[FINE|5:45:15]: 214990__peridactyloptrix__laser-blast-x3.wav is loading 
-[INFO|5:45:15]: 214990__peridactyloptrix__laser-blast-x3.wav load complete 
-[FINE|5:45:16]: enemyGunShot01.wav is loading 
-[INFO|5:45:16]: enemyGunShot01.wav load complete 
-[INFO|5:45:16]: Bullet's fire_id is 5 
-[FINE|5:45:16]: 214990__peridactyloptrix__laser-blast-x3.wav is loading 
-[INFO|5:45:16]: 214990__peridactyloptrix__laser-blast-x3.wav load complete 
-[INFO|5:45:16]: Removed enemy 3 from column 3 
-[FINE|5:45:16]: obstacle_explosion.wav is loading 
-[INFO|5:45:16]: obstacle_explosion.wav load complete 
-[INFO|5:45:17]: Bullet's fire_id is 6 
-[FINE|5:45:17]: 214990__peridactyloptrix__laser-blast-x3.wav is loading 
-[INFO|5:45:17]: 214990__peridactyloptrix__laser-blast-x3.wav load complete 
-[INFO|5:45:18]: Destroyed ship in (2,3) 
-[FINE|5:45:18]: 332056__qubodup__fast-collision.wav is loading 
-[INFO|5:45:18]: Hit count! 
-[INFO|5:45:18]: 332056__qubodup__fast-collision.wav load complete 
-[INFO|5:45:18]: Bullet's fire_id is 7 
-[FINE|5:45:18]: 214990__peridactyloptrix__laser-blast-x3.wav is loading 
-[INFO|5:45:18]: 214990__peridactyloptrix__laser-blast-x3.wav load complete 
-[INFO|5:45:18]: Destroyed ship in (1,3) 
-[FINE|5:45:18]: 332056__qubodup__fast-collision.wav is loading 
-[INFO|5:45:18]: Hit count! 
-[INFO|5:45:18]: 332056__qubodup__fast-collision.wav load complete 
-[INFO|5:45:18]: Bullet's fire_id is 8 
-[FINE|5:45:18]: 214990__peridactyloptrix__laser-blast-x3.wav is loading 
-[INFO|5:45:18]: Removed enemy 3 from column 1 
-[INFO|5:45:18]: Removed enemy 3 from column 2 
-[INFO|5:45:18]: 214990__peridactyloptrix__laser-blast-x3.wav load complete 
-[FINE|5:45:19]: enemyGunShot01.wav is loading 
-[INFO|5:45:19]: enemyGunShot01.wav load complete 
-[INFO|5:45:19]: Bullet's fire_id is 9 
-[FINE|5:45:19]: 214990__peridactyloptrix__laser-blast-x3.wav is loading 
-[INFO|5:45:19]: 214990__peridactyloptrix__laser-blast-x3.wav load complete 
-[INFO|5:45:20]: Bullet's fire_id is 10 
-[FINE|5:45:20]: 214990__peridactyloptrix__laser-blast-x3.wav is loading 
-[INFO|5:45:20]: 214990__peridactyloptrix__laser-blast-x3.wav load complete 
-[INFO|5:45:21]: Bullet's fire_id is 11 
-[FINE|5:45:21]: 214990__peridactyloptrix__laser-blast-x3.wav is loading 
-[INFO|5:45:21]: 214990__peridactyloptrix__laser-blast-x3.wav load complete 
-[FINE|5:45:21]: enemyGunShot01.wav is loading 
-[INFO|5:45:21]: enemyGunShot01.wav load complete 
-[INFO|5:45:22]: Bullet's fire_id is 12 
-[FINE|5:45:22]: 214990__peridactyloptrix__laser-blast-x3.wav is loading 
-[INFO|5:45:22]: 214990__peridactyloptrix__laser-blast-x3.wav load complete 
-[INFO|5:45:22]: Enemy ship lost 1 HP in (2,0) 
-[INFO|5:45:22]: Hit count! 
-[INFO|5:45:22]: Bullet's fire_id is 13 
-[FINE|5:45:22]: 214990__peridactyloptrix__laser-blast-x3.wav is loading 
-[INFO|5:45:22]: 214990__peridactyloptrix__laser-blast-x3.wav load complete 
-[INFO|5:45:23]: Destroyed ship in (3,2) 
-[FINE|5:45:23]: 332056__qubodup__fast-collision.wav is loading 
-[INFO|5:45:23]: Hit count! 
-[INFO|5:45:23]: 332056__qubodup__fast-collision.wav load complete 
-[INFO|5:45:23]: Bullet's fire_id is 14 
-[FINE|5:45:23]: 214990__peridactyloptrix__laser-blast-x3.wav is loading 
-[INFO|5:45:23]: 214990__peridactyloptrix__laser-blast-x3.wav load complete 
-[INFO|5:45:23]: Removed enemy 2 from column 3 
-[INFO|5:45:23]: Destroyed ship in (4,2) 
-[FINE|5:45:23]: 332056__qubodup__fast-collision.wav is loading 
-[INFO|5:45:23]: Hit count! 
-[INFO|5:45:23]: 332056__qubodup__fast-collision.wav load complete 
-[INFO|5:45:24]: Destroyed ship in (4,3) 
-[FINE|5:45:24]: 332056__qubodup__fast-collision.wav is loading 
-[INFO|5:45:24]: 332056__qubodup__fast-collision.wav load complete 
-[INFO|5:45:24]: Bullet's fire_id is 15 
-[FINE|5:45:24]: 214990__peridactyloptrix__laser-blast-x3.wav is loading 
-[INFO|5:45:24]: 214990__peridactyloptrix__laser-blast-x3.wav load complete 
-[INFO|5:45:24]: A special ship appears 
-[FINE|5:45:24]: 276885__18hiltc__rocket-fly-by.wav is loading 
-[INFO|5:45:24]: Removed enemy 2 from column 4 
-[INFO|5:45:24]: Removed enemy 3 from column 4 
-[INFO|5:45:24]: 276885__18hiltc__rocket-fly-by.wav load complete 
-[INFO|5:45:25]: Bullet's fire_id is 16 
-[FINE|5:45:25]: 214990__peridactyloptrix__laser-blast-x3.wav is loading 
-[INFO|5:45:25]: 214990__peridactyloptrix__laser-blast-x3.wav load complete 
-[FINE|5:45:25]: enemyGunShot01.wav is loading 
-[INFO|5:45:25]: enemyGunShot01.wav load complete 
-[INFO|5:45:25]: Destroyed ship in (3,1) 
-[FINE|5:45:25]: 332056__qubodup__fast-collision.wav is loading 
-[INFO|5:45:25]: Hit count! 
-[INFO|5:45:25]: 332056__qubodup__fast-collision.wav load complete 
-[INFO|5:45:25]: Bullet's fire_id is 17 
-[FINE|5:45:25]: 214990__peridactyloptrix__laser-blast-x3.wav is loading 
-[INFO|5:45:25]: 214990__peridactyloptrix__laser-blast-x3.wav load complete 
-[INFO|5:45:25]: Removed enemy 1 from column 3 
-[INFO|5:45:26]: Bullet's fire_id is 18 
-[FINE|5:45:26]: 214990__peridactyloptrix__laser-blast-x3.wav is loading 
-[INFO|5:45:26]: 214990__peridactyloptrix__laser-blast-x3.wav load complete 
-[INFO|5:45:26]: Destroyed ship in (3,0) 
-[FINE|5:45:26]: 332056__qubodup__fast-collision.wav is loading 
-[INFO|5:45:26]: Shooters list reduced to 4 members. 
-[INFO|5:45:26]: Hit count! 
-[INFO|5:45:26]: 332056__qubodup__fast-collision.wav load complete 
-[INFO|5:45:27]: Destroyed ship in (4,1) 
-[FINE|5:45:27]: 332056__qubodup__fast-collision.wav is loading 
-[INFO|5:45:27]: 332056__qubodup__fast-collision.wav load complete 
-[INFO|5:45:27]: Removed enemy 0 from column 3 
-[INFO|5:45:27]: Removed enemy 1 from column 4 
-[INFO|5:45:27]: Removed column 3 
-[INFO|5:45:27]: Bullet's fire_id is 19 
-[FINE|5:45:27]: 214990__peridactyloptrix__laser-blast-x3.wav is loading 
-[INFO|5:45:27]: 214990__peridactyloptrix__laser-blast-x3.wav load complete 
-[INFO|5:45:28]: Bullet's fire_id is 20 
-[FINE|5:45:28]: 214990__peridactyloptrix__laser-blast-x3.wav is loading 
-[INFO|5:45:28]: 214990__peridactyloptrix__laser-blast-x3.wav load complete 
-[INFO|5:45:28]: Destroyed ship in (3,0) 
-[FINE|5:45:28]: 332056__qubodup__fast-collision.wav is loading 
-[INFO|5:45:28]: Shooters list reduced to 3 members. 
-[INFO|5:45:28]: Hit count! 
-[INFO|5:45:28]: 332056__qubodup__fast-collision.wav load complete 
-[INFO|5:45:28]: Removed enemy 0 from column 3 
-[INFO|5:45:28]: Removed column 3 
-[FINE|5:45:28]: enemyGunShot01.wav is loading 
-[INFO|5:45:28]: enemyGunShot01.wav load complete 
-[INFO|5:45:28]: Bullet's fire_id is 21 
-[FINE|5:45:28]: 214990__peridactyloptrix__laser-blast-x3.wav is loading 
-[INFO|5:45:28]: 214990__peridactyloptrix__laser-blast-x3.wav load complete 
-[INFO|5:45:29]: Bullet's fire_id is 22 
-[FINE|5:45:29]: 214990__peridactyloptrix__laser-blast-x3.wav is loading 
-[INFO|5:45:29]: 214990__peridactyloptrix__laser-blast-x3.wav load complete 
-[INFO|5:45:30]: Bullet's fire_id is 23 
-[FINE|5:45:30]: 214990__peridactyloptrix__laser-blast-x3.wav is loading 
-[INFO|5:45:30]: 214990__peridactyloptrix__laser-blast-x3.wav load complete 
-[INFO|5:45:30]: Destroyed ship in (2,2) 
-[FINE|5:45:30]: 332056__qubodup__fast-collision.wav is loading 
-[INFO|5:45:30]: Hit count! 
-[INFO|5:45:30]: 332056__qubodup__fast-collision.wav load complete 
-[INFO|5:45:30]: Removed enemy 2 from column 2 
-[INFO|5:45:31]: Bullet's fire_id is 24 
-[FINE|5:45:31]: 214990__peridactyloptrix__laser-blast-x3.wav is loading 
-[INFO|5:45:31]: 214990__peridactyloptrix__laser-blast-x3.wav load complete 
-[FINE|5:45:31]: enemyGunShot01.wav is loading 
-[INFO|5:45:31]: enemyGunShot01.wav load complete 
-[FINE|5:45:31]: 214990__peridactyloptrix__laser-blast-x3.wav is loading 
-[INFO|5:45:31]: Bullet's fire_id is 25 
-[INFO|5:45:31]: 214990__peridactyloptrix__laser-blast-x3.wav load complete 
-[INFO|5:45:32]: Bullet's fire_id is 26 
-[FINE|5:45:32]: 214990__peridactyloptrix__laser-blast-x3.wav is loading 
-[INFO|5:45:32]: 214990__peridactyloptrix__laser-blast-x3.wav load complete 
-[INFO|5:45:33]: Bullet's fire_id is 27 
-[FINE|5:45:33]: 214990__peridactyloptrix__laser-blast-x3.wav is loading 
-[INFO|5:45:33]: 214990__peridactyloptrix__laser-blast-x3.wav load complete 
-[INFO|5:45:34]: Destroyed ship in (2,1) 
-[FINE|5:45:34]: 332056__qubodup__fast-collision.wav is loading 
-[INFO|5:45:34]: Hit count! 
-[INFO|5:45:34]: 332056__qubodup__fast-collision.wav load complete 
-[INFO|5:45:34]: Removed enemy 1 from column 2 
-[INFO|5:45:34]: Bullet's fire_id is 28 
-[FINE|5:45:34]: 214990__peridactyloptrix__laser-blast-x3.wav is loading 
-[INFO|5:45:34]: 214990__peridactyloptrix__laser-blast-x3.wav load complete 
-[INFO|5:45:34]: Bullet's fire_id is 29 
-[FINE|5:45:34]: 214990__peridactyloptrix__laser-blast-x3.wav is loading 
-[INFO|5:45:34]: 214990__peridactyloptrix__laser-blast-x3.wav load complete 
-[INFO|5:45:35]: Destroyed ship in (2,0) 
-[FINE|5:45:35]: 332056__qubodup__fast-collision.wav is loading 
-[INFO|5:45:35]: Shooters list reduced to 2 members. 
-[INFO|5:45:35]: Hit count! 
-[INFO|5:45:35]: 332056__qubodup__fast-collision.wav load complete 
-[INFO|5:45:35]: Removed enemy 0 from column 2 
-[INFO|5:45:35]: Removed column 2 
-[FINE|5:45:35]: enemyGunShot01.wav is loading 
-[INFO|5:45:35]: enemyGunShot01.wav load complete 
-[INFO|5:45:35]: Bullet's fire_id is 30 
-[FINE|5:45:35]: 214990__peridactyloptrix__laser-blast-x3.wav is loading 
-[INFO|5:45:35]: 214990__peridactyloptrix__laser-blast-x3.wav load complete 
-[FINE|5:45:36]: 214990__peridactyloptrix__laser-blast-x3.wav is loading 
-[INFO|5:45:36]: Bullet's fire_id is 31 
-[INFO|5:45:36]: 214990__peridactyloptrix__laser-blast-x3.wav load complete 
-[INFO|5:45:37]: Destroyed ship in (1,1) 
-[FINE|5:45:37]: 332056__qubodup__fast-collision.wav is loading 
-[INFO|5:45:37]: Hit count! 
-[INFO|5:45:37]: 332056__qubodup__fast-collision.wav load complete 
-[INFO|5:45:37]: Bullet's fire_id is 32 
-[FINE|5:45:37]: 214990__peridactyloptrix__laser-blast-x3.wav is loading 
-[INFO|5:45:37]: 214990__peridactyloptrix__laser-blast-x3.wav load complete 
-[INFO|5:45:37]: Removed enemy 1 from column 1 
-[INFO|5:45:37]: Destroyed ship in (1,1) 
-[FINE|5:45:37]: 332056__qubodup__fast-collision.wav is loading 
-[INFO|5:45:37]: Hit count! 
-[INFO|5:45:37]: 332056__qubodup__fast-collision.wav load complete 
-[INFO|5:45:37]: Removed enemy 1 from column 1 
-[INFO|5:45:38]: Bullet's fire_id is 33 
-[FINE|5:45:38]: 214990__peridactyloptrix__laser-blast-x3.wav is loading 
-[INFO|5:45:38]: 214990__peridactyloptrix__laser-blast-x3.wav load complete 
-[INFO|5:45:38]: Bullet's fire_id is 34 
-[FINE|5:45:38]: 214990__peridactyloptrix__laser-blast-x3.wav is loading 
-[INFO|5:45:38]: 214990__peridactyloptrix__laser-blast-x3.wav load complete 
-[INFO|5:45:39]: Destroyed ship in (0,2) 
-[FINE|5:45:39]: 332056__qubodup__fast-collision.wav is loading 
-[INFO|5:45:39]: Hit count! 
-[INFO|5:45:39]: 332056__qubodup__fast-collision.wav load complete 
-[FINE|5:45:39]: enemyGunShot01.wav is loading 
-[INFO|5:45:39]: enemyGunShot01.wav load complete 
-[INFO|5:45:39]: Removed enemy 2 from column 0 
-[INFO|5:45:39]: Destroyed ship in (0,2) 
-[FINE|5:45:39]: 332056__qubodup__fast-collision.wav is loading 
-[INFO|5:45:39]: 332056__qubodup__fast-collision.wav load complete 
-[INFO|5:45:39]: Bullet's fire_id is 35 
-[FINE|5:45:39]: 214990__peridactyloptrix__laser-blast-x3.wav is loading 
-[INFO|5:45:39]: 214990__peridactyloptrix__laser-blast-x3.wav load complete 
-[INFO|5:45:39]: Removed enemy 2 from column 0 
-[INFO|5:45:40]: Bullet's fire_id is 36 
-[FINE|5:45:40]: 214990__peridactyloptrix__laser-blast-x3.wav is loading 
-[INFO|5:45:40]: 214990__peridactyloptrix__laser-blast-x3.wav load complete 
-[INFO|5:45:41]: Bullet's fire_id is 37 
-[FINE|5:45:41]: 214990__peridactyloptrix__laser-blast-x3.wav is loading 
-[INFO|5:45:41]: 214990__peridactyloptrix__laser-blast-x3.wav load complete 
-[INFO|5:45:41]: Formation now moving down 5 
-[INFO|5:45:41]: You get coin! 
-[FINE|5:45:41]: item_coin.wav is loading 
-[INFO|5:45:41]: coin: 1 
-[INFO|5:45:41]: item_coin.wav load complete 
-[INFO|5:45:41]: Bullet's fire_id is 38 
-[FINE|5:45:41]: 214990__peridactyloptrix__laser-blast-x3.wav is loading 
-[INFO|5:45:41]: 214990__peridactyloptrix__laser-blast-x3.wav load complete 
-[INFO|5:45:42]: Destroyed ship in (0,1) 
-[FINE|5:45:42]: 332056__qubodup__fast-collision.wav is loading 
-[INFO|5:45:42]: Hit count! 
-[INFO|5:45:42]: 332056__qubodup__fast-collision.wav load complete 
-[INFO|5:45:42]: Formation now moving left 1 
-[INFO|5:45:42]: Removed enemy 1 from column 0 
-[FINE|5:45:42]: 214990__peridactyloptrix__laser-blast-x3.wav is loading 
-[INFO|5:45:42]: Bullet's fire_id is 39 
-[INFO|5:45:42]: 214990__peridactyloptrix__laser-blast-x3.wav load complete 
-[FINE|5:45:42]: enemyGunShot01.wav is loading 
-[INFO|5:45:42]: enemyGunShot01.wav load complete 
-[INFO|5:45:43]: Bullet's fire_id is 40 
-[FINE|5:45:43]: 214990__peridactyloptrix__laser-blast-x3.wav is loading 
-[INFO|5:45:43]: 214990__peridactyloptrix__laser-blast-x3.wav load complete 
-[INFO|5:45:44]: Bullet's fire_id is 41 
-[FINE|5:45:44]: 214990__peridactyloptrix__laser-blast-x3.wav is loading 
-[INFO|5:45:44]: 214990__peridactyloptrix__laser-blast-x3.wav load complete 
-[INFO|5:45:44]: Bullet's fire_id is 42 
-[FINE|5:45:44]: 214990__peridactyloptrix__laser-blast-x3.wav is loading 
-[INFO|5:45:44]: 214990__peridactyloptrix__laser-blast-x3.wav load complete 
-[INFO|5:45:45]: Bullet's fire_id is 43 
-[FINE|5:45:45]: 214990__peridactyloptrix__laser-blast-x3.wav is loading 
-[INFO|5:45:45]: 214990__peridactyloptrix__laser-blast-x3.wav load complete 
-[FINE|5:45:45]: enemyGunShot01.wav is loading 
-[INFO|5:45:45]: enemyGunShot01.wav load complete 
-[INFO|5:45:46]: Bullet's fire_id is 44 
-[FINE|5:45:46]: 214990__peridactyloptrix__laser-blast-x3.wav is loading 
-[INFO|5:45:46]: 214990__peridactyloptrix__laser-blast-x3.wav load complete 
-[FINE|5:45:47]: 214990__peridactyloptrix__laser-blast-x3.wav is loading 
-[INFO|5:45:47]: Bullet's fire_id is 45 
-[INFO|5:45:47]: 214990__peridactyloptrix__laser-blast-x3.wav load complete 
-[INFO|5:45:47]: Bullet's fire_id is 46 
-[FINE|5:45:47]: 214990__peridactyloptrix__laser-blast-x3.wav is loading 
-[INFO|5:45:47]: 214990__peridactyloptrix__laser-blast-x3.wav load complete 
-[INFO|5:45:48]: Bullet's fire_id is 47 
-[FINE|5:45:48]: 214990__peridactyloptrix__laser-blast-x3.wav is loading 
-[INFO|5:45:48]: 214990__peridactyloptrix__laser-blast-x3.wav load complete 
-[INFO|5:45:49]: Bullet's fire_id is 48 
-[FINE|5:45:49]: 214990__peridactyloptrix__laser-blast-x3.wav is loading 
-[INFO|5:45:49]: 214990__peridactyloptrix__laser-blast-x3.wav load complete 
-[FINE|5:45:49]: obstacle_explosion.wav is loading 
-[INFO|5:45:49]: obstacle_explosion.wav load complete 
-[FINE|5:45:49]: enemyGunShot01.wav is loading 
-[INFO|5:45:49]: enemyGunShot01.wav load complete 
-[INFO|5:45:50]: Bullet's fire_id is 49 
-[FINE|5:45:50]: 214990__peridactyloptrix__laser-blast-x3.wav is loading 
-[INFO|5:45:50]: 214990__peridactyloptrix__laser-blast-x3.wav load complete 
-[INFO|5:45:50]: Bullet's fire_id is 50 
-[FINE|5:45:50]: 214990__peridactyloptrix__laser-blast-x3.wav is loading 
-[INFO|5:45:50]: 214990__peridactyloptrix__laser-blast-x3.wav load complete 
-[INFO|5:45:51]: Bullet's fire_id is 51 
-[FINE|5:45:51]: 214990__peridactyloptrix__laser-blast-x3.wav is loading 
-[INFO|5:45:51]: 214990__peridactyloptrix__laser-blast-x3.wav load complete 
-[INFO|5:45:52]: Bullet's fire_id is 52 
-[FINE|5:45:52]: 214990__peridactyloptrix__laser-blast-x3.wav is loading 
-[INFO|5:45:52]: 214990__peridactyloptrix__laser-blast-x3.wav load complete 
-[INFO|5:45:53]: Bullet's fire_id is 53 
-[FINE|5:45:53]: 214990__peridactyloptrix__laser-blast-x3.wav is loading 
-[INFO|5:45:53]: 214990__peridactyloptrix__laser-blast-x3.wav load complete 
-[FINE|5:45:53]: enemyGunShot01.wav is loading 
-[INFO|5:45:53]: enemyGunShot01.wav load complete 
-[INFO|5:45:53]: Destroyed ship in (1,0) 
-[FINE|5:45:53]: 332056__qubodup__fast-collision.wav is loading 
-[INFO|5:45:53]: Shooters list reduced to 1 members. 
-[INFO|5:45:53]: Hit count! 
-[INFO|5:45:53]: 332056__qubodup__fast-collision.wav load complete 
-[INFO|5:45:53]: Bullet's fire_id is 54 
-[FINE|5:45:53]: 214990__peridactyloptrix__laser-blast-x3.wav is loading 
-[INFO|5:45:53]: 214990__peridactyloptrix__laser-blast-x3.wav load complete 
-[INFO|5:45:54]: Removed enemy 0 from column 1 
-[INFO|5:45:54]: Removed column 1 
-[INFO|5:45:54]: Formation now moving down 3 
-[INFO|5:45:54]: Bullet's fire_id is 55 
-[FINE|5:45:54]: 214990__peridactyloptrix__laser-blast-x3.wav is loading 
-[INFO|5:45:54]: 214990__peridactyloptrix__laser-blast-x3.wav load complete 
-[INFO|5:45:55]: Formation now moving right 2 
-[INFO|5:45:55]: Destroyed ship in (0,0) 
-[FINE|5:45:55]: 332056__qubodup__fast-collision.wav is loading 
-[INFO|5:45:55]: Shooters list reduced to 0 members. 
-[INFO|5:45:55]: Hit count! 
-[INFO|5:45:55]: 332056__qubodup__fast-collision.wav load complete 
-[INFO|5:45:55]: Loading Player Statistic. 
-[INFO|5:45:55]: Saving Player Statistic. 
-[INFO|5:45:55]: Loading Player Statistic. 
-[INFO|5:45:55]: Saving Player Statistic. 
-[INFO|5:45:55]: Loading Player Statistic. 
-[INFO|5:45:55]: Saving Player Statistic. 
-[INFO|5:45:55]: Screen cleared with a score of 20 
-[INFO|5:45:55]: Closing game screen. 
-[INFO|5:45:55]: base coin = coinItemsCollectedValue(10) + scoreCoin(2) = 12 
-[INFO|5:45:55]: Bonus occurs! level bonus: 1, accuracy bonus: 0, time bonus: 50 
-[INFO|5:45:55]: coin = ((baseCoin(12) + bonusCoin(51)) * statBonus(1.0) = 63 
-[INFO|5:45:55]: Round Coin: 63 
-[INFO|5:45:55]: Round Hit Rate: 0.3272727 
-[INFO|5:45:55]: Round Time: 43 
-[INFO|5:45:55]: Loading Player Statistic. 
-[INFO|5:45:55]: Saving Player Statistic. 
-[INFO|5:45:55]: RoundTime Saving 
-[INFO|5:45:55]: loading receiptScreen 
-[INFO|5:45:55]: Starting 630x720 receipt screen at 60 fps. 
-[INFO|5:45:57]: Closing receiptScreen. 
-[INFO|5:45:57]: Loading Player Statistic. 
-[INFO|5:45:57]: Starting 630x720 game screen at 60 fps. 
-[INFO|5:45:57]: cercle2 
-[INFO|5:45:57]: Initializing 5x5 ship formation in (60,100) 
-[INFO|5:46:03]: Bullet's fire_id is 1 
-[FINE|5:46:03]: 214990__peridactyloptrix__laser-blast-x3.wav is loading 
-[INFO|5:46:03]: 214990__peridactyloptrix__laser-blast-x3.wav load complete 
-[INFO|5:46:04]: Bullet's fire_id is 2 
-[FINE|5:46:04]: 214990__peridactyloptrix__laser-blast-x3.wav is loading 
-[INFO|5:46:04]: 214990__peridactyloptrix__laser-blast-x3.wav load complete 
-[FINE|5:46:04]: obstacle_explosion.wav is loading 
-[INFO|5:46:04]: obstacle_explosion.wav load complete 
-[INFO|5:46:05]: Bullet's fire_id is 3 
-[FINE|5:46:05]: 214990__peridactyloptrix__laser-blast-x3.wav is loading 
-[INFO|5:46:05]: 214990__peridactyloptrix__laser-blast-x3.wav load complete 
-[INFO|5:46:05]: Bullet's fire_id is 4 
-[FINE|5:46:05]: 214990__peridactyloptrix__laser-blast-x3.wav is loading 
-[INFO|5:46:05]: 214990__peridactyloptrix__laser-blast-x3.wav load complete 
-[FINE|5:46:06]: 332056__qubodup__fast-collision.wav is loading 
-[INFO|5:46:06]: Destroyed ship in (4,0) 
-[INFO|5:46:06]: Hit count! 
-[INFO|5:46:06]: 332056__qubodup__fast-collision.wav load complete 
-[INFO|5:46:06]: Bullet's fire_id is 5 
-[FINE|5:46:06]: 214990__peridactyloptrix__laser-blast-x3.wav is loading 
-[INFO|5:46:06]: 214990__peridactyloptrix__laser-blast-x3.wav load complete 
-[INFO|5:46:06]: Removed enemy 0 from column 4 
-[INFO|5:46:07]: Destroyed ship in (4,0) 
-[FINE|5:46:07]: 332056__qubodup__fast-collision.wav is loading 
-[INFO|5:46:07]: Hit count! 
-[INFO|5:46:07]: 332056__qubodup__fast-collision.wav load complete 
-[FINE|5:46:07]: enemyGunShot01.wav is loading 
-[INFO|5:46:07]: enemyGunShot01.wav load complete 
-[INFO|5:46:07]: Bullet's fire_id is 6 
-[FINE|5:46:07]: 214990__peridactyloptrix__laser-blast-x3.wav is loading 
-[INFO|5:46:07]: 214990__peridactyloptrix__laser-blast-x3.wav load complete 
-[INFO|5:46:07]: Removed enemy 0 from column 4 
-[INFO|5:46:08]: Bullet's fire_id is 7 
-[FINE|5:46:08]: 214990__peridactyloptrix__laser-blast-x3.wav is loading 
-[INFO|5:46:08]: 214990__peridactyloptrix__laser-blast-x3.wav load complete 
-[INFO|5:46:08]: Bullet's fire_id is 8 
-[FINE|5:46:08]: 214990__peridactyloptrix__laser-blast-x3.wav is loading 
-[INFO|5:46:08]: 214990__peridactyloptrix__laser-blast-x3.wav load complete 
-[INFO|5:46:09]: You get coin! 
-[INFO|5:46:09]: coin: 2 
-[FINE|5:46:09]: item_coin.wav is loading 
-[INFO|5:46:09]: item_coin.wav load complete 
-[INFO|5:46:09]: Bullet's fire_id is 9 
-[FINE|5:46:09]: 214990__peridactyloptrix__laser-blast-x3.wav is loading 
-[INFO|5:46:09]: 214990__peridactyloptrix__laser-blast-x3.wav load complete 
-[FINE|5:46:09]: coin-collect-retro-8-bit-sound-effect-145251.wav is loading 
-[INFO|5:46:09]: get bomb item 
-[INFO|5:46:09]: coin: 2 
-[INFO|5:46:09]: coin-collect-retro-8-bit-sound-effect-145251.wav load complete 
-[INFO|5:46:10]: Bullet's fire_id is 10 
-[FINE|5:46:10]: 214990__peridactyloptrix__laser-blast-x3.wav is loading 
-[INFO|5:46:10]: 214990__peridactyloptrix__laser-blast-x3.wav load complete 
-[INFO|5:46:11]: Bullet's fire_id is 11 
-[FINE|5:46:11]: 214990__peridactyloptrix__laser-blast-x3.wav is loading 
-[INFO|5:46:11]: 214990__peridactyloptrix__laser-blast-x3.wav load complete 
-[FINE|5:46:11]: enemyGunShot01.wav is loading 
-[INFO|5:46:11]: Destroyed ship in (4,2) 
-[FINE|5:46:11]: 332056__qubodup__fast-collision.wav is loading 
-[INFO|5:46:11]: Hit count! 
-[INFO|5:46:11]: enemyGunShot01.wav load complete 
-[INFO|5:46:11]: 332056__qubodup__fast-collision.wav load complete 
-[INFO|5:46:11]: Removed enemy 2 from column 4 
-[FINE|5:46:11]: obstacle_explosion.wav is loading 
-[INFO|5:46:11]: obstacle_explosion.wav load complete 
-[INFO|5:46:11]: Bullet's fire_id is 12 
-[FINE|5:46:11]: 214990__peridactyloptrix__laser-blast-x3.wav is loading 
-[INFO|5:46:11]: 214990__peridactyloptrix__laser-blast-x3.wav load complete 
-[FINE|5:46:12]: 332056__qubodup__fast-collision.wav is loading 
-[FINE|5:46:12]: 332056__qubodup__fast-collision.wav is loading 
-[INFO|5:46:12]: Destroyed ship at (2,0) 
-[INFO|5:46:12]: Destroyed ship at (3,0) 
-[FINE|5:46:12]: 332056__qubodup__fast-collision.wav is loading 
-[INFO|5:46:12]: Destroyed ship at (3,1) 
-[FINE|5:46:12]: 332056__qubodup__fast-collision.wav is loading 
-[INFO|5:46:12]: Destroyed ship at (3,2) 
-[FINE|5:46:12]: 332056__qubodup__fast-collision.wav is loading 
-[INFO|5:46:12]: Destroyed ship at (3,3) 
-[FINE|5:46:12]: 332056__qubodup__fast-collision.wav is loading 
-[INFO|5:46:12]: Destroyed ship at (3,4) 
-[FINE|5:46:12]: 332056__qubodup__fast-collision.wav is loading 
-[INFO|5:46:12]: Destroyed ship at (4,0) 
-[FINE|5:46:12]: 332056__qubodup__fast-collision.wav is loading 
-[INFO|5:46:12]: Shooters list reduced to 4 members. 
-[INFO|5:46:12]: Hit count! 
-[INFO|5:46:12]: 332056__qubodup__fast-collision.wav load complete 
-[INFO|5:46:12]: 332056__qubodup__fast-collision.wav load complete 
-[INFO|5:46:12]: 332056__qubodup__fast-collision.wav load complete 
-[INFO|5:46:12]: 332056__qubodup__fast-collision.wav load complete 
-[INFO|5:46:12]: 332056__qubodup__fast-collision.wav load complete 
-[INFO|5:46:12]: 332056__qubodup__fast-collision.wav load complete 
-[INFO|5:46:12]: 332056__qubodup__fast-collision.wav load complete 
-[INFO|5:46:12]: 332056__qubodup__fast-collision.wav load complete 
-[INFO|5:46:12]: Bullet's fire_id is 13 
-[FINE|5:46:12]: 214990__peridactyloptrix__laser-blast-x3.wav is loading 
-[INFO|5:46:12]: 214990__peridactyloptrix__laser-blast-x3.wav load complete 
-[INFO|5:46:12]: Removed enemy 0 from column 2 
-[INFO|5:46:12]: Removed enemy 0 from column 3 
-[INFO|5:46:12]: Removed enemy 1 from column 3 
-[INFO|5:46:12]: Removed enemy 2 from column 3 
-[INFO|5:46:12]: Removed enemy 3 from column 3 
-[INFO|5:46:12]: Removed enemy 4 from column 3 
-[INFO|5:46:12]: Removed enemy 0 from column 4 
-[INFO|5:46:12]: Removed column 3 
-[INFO|5:46:13]: Bullet's fire_id is 14 
-[FINE|5:46:13]: 214990__peridactyloptrix__laser-blast-x3.wav is loading 
-[INFO|5:46:13]: 214990__peridactyloptrix__laser-blast-x3.wav load complete 
-[FINE|5:46:14]: obstacle_explosion.wav is loading 
-[INFO|5:46:14]: obstacle_explosion.wav load complete 
-[FINE|5:46:14]: 332056__qubodup__fast-collision.wav is loading 
-[INFO|5:46:14]: Destroyed ship in (2,0) 
-[INFO|5:46:14]: Hit count! 
-[INFO|5:46:14]: 332056__qubodup__fast-collision.wav load complete 
-[INFO|5:46:14]: Bullet's fire_id is 15 
-[FINE|5:46:14]: 214990__peridactyloptrix__laser-blast-x3.wav is loading 
-[INFO|5:46:14]: 214990__peridactyloptrix__laser-blast-x3.wav load complete 
-[INFO|5:46:14]: Removed enemy 0 from column 2 
-[FINE|5:46:14]: enemyGunShot01.wav is loading 
-[INFO|5:46:14]: enemyGunShot01.wav load complete 
-[INFO|5:46:14]: Bullet's fire_id is 16 
-[FINE|5:46:14]: 214990__peridactyloptrix__laser-blast-x3.wav is loading 
-[INFO|5:46:14]: 214990__peridactyloptrix__laser-blast-x3.wav load complete 
-[FINE|5:46:15]: coin-collect-retro-8-bit-sound-effect-145251.wav is loading 
-[INFO|5:46:15]: get barrier item 
-[INFO|5:46:15]: coin: 2 
-[INFO|5:46:15]: coin-collect-retro-8-bit-sound-effect-145251.wav load complete 
-[INFO|5:46:15]: Bullet's fire_id is 17 
-[FINE|5:46:15]: 214990__peridactyloptrix__laser-blast-x3.wav is loading 
-[INFO|5:46:15]: 214990__peridactyloptrix__laser-blast-x3.wav load complete 
-[INFO|5:46:15]: Destroyed ship in (3,0) 
-[FINE|5:46:15]: 332056__qubodup__fast-collision.wav is loading 
-[INFO|5:46:15]: Shooters list reduced to 3 members. 
-[INFO|5:46:15]: Hit count! 
-[INFO|5:46:15]: 332056__qubodup__fast-collision.wav load complete 
-[INFO|5:46:15]: Removed enemy 0 from column 3 
-[INFO|5:46:15]: Removed column 3 
-[INFO|5:46:16]: Bullet's fire_id is 18 
-[FINE|5:46:16]: 214990__peridactyloptrix__laser-blast-x3.wav is loading 
-[INFO|5:46:16]: 214990__peridactyloptrix__laser-blast-x3.wav load complete 
-[FINE|5:46:16]: enemyGunShot01.wav is loading 
-[INFO|5:46:16]: enemyGunShot01.wav load complete 
-[INFO|5:46:17]: Bullet's fire_id is 19 
-[FINE|5:46:17]: 214990__peridactyloptrix__laser-blast-x3.wav is loading 
-[INFO|5:46:17]: 214990__peridactyloptrix__laser-blast-x3.wav load complete 
-[INFO|5:46:17]: Destroyed ship in (2,2) 
-[FINE|5:46:17]: 332056__qubodup__fast-collision.wav is loading 
-[INFO|5:46:17]: Hit count! 
-[INFO|5:46:17]: 332056__qubodup__fast-collision.wav load complete 
-[INFO|5:46:17]: Removed enemy 2 from column 2 
-[INFO|5:46:17]: Destroyed ship in (2,0) 
-[FINE|5:46:17]: 332056__qubodup__fast-collision.wav is loading 
-[INFO|5:46:17]: 332056__qubodup__fast-collision.wav load complete 
-[INFO|5:46:18]: Bullet's fire_id is 20 
-[FINE|5:46:18]: 214990__peridactyloptrix__laser-blast-x3.wav is loading 
-[INFO|5:46:18]: 214990__peridactyloptrix__laser-blast-x3.wav load complete 
-[INFO|5:46:18]: Removed enemy 0 from column 2 
-[INFO|5:46:18]: barrier effect ends 
-[INFO|5:46:18]: Destroyed ship in (0,0) 
-[INFO|5:46:18]: Hit count! 
-[FINE|5:46:18]: 332056__qubodup__fast-collision.wav is loading 
-[INFO|5:46:18]: 332056__qubodup__fast-collision.wav load complete 
-[INFO|5:46:18]: Bullet's fire_id is 21 
-[FINE|5:46:18]: 214990__peridactyloptrix__laser-blast-x3.wav is loading 
-[INFO|5:46:18]: 214990__peridactyloptrix__laser-blast-x3.wav load complete 
-[INFO|5:46:18]: Removed enemy 0 from column 0 
-[INFO|5:46:19]: Bullet's fire_id is 22 
-[FINE|5:46:19]: 214990__peridactyloptrix__laser-blast-x3.wav is loading 
-[INFO|5:46:19]: 214990__peridactyloptrix__laser-blast-x3.wav load complete 
-[FINE|5:46:19]: enemyGunShot01.wav is loading 
-[FINE|5:46:19]: 332056__qubodup__fast-collision.wav is loading 
-[INFO|5:46:19]: Destroyed ship in (1,2) 
-[INFO|5:46:19]: Hit count! 
-[INFO|5:46:19]: enemyGunShot01.wav load complete 
-[INFO|5:46:19]: 332056__qubodup__fast-collision.wav load complete 
-[INFO|5:46:19]: Removed enemy 2 from column 1 
-[INFO|5:46:20]: Bullet's fire_id is 23 
-[FINE|5:46:20]: 214990__peridactyloptrix__laser-blast-x3.wav is loading 
-[INFO|5:46:20]: 214990__peridactyloptrix__laser-blast-x3.wav load complete 
-[INFO|5:46:20]: Destroyed ship in (0,3) 
-[FINE|5:46:20]: 332056__qubodup__fast-collision.wav is loading 
-[INFO|5:46:20]: Hit count! 
-[INFO|5:46:20]: 332056__qubodup__fast-collision.wav load complete 
-[INFO|5:46:20]: Removed enemy 3 from column 0 
-[INFO|5:46:20]: Destroyed ship in (0,0) 
-[FINE|5:46:20]: 332056__qubodup__fast-collision.wav is loading 
-[INFO|5:46:20]: 332056__qubodup__fast-collision.wav load complete 
-[INFO|5:46:20]: Removed enemy 0 from column 0 
-[INFO|5:46:21]: Bullet's fire_id is 24 
-[FINE|5:46:21]: 214990__peridactyloptrix__laser-blast-x3.wav is loading 
-[INFO|5:46:21]: 214990__peridactyloptrix__laser-blast-x3.wav load complete 
-[INFO|5:46:21]: Bullet's fire_id is 25 
-[FINE|5:46:21]: 214990__peridactyloptrix__laser-blast-x3.wav is loading 
-[INFO|5:46:21]: 214990__peridactyloptrix__laser-blast-x3.wav load complete 
-[INFO|5:46:22]: Bullet's fire_id is 26 
-[FINE|5:46:22]: 214990__peridactyloptrix__laser-blast-x3.wav is loading 
-[INFO|5:46:22]: Destroyed ship in (0,0) 
-[FINE|5:46:22]: 332056__qubodup__fast-collision.wav is loading 
-[INFO|5:46:22]: Hit count! 
-[INFO|5:46:22]: 214990__peridactyloptrix__laser-blast-x3.wav load complete 
-[INFO|5:46:22]: 332056__qubodup__fast-collision.wav load complete 
-[INFO|5:46:22]: Removed enemy 0 from column 0 
-[INFO|5:46:23]: Bullet's fire_id is 27 
-[FINE|5:46:23]: 214990__peridactyloptrix__laser-blast-x3.wav is loading 
-[INFO|5:46:23]: 214990__peridactyloptrix__laser-blast-x3.wav load complete 
-[FINE|5:46:23]: enemyGunShot01.wav is loading 
-[INFO|5:46:23]: enemyGunShot01.wav load complete 
-[INFO|5:46:24]: Bullet's fire_id is 28 
-[FINE|5:46:24]: 214990__peridactyloptrix__laser-blast-x3.wav is loading 
-[INFO|5:46:24]: 214990__peridactyloptrix__laser-blast-x3.wav load complete 
-[INFO|5:46:24]: Bullet's fire_id is 29 
-[FINE|5:46:24]: 214990__peridactyloptrix__laser-blast-x3.wav is loading 
-[INFO|5:46:24]: 214990__peridactyloptrix__laser-blast-x3.wav load complete 
-[INFO|5:46:25]: Formation now moving down 5 
-[INFO|5:46:25]: Destroyed ship in (1,2) 
-[FINE|5:46:25]: 332056__qubodup__fast-collision.wav is loading 
-[INFO|5:46:25]: Hit count! 
-[INFO|5:46:25]: 332056__qubodup__fast-collision.wav load complete 
-[INFO|5:46:25]: Removed enemy 2 from column 1 
-[INFO|5:46:25]: Bullet's fire_id is 30 
-[FINE|5:46:25]: 214990__peridactyloptrix__laser-blast-x3.wav is loading 
-[INFO|5:46:25]: 214990__peridactyloptrix__laser-blast-x3.wav load complete 
-[FINE|5:46:26]: enemyGunShot01.wav is loading 
-[INFO|5:46:26]: enemyGunShot01.wav load complete 
-[INFO|5:46:26]: Bullet's fire_id is 31 
-[FINE|5:46:26]: 214990__peridactyloptrix__laser-blast-x3.wav is loading 
-[INFO|5:46:26]: 214990__peridactyloptrix__laser-blast-x3.wav load complete 
-[FINE|5:46:26]: obstacle_explosion.wav is loading 
-[INFO|5:46:26]: obstacle_explosion.wav load complete 
-[INFO|5:46:27]: Bullet's fire_id is 32 
-[FINE|5:46:27]: 214990__peridactyloptrix__laser-blast-x3.wav is loading 
-[INFO|5:46:27]: 214990__peridactyloptrix__laser-blast-x3.wav load complete 
-[INFO|5:46:27]: Destroyed ship in (1,0) 
-[FINE|5:46:27]: 332056__qubodup__fast-collision.wav is loading 
-[INFO|5:46:27]: Hit count! 
-[INFO|5:46:27]: 332056__qubodup__fast-collision.wav load complete 
-[INFO|5:46:27]: Removed enemy 0 from column 1 
-[INFO|5:46:27]: Bullet's fire_id is 33 
-[FINE|5:46:27]: 214990__peridactyloptrix__laser-blast-x3.wav is loading 
-[INFO|5:46:27]: 214990__peridactyloptrix__laser-blast-x3.wav load complete 
-[INFO|5:46:28]: Destroyed ship in (1,0) 
-[FINE|5:46:28]: 332056__qubodup__fast-collision.wav is loading 
-[INFO|5:46:28]: Hit count! 
-[INFO|5:46:28]: 332056__qubodup__fast-collision.wav load complete 
-[INFO|5:46:28]: Removed enemy 0 from column 1 
-[INFO|5:46:28]: Bullet's fire_id is 34 
-[FINE|5:46:28]: 214990__peridactyloptrix__laser-blast-x3.wav is loading 
-[INFO|5:46:28]: 214990__peridactyloptrix__laser-blast-x3.wav load complete 
-[INFO|5:46:29]: A special ship appears 
-[FINE|5:46:29]: 276885__18hiltc__rocket-fly-by.wav is loading 
-[INFO|5:46:29]: 276885__18hiltc__rocket-fly-by.wav load complete 
-[INFO|5:46:29]: Bullet's fire_id is 35 
-[FINE|5:46:29]: 214990__peridactyloptrix__laser-blast-x3.wav is loading 
-[INFO|5:46:29]: 214990__peridactyloptrix__laser-blast-x3.wav load complete 
-[INFO|5:46:29]: Formation now moving left 1 
-[FINE|5:46:30]: enemyGunShot01.wav is loading 
-[INFO|5:46:30]: enemyGunShot01.wav load complete 
-[INFO|5:46:30]: Bullet's fire_id is 36 
-[FINE|5:46:30]: 214990__peridactyloptrix__laser-blast-x3.wav is loading 
-[INFO|5:46:30]: 214990__peridactyloptrix__laser-blast-x3.wav load complete 
-[FINE|5:46:30]: coin-collect-retro-8-bit-sound-effect-145251.wav is loading 
-[INFO|5:46:30]: get heart item 
-[INFO|5:46:30]: coin: 2 
-[INFO|5:46:30]: coin-collect-retro-8-bit-sound-effect-145251.wav load complete 
-[INFO|5:46:30]: Destroyed ship in (2,0) 
-[FINE|5:46:30]: 332056__qubodup__fast-collision.wav is loading 
-[INFO|5:46:30]: Shooters list reduced to 2 members. 
-[INFO|5:46:30]: Hit count! 
-[INFO|5:46:30]: 332056__qubodup__fast-collision.wav load complete 
-[INFO|5:46:30]: Removed enemy 0 from column 2 
-[INFO|5:46:30]: Removed column 2 
-[INFO|5:46:30]: Bullet's fire_id is 37 
-[FINE|5:46:30]: 214990__peridactyloptrix__laser-blast-x3.wav is loading 
-[INFO|5:46:30]: 214990__peridactyloptrix__laser-blast-x3.wav load complete 
-[INFO|5:46:31]: Bullet's fire_id is 38 
-[FINE|5:46:31]: 214990__peridactyloptrix__laser-blast-x3.wav is loading 
-[INFO|5:46:31]: 214990__peridactyloptrix__laser-blast-x3.wav load complete 
-[FINE|5:46:32]: enemyGunShot01.wav is loading 
-[INFO|5:46:32]: enemyGunShot01.wav load complete 
-[INFO|5:46:33]: get bomb item 
-[FINE|5:46:33]: coin-collect-retro-8-bit-sound-effect-145251.wav is loading 
-[INFO|5:46:33]: coin: 2 
-[INFO|5:46:33]: coin-collect-retro-8-bit-sound-effect-145251.wav load complete 
-[FINE|5:46:35]: enemyGunShot01.wav is loading 
-[INFO|5:46:35]: enemyGunShot01.wav load complete 
-[FINE|5:46:37]: 214990__peridactyloptrix__laser-blast-x3.wav is loading 
-[INFO|5:46:37]: Bullet's fire_id is 39 
-[INFO|5:46:37]: 214990__peridactyloptrix__laser-blast-x3.wav load complete 
-[INFO|5:46:37]: Formation now moving down 3 
-[FINE|5:46:38]: enemyGunShot01.wav is loading 
-[INFO|5:46:38]: enemyGunShot01.wav load complete 
-[FINE|5:46:38]: 332056__qubodup__fast-collision.wav is loading 
-[FINE|5:46:38]: 332056__qubodup__fast-collision.wav is loading 
-[INFO|5:46:38]: Destroyed ship at (0,0) 
-[INFO|5:46:38]: Shooters list reduced to 1 members. 
-[INFO|5:46:38]: Hit count! 
-[INFO|5:46:38]: 332056__qubodup__fast-collision.wav load complete 
-[INFO|5:46:38]: 332056__qubodup__fast-collision.wav load complete 
-[INFO|5:46:38]: Removed enemy 0 from column 0 
-[INFO|5:46:39]: Removed column 0 
-[INFO|5:46:40]: Bullet's fire_id is 40 
-[FINE|5:46:40]: 214990__peridactyloptrix__laser-blast-x3.wav is loading 
-[INFO|5:46:40]: 214990__peridactyloptrix__laser-blast-x3.wav load complete 
-[INFO|5:46:41]: Bullet's fire_id is 41 
-[FINE|5:46:41]: 214990__peridactyloptrix__laser-blast-x3.wav is loading 
-[INFO|5:46:41]: 214990__peridactyloptrix__laser-blast-x3.wav load complete 
-[FINE|5:46:41]: enemyGunShot01.wav is loading 
-[INFO|5:46:41]: enemyGunShot01.wav load complete 
-[INFO|5:46:42]: Bullet's fire_id is 42 
-[FINE|5:46:42]: 214990__peridactyloptrix__laser-blast-x3.wav is loading 
-[INFO|5:46:42]: 214990__peridactyloptrix__laser-blast-x3.wav load complete 
-[INFO|5:46:43]: Bullet's fire_id is 43 
-[FINE|5:46:43]: 214990__peridactyloptrix__laser-blast-x3.wav is loading 
-[INFO|5:46:43]: 214990__peridactyloptrix__laser-blast-x3.wav load complete 
-[INFO|5:46:43]: Bullet's fire_id is 44 
-[FINE|5:46:43]: 214990__peridactyloptrix__laser-blast-x3.wav is loading 
-[INFO|5:46:43]: 214990__peridactyloptrix__laser-blast-x3.wav load complete 
-[INFO|5:46:44]: Destroyed ship in (0,0) 
-[FINE|5:46:44]: 332056__qubodup__fast-collision.wav is loading 
-[INFO|5:46:44]: Shooters list reduced to 0 members. 
-[INFO|5:46:44]: Hit count! 
-[INFO|5:46:44]: Loading Player Statistic. 
-[INFO|5:46:44]: Saving Player Statistic. 
-[INFO|5:46:44]: Loading Player Statistic. 
-[INFO|5:46:44]: Saving Player Statistic. 
-[INFO|5:46:44]: Loading Player Statistic. 
-[INFO|5:46:44]: Saving Player Statistic. 
-[INFO|5:46:44]: 332056__qubodup__fast-collision.wav load complete 
-[INFO|5:46:44]: there is no ES : engine/achievement 
-[INFO|5:46:44]: Loading user's gem. 
-[INFO|5:46:44]: Saving user's gem. 
-[INFO|5:46:44]: Screen cleared with a score of 574 
-[INFO|5:46:44]: Closing game screen. 
-[INFO|5:46:44]: base coin = coinItemsCollectedValue(10) + scoreCoin(55) = 65 
-[INFO|5:46:44]: Bonus occurs! level bonus: 12, accuracy bonus: 0, time bonus: 50 
-[INFO|5:46:44]: coin = ((baseCoin(65) + bonusCoin(62)) * statBonus(1.0) = 127 
-[INFO|5:46:44]: Round Coin: 127 
-[INFO|5:46:44]: Round Hit Rate: 0.38636363 
-[INFO|5:46:44]: Round Time: 40 
-[INFO|5:46:44]: Loading Player Statistic. 
-[INFO|5:46:44]: Saving Player Statistic. 
-[INFO|5:46:44]: RoundTime Saving 
-[INFO|5:46:44]: loading receiptScreen 
-[INFO|5:46:44]: Starting 630x720 receipt screen at 60 fps. 
-[INFO|5:46:46]: Closing receiptScreen. 
-[INFO|5:46:46]: Loading Player Statistic. 
-[INFO|5:46:46]: Starting 630x720 game screen at 60 fps. 
-[INFO|5:46:46]: Initializing 1x1 ship formation in (60,100) 
-[INFO|5:46:52]: Bullet's fire_id is 1 
-[FINE|5:46:52]: 214990__peridactyloptrix__laser-blast-x3.wav is loading 
-[INFO|5:46:52]: 214990__peridactyloptrix__laser-blast-x3.wav load complete 
-[INFO|5:46:53]: Bullet's fire_id is 2 
-[FINE|5:46:53]: 214990__peridactyloptrix__laser-blast-x3.wav is loading 
-[INFO|5:46:53]: 214990__peridactyloptrix__laser-blast-x3.wav load complete 
-[FINE|5:46:53]: enemyGunShot01.wav is loading 
-[INFO|5:46:53]: enemyGunShot01.wav load complete 
-[FINE|5:46:53]: obstacle_explosion.wav is loading 
-[INFO|5:46:53]: obstacle_explosion.wav load complete 
-[INFO|5:46:54]: Bullet's fire_id is 3 
-[FINE|5:46:54]: 214990__peridactyloptrix__laser-blast-x3.wav is loading 
-[INFO|5:46:54]: 214990__peridactyloptrix__laser-blast-x3.wav load complete 
-[FINE|5:46:54]: enemyGunShot01.wav is loading 
-[INFO|5:46:54]: enemyGunShot01.wav load complete 
-[INFO|5:46:54]: Bullet's fire_id is 4 
-[FINE|5:46:54]: 214990__peridactyloptrix__laser-blast-x3.wav is loading 
-[INFO|5:46:54]: 214990__peridactyloptrix__laser-blast-x3.wav load complete 
-[FINE|5:46:54]: enemyGunShot01.wav is loading 
-[INFO|5:46:54]: enemyGunShot01.wav load complete 
-[INFO|5:46:54]: Formation now moving down 5 
-[FINE|5:46:54]: obstacle_explosion.wav is loading 
-[INFO|5:46:54]: obstacle_explosion.wav load complete 
-[INFO|5:46:55]: Formation now moving left 1 
-[INFO|5:46:55]: Bullet's fire_id is 5 
-[FINE|5:46:55]: 214990__peridactyloptrix__laser-blast-x3.wav is loading 
-[INFO|5:46:55]: 214990__peridactyloptrix__laser-blast-x3.wav load complete 
-[FINE|5:46:55]: enemyGunShot01.wav is loading 
-[INFO|5:46:55]: enemyGunShot01.wav load complete 
-[FINE|5:46:56]: enemyGunShot01.wav is loading 
-[INFO|5:46:56]: enemyGunShot01.wav load complete 
-[INFO|5:46:56]: Bullet's fire_id is 6 
-[FINE|5:46:56]: 214990__peridactyloptrix__laser-blast-x3.wav is loading 
-[INFO|5:46:56]: 214990__peridactyloptrix__laser-blast-x3.wav load complete 
-[FINE|5:46:56]: enemyGunShot01.wav is loading 
-[INFO|5:46:56]: enemyGunShot01.wav load complete 
-[INFO|5:46:57]: Bullet's fire_id is 7 
-[FINE|5:46:57]: 214990__peridactyloptrix__laser-blast-x3.wav is loading 
-[INFO|5:46:57]: 214990__peridactyloptrix__laser-blast-x3.wav load complete 
-[FINE|5:46:57]: enemyGunShot01.wav is loading 
-[INFO|5:46:57]: enemyGunShot01.wav load complete 
-[FINE|5:46:57]: obstacle_explosion.wav is loading 
-[INFO|5:46:57]: obstacle_explosion.wav load complete 
-[INFO|5:46:57]: Formation now moving down 3 
-[INFO|5:46:57]: Bullet's fire_id is 8 
-[FINE|5:46:57]: 214990__peridactyloptrix__laser-blast-x3.wav is loading 
-[INFO|5:46:57]: 214990__peridactyloptrix__laser-blast-x3.wav load complete 
-[FINE|5:46:57]: enemyGunShot01.wav is loading 
-[INFO|5:46:57]: enemyGunShot01.wav load complete 
-[INFO|5:46:57]: Formation now moving right 2 
-[INFO|5:46:58]: Bullet's fire_id is 9 
-[FINE|5:46:58]: 214990__peridactyloptrix__laser-blast-x3.wav is loading 
-[INFO|5:46:58]: 214990__peridactyloptrix__laser-blast-x3.wav load complete 
-[FINE|5:46:58]: enemyGunShot01.wav is loading 
-[INFO|5:46:58]: enemyGunShot01.wav load complete 
-[INFO|5:46:59]: Bullet's fire_id is 10 
-[FINE|5:46:59]: 214990__peridactyloptrix__laser-blast-x3.wav is loading 
-[INFO|5:46:59]: 214990__peridactyloptrix__laser-blast-x3.wav load complete 
-[FINE|5:46:59]: enemyGunShot01.wav is loading 
-[INFO|5:46:59]: enemyGunShot01.wav load complete 
-[FINE|5:46:59]: obstacle_explosion.wav is loading 
-[INFO|5:46:59]: obstacle_explosion.wav load complete 
-[INFO|5:47:00]: Bullet's fire_id is 11 
-[FINE|5:47:00]: 214990__peridactyloptrix__laser-blast-x3.wav is loading 
-[INFO|5:47:00]: 214990__peridactyloptrix__laser-blast-x3.wav load complete 
-[FINE|5:47:00]: enemyGunShot01.wav is loading 
-[INFO|5:47:00]: enemyGunShot01.wav load complete 
-[INFO|5:47:00]: Formation now moving down 5 
-[INFO|5:47:00]: Formation now moving left 1 
-[INFO|5:47:00]: Bullet's fire_id is 12 
-[FINE|5:47:00]: 214990__peridactyloptrix__laser-blast-x3.wav is loading 
-[INFO|5:47:00]: 214990__peridactyloptrix__laser-blast-x3.wav load complete 
-[FINE|5:47:01]: enemyGunShot01.wav is loading 
-[INFO|5:47:01]: enemyGunShot01.wav load complete 
-[INFO|5:47:01]: Bullet's fire_id is 13 
-[FINE|5:47:01]: 214990__peridactyloptrix__laser-blast-x3.wav is loading 
-[INFO|5:47:01]: 214990__peridactyloptrix__laser-blast-x3.wav load complete 
-[FINE|5:47:01]: obstacle_explosion.wav is loading 
-[INFO|5:47:01]: obstacle_explosion.wav load complete 
-[FINE|5:47:01]: enemyGunShot01.wav is loading 
-[INFO|5:47:01]: enemyGunShot01.wav load complete 
-[FINE|5:47:02]: enemyGunShot01.wav is loading 
-[INFO|5:47:02]: enemyGunShot01.wav load complete 
-[INFO|5:47:02]: Bullet's fire_id is 14 
-[FINE|5:47:02]: 214990__peridactyloptrix__laser-blast-x3.wav is loading 
-[INFO|5:47:02]: 214990__peridactyloptrix__laser-blast-x3.wav load complete 
-[FINE|5:47:02]: enemyGunShot01.wav is loading 
-[INFO|5:47:02]: enemyGunShot01.wav load complete 
-[INFO|5:47:03]: Bullet's fire_id is 15 
-[FINE|5:47:03]: 214990__peridactyloptrix__laser-blast-x3.wav is loading 
-[INFO|5:47:03]: 214990__peridactyloptrix__laser-blast-x3.wav load complete 
-[INFO|5:47:03]: Formation now moving down 3 
-[FINE|5:47:03]: enemyGunShot01.wav is loading 
-[INFO|5:47:03]: enemyGunShot01.wav load complete 
-[INFO|5:47:03]: Formation now moving right 2 
-[INFO|5:47:03]: Bullet's fire_id is 16 
-[FINE|5:47:03]: 214990__peridactyloptrix__laser-blast-x3.wav is loading 
-[INFO|5:47:03]: 214990__peridactyloptrix__laser-blast-x3.wav load complete 
-[FINE|5:47:03]: obstacle_explosion.wav is loading 
-[FINE|5:47:03]: obstacle_explosion.wav is loading 
-[INFO|5:47:03]: obstacle_explosion.wav load complete 
-[INFO|5:47:03]: obstacle_explosion.wav load complete 
-[FINE|5:47:04]: enemyGunShot01.wav is loading 
-[INFO|5:47:04]: enemyGunShot01.wav load complete 
-[INFO|5:47:04]: Enemy ship lost 1 HP in (0,0) 
-[INFO|5:47:04]: Hit count! 
-[FINE|5:47:04]: enemyGunShot01.wav is loading 
-[INFO|5:47:04]: enemyGunShot01.wav load complete 
-[INFO|5:47:04]: Bullet's fire_id is 17 
-[FINE|5:47:04]: 214990__peridactyloptrix__laser-blast-x3.wav is loading 
-[INFO|5:47:04]: 214990__peridactyloptrix__laser-blast-x3.wav load complete 
-[FINE|5:47:05]: obstacle_explosion.wav is loading 
-[INFO|5:47:05]: obstacle_explosion.wav load complete 
-[FINE|5:47:05]: enemyGunShot01.wav is loading 
-[INFO|5:47:05]: enemyGunShot01.wav load complete 
-[INFO|5:47:05]: Bullet's fire_id is 18 
-[FINE|5:47:05]: 214990__peridactyloptrix__laser-blast-x3.wav is loading 
-[INFO|5:47:05]: 214990__peridactyloptrix__laser-blast-x3.wav load complete 
-[FINE|5:47:05]: enemyGunShot01.wav is loading 
-[INFO|5:47:05]: enemyGunShot01.wav load complete 
-[INFO|5:47:06]: Bullet's fire_id is 19 
-[FINE|5:47:06]: 214990__peridactyloptrix__laser-blast-x3.wav is loading 
-[INFO|5:47:06]: 214990__peridactyloptrix__laser-blast-x3.wav load complete 
-[FINE|5:47:06]: enemyGunShot01.wav is loading 
-[INFO|5:47:06]: enemyGunShot01.wav load complete 
-[INFO|5:47:06]: Formation now moving down 5 
-[INFO|5:47:06]: Formation now moving left 1 
-[INFO|5:47:06]: Bullet's fire_id is 20 
-[FINE|5:47:06]: 214990__peridactyloptrix__laser-blast-x3.wav is loading 
-[INFO|5:47:06]: 214990__peridactyloptrix__laser-blast-x3.wav load complete 
-[FINE|5:47:07]: enemyGunShot01.wav is loading 
-[INFO|5:47:07]: enemyGunShot01.wav load complete 
-[FINE|5:47:07]: obstacle_explosion.wav is loading 
-[INFO|5:47:07]: obstacle_explosion.wav load complete 
-[INFO|5:47:07]: Bullet's fire_id is 21 
-[FINE|5:47:07]: 214990__peridactyloptrix__laser-blast-x3.wav is loading 
-[INFO|5:47:07]: 214990__peridactyloptrix__laser-blast-x3.wav load complete 
-[FINE|5:47:07]: obstacle_explosion.wav is loading 
-[INFO|5:47:07]: obstacle_explosion.wav load complete 
-[FINE|5:47:07]: enemyGunShot01.wav is loading 
-[INFO|5:47:07]: enemyGunShot01.wav load complete 
-[INFO|5:47:08]: Bullet's fire_id is 22 
-[FINE|5:47:08]: 214990__peridactyloptrix__laser-blast-x3.wav is loading 
-[INFO|5:47:08]: 214990__peridactyloptrix__laser-blast-x3.wav load complete 
-[FINE|5:47:08]: enemyGunShot01.wav is loading 
-[INFO|5:47:08]: enemyGunShot01.wav load complete 
-[INFO|5:47:09]: Formation now moving down 3 
-[FINE|5:47:09]: enemyGunShot01.wav is loading 
-[INFO|5:47:09]: enemyGunShot01.wav load complete 
-[INFO|5:47:09]: Bullet's fire_id is 23 
-[FINE|5:47:09]: 214990__peridactyloptrix__laser-blast-x3.wav is loading 
-[FINE|5:47:09]: obstacle_explosion.wav is loading 
-[INFO|5:47:09]: 214990__peridactyloptrix__laser-blast-x3.wav load complete 
-[INFO|5:47:09]: obstacle_explosion.wav load complete 
-[INFO|5:47:09]: Formation now moving right 2 
-[FINE|5:47:09]: enemyGunShot01.wav is loading 
-[INFO|5:47:09]: enemyGunShot01.wav load complete 
-[INFO|5:47:09]: Bullet's fire_id is 24 
-[FINE|5:47:09]: 214990__peridactyloptrix__laser-blast-x3.wav is loading 
-[INFO|5:47:09]: 214990__peridactyloptrix__laser-blast-x3.wav load complete 
-[FINE|5:47:10]: enemyGunShot01.wav is loading 
-[INFO|5:47:10]: enemyGunShot01.wav load complete 
-[INFO|5:47:10]: Bullet's fire_id is 25 
-[FINE|5:47:10]: 214990__peridactyloptrix__laser-blast-x3.wav is loading 
-[INFO|5:47:10]: 214990__peridactyloptrix__laser-blast-x3.wav load complete 
-[FINE|5:47:11]: enemyGunShot01.wav is loading 
-[INFO|5:47:11]: enemyGunShot01.wav load complete 
-[FINE|5:47:11]: obstacle_explosion.wav is loading 
-[INFO|5:47:11]: obstacle_explosion.wav load complete 
-[INFO|5:47:11]: Bullet's fire_id is 26 
-[FINE|5:47:11]: 214990__peridactyloptrix__laser-blast-x3.wav is loading 
-[INFO|5:47:11]: 214990__peridactyloptrix__laser-blast-x3.wav load complete 
-[FINE|5:47:11]: enemyGunShot01.wav is loading 
-[INFO|5:47:11]: enemyGunShot01.wav load complete 
-[INFO|5:47:11]: Formation now moving down 5 
-[INFO|5:47:12]: Formation now moving left 1 
-[INFO|5:47:12]: Bullet's fire_id is 27 
-[FINE|5:47:12]: 214990__peridactyloptrix__laser-blast-x3.wav is loading 
-[INFO|5:47:12]: 214990__peridactyloptrix__laser-blast-x3.wav load complete 
-[FINE|5:47:12]: enemyGunShot01.wav is loading 
-[INFO|5:47:12]: enemyGunShot01.wav load complete 
-[FINE|5:47:12]: enemyGunShot01.wav is loading 
-[INFO|5:47:12]: enemyGunShot01.wav load complete 
-[INFO|5:47:12]: Bullet's fire_id is 28 
-[FINE|5:47:12]: 214990__peridactyloptrix__laser-blast-x3.wav is loading 
-[INFO|5:47:12]: 214990__peridactyloptrix__laser-blast-x3.wav load complete 
-[INFO|5:47:13]: Destroyed ship in (0,0) 
-[FINE|5:47:13]: 332056__qubodup__fast-collision.wav is loading 
-[INFO|5:47:13]: Shooters list reduced to 0 members. 
-[INFO|5:47:13]: Hit count! 
-[INFO|5:47:13]: Loading Player Statistic. 
-[INFO|5:47:13]: Saving Player Statistic. 
-[INFO|5:47:13]: Loading Player Statistic. 
-[INFO|5:47:13]: Saving Player Statistic. 
-[INFO|5:47:13]: 332056__qubodup__fast-collision.wav load complete 
-[INFO|5:47:13]: Loading Player Statistic. 
-[INFO|5:47:13]: Saving Player Statistic. 
-[INFO|5:47:13]: there is no ES : engine/achievement 
-[INFO|5:47:13]: Loading user's gem. 
-[INFO|5:47:13]: Saving user's gem. 
-[INFO|5:47:13]: there is no ES : engine/achievement 
-[INFO|5:47:13]: Loading user's gem. 
-[INFO|5:47:13]: Saving user's gem. 
-[INFO|5:47:13]: Screen cleared with a score of 577 
-[INFO|5:47:13]: Closing game screen. 
-[INFO|5:47:13]: base coin = coinItemsCollectedValue(0) + scoreCoin(0) = 0 
-[INFO|5:47:13]: Bonus occurs! level bonus: 0, accuracy bonus: 0, time bonus: 50 
-[INFO|5:47:13]: coin = ((baseCoin(0) + bonusCoin(50)) * statBonus(1.0) = 50 
-[INFO|5:47:13]: Round Coin: 50 
-[INFO|5:47:13]: Round Hit Rate: 0.071428575 
-[INFO|5:47:13]: Round Time: 20 
-[INFO|5:47:13]: Loading Player Statistic. 
-[INFO|5:47:13]: Saving Player Statistic. 
-[INFO|5:47:13]: RoundTime Saving 
-[INFO|5:47:13]: loading receiptScreen 
-[INFO|5:47:13]: Starting 630x720 receipt screen at 60 fps. 
-[INFO|5:47:18]: Closing receiptScreen. 
-[INFO|5:47:18]: Loading Player Statistic. 
-[INFO|5:47:18]: Starting 630x720 game screen at 60 fps. 
-[INFO|5:47:18]: cercle2 
-[INFO|5:47:18]: Initializing 6x6 ship formation in (60,100) 
-[INFO|5:47:24]: Bullet's fire_id is 1 
-[FINE|5:47:24]: 214990__peridactyloptrix__laser-blast-x3.wav is loading 
-[INFO|5:47:24]: 214990__peridactyloptrix__laser-blast-x3.wav load complete 
-[INFO|5:47:25]: Bullet's fire_id is 2 
-[FINE|5:47:25]: 214990__peridactyloptrix__laser-blast-x3.wav is loading 
-[INFO|5:47:25]: 214990__peridactyloptrix__laser-blast-x3.wav load complete 
-[INFO|5:47:26]: Bullet's fire_id is 3 
-[FINE|5:47:26]: 214990__peridactyloptrix__laser-blast-x3.wav is loading 
-[INFO|5:47:26]: 214990__peridactyloptrix__laser-blast-x3.wav load complete 
-[FINE|5:47:26]: 332056__qubodup__fast-collision.wav is loading 
-[FINE|5:47:26]: retro-explode-2-236688.wav is loading 
-[INFO|5:47:26]: Destroyed ExplosiveEnemyship in (3,1) 
-[INFO|5:47:26]: Hit count! 
-[INFO|5:47:26]: retro-explode-2-236688.wav load complete 
-[INFO|5:47:26]: 332056__qubodup__fast-collision.wav load complete 
-[INFO|5:47:26]: Removed enemy 1 from column 3 
-[INFO|5:47:27]: Bullet's fire_id is 4 
-[FINE|5:47:27]: 214990__peridactyloptrix__laser-blast-x3.wav is loading 
-[INFO|5:47:27]: 214990__peridactyloptrix__laser-blast-x3.wav load complete 
-[FINE|5:47:27]: enemyGunShot01.wav is loading 
-[INFO|5:47:27]: enemyGunShot01.wav load complete 
-[FINE|5:47:27]: 332056__qubodup__fast-collision.wav is loading 
-[INFO|5:47:27]: Destroyed ship in (4,1) 
-[FINE|5:47:27]: 332056__qubodup__fast-collision.wav is loading 
-[FINE|5:47:27]: 332056__qubodup__fast-collision.wav is loading 
-[INFO|5:47:27]: Destroyed ship in (2,1) 
-[FINE|5:47:27]: 332056__qubodup__fast-collision.wav is loading 
-[FINE|5:47:27]: 332056__qubodup__fast-collision.wav is loading 
-[INFO|5:47:27]: Destroyed ship in (3,0) 
-[FINE|5:47:27]: 332056__qubodup__fast-collision.wav is loading 
-[FINE|5:47:27]: 332056__qubodup__fast-collision.wav is loading 
-[FINE|5:47:27]: retro-explode-2-236688.wav is loading 
-[INFO|5:47:27]: Destroyed ExplosiveEnemyship in (3,1) 
-[INFO|5:47:27]: 332056__qubodup__fast-collision.wav load complete 
-[INFO|5:47:27]: 332056__qubodup__fast-collision.wav load complete 
-[INFO|5:47:27]: 332056__qubodup__fast-collision.wav load complete 
-[INFO|5:47:27]: Removed enemy 1 from column 2 
-[INFO|5:47:27]: Removed enemy 0 from column 3 
-[INFO|5:47:27]: Removed enemy 1 from column 3 
-[INFO|5:47:27]: Removed enemy 1 from column 4 
-[INFO|5:47:27]: retro-explode-2-236688.wav load complete 
-[INFO|5:47:27]: 332056__qubodup__fast-collision.wav load complete 
-[INFO|5:47:27]: 332056__qubodup__fast-collision.wav load complete 
-[INFO|5:47:27]: 332056__qubodup__fast-collision.wav load complete 
-[INFO|5:47:27]: 332056__qubodup__fast-collision.wav load complete 
-[FINE|5:47:27]: retro-explode-2-236688.wav is loading 
-[INFO|5:47:27]: Destroyed ExplosiveEnemyship in (3,0) 
-[FINE|5:47:27]: 332056__qubodup__fast-collision.wav is loading 
-[INFO|5:47:27]: Hit count! 
-[INFO|5:47:27]: retro-explode-2-236688.wav load complete 
-[INFO|5:47:27]: 332056__qubodup__fast-collision.wav load complete 
-[INFO|5:47:27]: Bullet's fire_id is 5 
-[FINE|5:47:27]: 214990__peridactyloptrix__laser-blast-x3.wav is loading 
-[INFO|5:47:27]: 214990__peridactyloptrix__laser-blast-x3.wav load complete 
-[FINE|5:47:27]: 332056__qubodup__fast-collision.wav is loading 
-[INFO|5:47:27]: Destroyed ship in (5,1) 
-[FINE|5:47:27]: 332056__qubodup__fast-collision.wav is loading 
-[FINE|5:47:27]: 332056__qubodup__fast-collision.wav is loading 
-[FINE|5:47:27]: retro-explode-2-236688.wav is loading 
-[INFO|5:47:27]: Destroyed ExplosiveEnemyship in (1,1) 
-[FINE|5:47:27]: 332056__qubodup__fast-collision.wav is loading 
-[INFO|5:47:27]: Destroyed ship in (3,0) 
-[FINE|5:47:27]: 332056__qubodup__fast-collision.wav is loading 
-[FINE|5:47:27]: 332056__qubodup__fast-collision.wav is loading 
-[INFO|5:47:27]: Destroyed ship in (4,1) 
-[FINE|5:47:27]: 332056__qubodup__fast-collision.wav is loading 
-[FINE|5:47:27]: 332056__qubodup__fast-collision.wav is loading 
-[INFO|5:47:27]: Destroyed ship in (2,1) 
-[FINE|5:47:27]: 332056__qubodup__fast-collision.wav is loading 
-[FINE|5:47:27]: 332056__qubodup__fast-collision.wav is loading 
-[INFO|5:47:27]: Destroyed ship in (3,0) 
-[FINE|5:47:27]: 332056__qubodup__fast-collision.wav is loading 
-[INFO|5:47:27]: 332056__qubodup__fast-collision.wav load complete 
-[INFO|5:47:27]: 332056__qubodup__fast-collision.wav load complete 
-[INFO|5:47:27]: 332056__qubodup__fast-collision.wav load complete 
-[INFO|5:47:27]: 332056__qubodup__fast-collision.wav load complete 
-[INFO|5:47:27]: 332056__qubodup__fast-collision.wav load complete 
-[INFO|5:47:27]: 332056__qubodup__fast-collision.wav load complete 
-[INFO|5:47:27]: 332056__qubodup__fast-collision.wav load complete 
-[INFO|5:47:27]: Removed enemy 1 from column 1 
-[INFO|5:47:27]: Removed enemy 1 from column 2 
-[INFO|5:47:27]: Removed enemy 0 from column 3 
-[INFO|5:47:27]: Removed enemy 1 from column 4 
-[INFO|5:47:27]: Removed enemy 1 from column 5 
-[INFO|5:47:27]: 332056__qubodup__fast-collision.wav load complete 
-[INFO|5:47:27]: 332056__qubodup__fast-collision.wav load complete 
-[INFO|5:47:27]: retro-explode-2-236688.wav load complete 
-[INFO|5:47:27]: 332056__qubodup__fast-collision.wav load complete 
-[INFO|5:47:27]: 332056__qubodup__fast-collision.wav load complete 
-[FINE|5:47:28]: 332056__qubodup__fast-collision.wav is loading 
-[INFO|5:47:28]: Destroyed ExplosiveEnemyship in (3,0) 
-[FINE|5:47:28]: retro-explode-2-236688.wav is loading 
-[INFO|5:47:28]: Removed enemy 0 from column 3 
-[INFO|5:47:28]: retro-explode-2-236688.wav load complete 
-[INFO|5:47:28]: 332056__qubodup__fast-collision.wav load complete 
-[FINE|5:47:28]: 332056__qubodup__fast-collision.wav is loading 
-[FINE|5:47:28]: 332056__qubodup__fast-collision.wav is loading 
-[INFO|5:47:28]: Destroyed ship in (5,1) 
-[FINE|5:47:28]: 332056__qubodup__fast-collision.wav is loading 
-[INFO|5:47:28]: Destroyed ExplosiveEnemyship in (1,1) 
-[FINE|5:47:28]: retro-explode-2-236688.wav is loading 
-[FINE|5:47:28]: 332056__qubodup__fast-collision.wav is loading 
-[INFO|5:47:28]: Destroyed ship in (0,1) 
-[FINE|5:47:28]: 332056__qubodup__fast-collision.wav is loading 
-[FINE|5:47:28]: 332056__qubodup__fast-collision.wav is loading 
-[FINE|5:47:28]: 332056__qubodup__fast-collision.wav is loading 
-[INFO|5:47:28]: Destroyed ship in (1,0) 
-[FINE|5:47:28]: 332056__qubodup__fast-collision.wav is loading 
-[FINE|5:47:28]: 332056__qubodup__fast-collision.wav is loading 
-[INFO|5:47:28]: Destroyed ship in (1,1) 
-[FINE|5:47:28]: 332056__qubodup__fast-collision.wav is loading 
-[INFO|5:47:28]: 332056__qubodup__fast-collision.wav load complete 
-[INFO|5:47:28]: 332056__qubodup__fast-collision.wav load complete 
-[INFO|5:47:28]: retro-explode-2-236688.wav load complete 
-[INFO|5:47:28]: 332056__qubodup__fast-collision.wav load complete 
-[INFO|5:47:28]: 332056__qubodup__fast-collision.wav load complete 
-[INFO|5:47:28]: 332056__qubodup__fast-collision.wav load complete 
-[INFO|5:47:28]: 332056__qubodup__fast-collision.wav load complete 
-[INFO|5:47:28]: 332056__qubodup__fast-collision.wav load complete 
-[INFO|5:47:28]: 332056__qubodup__fast-collision.wav load complete 
-[INFO|5:47:28]: 332056__qubodup__fast-collision.wav load complete 
-[INFO|5:47:28]: 332056__qubodup__fast-collision.wav load complete 
-[INFO|5:47:28]: Removed enemy 1 from column 0 
-[INFO|5:47:28]: Removed enemy 0 from column 1 
-[INFO|5:47:28]: Removed enemy 1 from column 1 
-[INFO|5:47:28]: Removed enemy 1 from column 5 
-[INFO|5:47:28]: Destroyed ship in (2,0) 
-[FINE|5:47:28]: 332056__qubodup__fast-collision.wav is loading 
-[INFO|5:47:28]: Hit count! 
-[INFO|5:47:28]: 332056__qubodup__fast-collision.wav load complete 
-[INFO|5:47:28]: Bullet's fire_id is 6 
-[FINE|5:47:28]: 214990__peridactyloptrix__laser-blast-x3.wav is loading 
-[INFO|5:47:28]: 214990__peridactyloptrix__laser-blast-x3.wav load complete 
-[INFO|5:47:28]: Removed enemy 0 from column 2 
-[FINE|5:47:28]: 332056__qubodup__fast-collision.wav is loading 
-[FINE|5:47:28]: 332056__qubodup__fast-collision.wav is loading 
-[INFO|5:47:28]: Destroyed ship in (5,1) 
-[FINE|5:47:28]: 332056__qubodup__fast-collision.wav is loading 
-[FINE|5:47:28]: retro-explode-2-236688.wav is loading 
-[INFO|5:47:28]: Destroyed ExplosiveEnemyship in (1,0) 
-[FINE|5:47:28]: 332056__qubodup__fast-collision.wav is loading 
-[INFO|5:47:28]: Destroyed ExplosiveEnemyship in (3,0) 
-[FINE|5:47:28]: retro-explode-2-236688.wav is loading 
-[INFO|5:47:28]: Shooters list reduced to 5 members. 
-[FINE|5:47:28]: 332056__qubodup__fast-collision.wav is loading 
-[INFO|5:47:28]: Destroyed ship in (3,0) 
-[FINE|5:47:28]: 332056__qubodup__fast-collision.wav is loading 
-[INFO|5:47:28]: 332056__qubodup__fast-collision.wav load complete 
-[INFO|5:47:28]: 332056__qubodup__fast-collision.wav load complete 
-[INFO|5:47:28]: 332056__qubodup__fast-collision.wav load complete 
-[INFO|5:47:28]: retro-explode-2-236688.wav load complete 
-[INFO|5:47:28]: 332056__qubodup__fast-collision.wav load complete 
-[INFO|5:47:28]: 332056__qubodup__fast-collision.wav load complete 
-[INFO|5:47:28]: retro-explode-2-236688.wav load complete 
-[INFO|5:47:28]: 332056__qubodup__fast-collision.wav load complete 
-[FINE|5:47:28]: 332056__qubodup__fast-collision.wav is loading 
-[FINE|5:47:28]: 332056__qubodup__fast-collision.wav is loading 
-[INFO|5:47:28]: Destroyed ship in (1,0) 
-[FINE|5:47:28]: 332056__qubodup__fast-collision.wav is loading 
-[INFO|5:47:28]: Destroyed ship in (0,1) 
-[FINE|5:47:28]: 332056__qubodup__fast-collision.wav is loading 
-[FINE|5:47:28]: 332056__qubodup__fast-collision.wav is loading 
-[INFO|5:47:28]: Destroyed ship in (1,0) 
-[FINE|5:47:28]: 332056__qubodup__fast-collision.wav is loading 
-[INFO|5:47:28]: 332056__qubodup__fast-collision.wav load complete 
-[INFO|5:47:28]: 332056__qubodup__fast-collision.wav load complete 
-[INFO|5:47:28]: 332056__qubodup__fast-collision.wav load complete 
-[INFO|5:47:28]: 332056__qubodup__fast-collision.wav load complete 
-[INFO|5:47:28]: 332056__qubodup__fast-collision.wav load complete 
-[INFO|5:47:28]: 332056__qubodup__fast-collision.wav load complete 
-[INFO|5:47:28]: Removed enemy 1 from column 0 
-[INFO|5:47:28]: Removed enemy 0 from column 1 
-[INFO|5:47:28]: Removed enemy 0 from column 3 
-[INFO|5:47:28]: Removed enemy 1 from column 5 
-[INFO|5:47:28]: Removed column 3 
-[FINE|5:47:29]: 332056__qubodup__fast-collision.wav is loading 
-[INFO|5:47:29]: Destroyed ExplosiveEnemyship in (1,0) 
-[FINE|5:47:29]: retro-explode-2-236688.wav is loading 
-[INFO|5:47:29]: retro-explode-2-236688.wav load complete 
-[INFO|5:47:29]: 332056__qubodup__fast-collision.wav load complete 
-[INFO|5:47:29]: Removed enemy 0 from column 1 
-[FINE|5:47:29]: 332056__qubodup__fast-collision.wav is loading 
-[INFO|5:47:29]: 332056__qubodup__fast-collision.wav load complete 
-[INFO|5:47:29]: Destroyed ship in (2,2) 
-[FINE|5:47:29]: 332056__qubodup__fast-collision.wav is loading 
-[INFO|5:47:29]: Hit count! 
-[INFO|5:47:29]: 332056__qubodup__fast-collision.wav load complete 
-[FINE|5:47:29]: ally_airship_damage.wav is loading 
-[INFO|5:47:29]: Ship hit an obstacle, 2 lives remaining. 
-[INFO|5:47:29]: ally_airship_damage.wav load complete 
-[FINE|5:47:29]: 332056__qubodup__fast-collision.wav is loading 
-[FINE|5:47:29]: retro-explode-2-236688.wav is loading 
-[INFO|5:47:29]: Destroyed ExplosiveEnemyship in (1,0) 
-[INFO|5:47:29]: Shooters list reduced to 4 members. 
-[FINE|5:47:29]: 332056__qubodup__fast-collision.wav is loading 
-[INFO|5:47:29]: Destroyed ship in (1,0) 
-[FINE|5:47:29]: 332056__qubodup__fast-collision.wav is loading 
-[INFO|5:47:29]: retro-explode-2-236688.wav load complete 
-[INFO|5:47:29]: 332056__qubodup__fast-collision.wav load complete 
-[INFO|5:47:29]: 332056__qubodup__fast-collision.wav load complete 
-[INFO|5:47:29]: 332056__qubodup__fast-collision.wav load complete 
-[FINE|5:47:29]: enemyGunShot01.wav is loading 
-[INFO|5:47:29]: enemyGunShot01.wav load complete 
-[INFO|5:47:30]: Formation now moving down 5 
-[INFO|5:47:30]: Removed enemy 0 from column 1 
-[INFO|5:47:30]: Removed enemy 2 from column 2 
-[INFO|5:47:30]: Removed column 1 
-[INFO|5:47:30]: Fever Time activated! 
-[FINE|5:47:30]: TalkFile_8bit-music-for-game-68698.wav is loading 
-[INFO|5:47:30]: get fevertime item 
-[INFO|5:47:30]: coin: 2 
-[INFO|5:47:30]: TalkFile_8bit-music-for-game-68698.wav load complete 
-[INFO|5:47:30]: Destroyed ship in (1,1) 
-[FINE|5:47:30]: 332056__qubodup__fast-collision.wav is loading 
-[INFO|5:47:30]: 332056__qubodup__fast-collision.wav load complete 
-[INFO|5:47:30]: Removed enemy 1 from column 1 
-[FINE|5:47:30]: ally_airship_damage.wav is loading 
-[INFO|5:47:30]: Ship hit an obstacle, 1 lives remaining. 
-[INFO|5:47:30]: ally_airship_damage.wav load complete 
-[FINE|5:47:31]: 214990__peridactyloptrix__laser-blast-x3.wav is loading 
-[INFO|5:47:31]: Bullet's fire_id is 7 
-[INFO|5:47:31]: 214990__peridactyloptrix__laser-blast-x3.wav load complete 
-[FINE|5:47:32]: enemyGunShot01.wav is loading 
-[INFO|5:47:32]: enemyGunShot01.wav load complete 
-[INFO|5:47:32]: Formation now moving left 1 
-[FINE|5:47:32]: obstacle_explosion.wav is loading 
-[INFO|5:47:32]: obstacle_explosion.wav load complete 
-[FINE|5:47:33]: enemyGunShot01.wav is loading 
-[INFO|5:47:33]: enemyGunShot01.wav load complete 
-[INFO|5:47:33]: You get coin! 
-[INFO|5:47:33]: coin: 3 
-[FINE|5:47:33]: item_coin.wav is loading 
-[INFO|5:47:33]: item_coin.wav load complete 
-[INFO|5:47:34]: Ship hit an obstacle, 0 lives remaining. 
-[FINE|5:47:34]: ally_airship_damage.wav is loading 
-[INFO|5:47:34]: Loading Player Statistic. 
-[INFO|5:47:34]: Saving Player Statistic. 
-[INFO|5:47:34]: ally_airship_damage.wav load complete 
-[INFO|5:47:34]: Loading Player Statistic. 
-[INFO|5:47:34]: Saving Player Statistic. 
-[INFO|5:47:34]: Loading Player Statistic. 
-[INFO|5:47:34]: Saving Player Statistic. 
-[INFO|5:47:34]: there is no ES : engine/achievement 
-[INFO|5:47:34]: Loading user's gem. 
-[INFO|5:47:34]: Saving user's gem. 
-[INFO|5:47:34]: there is no ES : engine/achievement 
-[INFO|5:47:34]: Loading user's gem. 
-[INFO|5:47:34]: Saving user's gem. 
-[INFO|5:47:34]: Screen cleared with a score of 3597 
-[INFO|5:47:34]: Closing game screen. 
-[INFO|5:47:34]: base coin = coinItemsCollectedValue(10) + scoreCoin(302) = 312 
-[INFO|5:47:34]: coin = ((baseCoin(312) + bonusCoin(0)) * statBonus(1.0) = 312 
-[INFO|5:47:34]: Round Coin: 312 
-[INFO|5:47:34]: Round Hit Rate: 0.5714286 
-[INFO|5:47:34]: Round Time: 9 
-[INFO|5:47:34]: Loading Player Statistic. 
-[INFO|5:47:34]: Saving Player Statistic. 
-[INFO|5:47:34]: RoundTime Saving 
-[INFO|5:47:34]: Stop InGameBGM 
-[INFO|5:47:34]: Starting 630x720 score screen at 60 fps, with a score of 3597, 0 lives remaining, 134 bullets shot and 116 ships destroyed. 
-[INFO|5:47:34]: Loading default high scores. 
-[INFO|5:47:34]: Loading default high scores. 
-[INFO|5:47:36]: Loading Player Statistic. 
-[INFO|5:47:36]: Saving user high scores. 
-[INFO|5:47:36]: Loading user's coin. 
-[INFO|5:47:36]: Saving user's coin. 
-[INFO|5:47:36]: You earned $552 
-[INFO|5:47:36]: Loading Player Statistic. 
-[INFO|5:47:36]: Loading Player Statistic. 
-[INFO|5:47:36]: Saving Player Statistic. 
-[INFO|5:47:36]: Loading Player Statistic. 
-[INFO|5:47:36]: Loading Player Statistic. 
-[INFO|5:47:36]: Loading Player Statistic. 
-[INFO|5:47:36]: Saving user recent scores. 
-[INFO|5:47:36]: Saving Player Statistic. 
-[INFO|5:47:36]: Closing score screen. 
-[INFO|5:47:36]: Starting inGameBGM 
-[FINE|5:47:36]: start_button.wav is loading 
-[INFO|5:47:36]: Loading Player Statistic. 
-[INFO|5:47:36]: Starting 630x720 game screen at 60 fps. 
-[INFO|5:47:36]: start_button.wav load complete 
-[INFO|5:47:36]: cercle2 
-[INFO|5:47:36]: Initializing 5x4 ship formation in (60,100) 
+[INFO|8:36:18]: Started loading resources. 
+[FINE|8:36:18]: Sprite Obstacle loaded. 
+[FINE|8:36:18]: Sprite Ship loaded. 
+[FINE|8:36:18]: Sprite ShipDestroyed loaded. 
+[FINE|8:36:18]: Sprite Bullet loaded. 
+[FINE|8:36:18]: Sprite EnemyBullet loaded. 
+[FINE|8:36:18]: Sprite EnemyShipA1 loaded. 
+[FINE|8:36:18]: Sprite EnemyShipA2 loaded. 
+[FINE|8:36:18]: Sprite EnemyShipB1 loaded. 
+[FINE|8:36:18]: Sprite EnemyShipB2 loaded. 
+[FINE|8:36:18]: Sprite EnemyShipC1 loaded. 
+[FINE|8:36:18]: Sprite EnemyShipC2 loaded. 
+[FINE|8:36:18]: Sprite ExplosiveEnemyShip1 loaded. 
+[FINE|8:36:18]: Sprite ExplosiveEnemyShip2 loaded. 
+[FINE|8:36:18]: Sprite EnemyShipSpecial loaded. 
+[FINE|8:36:18]: Sprite Explosion loaded. 
+[FINE|8:36:18]: Sprite Heart loaded. 
+[FINE|8:36:18]: Sprite Boss loaded. 
+[FINE|8:36:18]: Sprite Coin loaded. 
+[FINE|8:36:18]: Sprite AddSign loaded. 
+[FINE|8:36:18]: Sprite Gem loaded. 
+[FINE|8:36:18]: Sprite ItemHeart loaded. 
+[FINE|8:36:18]: Sprite ItemBarrier loaded. 
+[FINE|8:36:18]: Sprite ItemBomb loaded. 
+[FINE|8:36:18]: Sprite ShipBarrierStatus loaded. 
+[FINE|8:36:18]: Sprite ItemCoin loaded. 
+[FINE|8:36:18]: Sprite ItemFeverTime loaded. 
+[FINE|8:36:18]: Sprite ItemPierce loaded. 
+[FINE|8:36:18]: Sprite ItemSpeedUp loaded. 
+[FINE|8:36:18]: Sprite ItemSpeedSlow loaded. 
+[FINE|8:36:18]: Sprite SubShip loaded. 
+[FINE|8:36:18]: Sprite SubShipDestroyed loaded. 
+[INFO|8:36:18]: Finished loading the sprites. 
+[INFO|8:36:18]: Finished loading the fonts. 
+[INFO|8:36:18]: Saving upgrade statuses. 
+[INFO|8:36:18]: Saving Player Statistic. 
+[INFO|8:36:18]: Reset Player Statistics 
+[INFO|8:36:19]: Loading user's coin. 
+[INFO|8:36:19]: Loading user's gem. 
+[INFO|8:36:19]: Starting 630x720 title screen at 60 fps. 
+[INFO|8:36:20]: Closing title screen. 
+[INFO|8:36:20]: Starting inGameBGM 
+[FINE|8:36:20]: start_button.wav is loading 
+[INFO|8:36:20]: Loading Player Statistic. 
+[INFO|8:36:20]: Starting 630x720 game screen at 60 fps. 
+[INFO|8:36:20]: Initializing 5x4 ship formation in (60,100) 
+[INFO|8:36:20]: start_button.wav load complete 
+[FINE|8:36:27]: 214990__peridactyloptrix__laser-blast-x3.wav is loading 
+[INFO|8:36:27]: Bullet's fire_id is 1 
+[INFO|8:36:27]: 214990__peridactyloptrix__laser-blast-x3.wav load complete 
+[FINE|8:36:28]: 214990__peridactyloptrix__laser-blast-x3.wav is loading 
+[INFO|8:36:28]: Bullet's fire_id is 2 
+[INFO|8:36:28]: 214990__peridactyloptrix__laser-blast-x3.wav load complete 
+[FINE|8:36:28]: 332056__qubodup__fast-collision.wav is loading 
+[INFO|8:36:28]: Destroyed ship in (2,3) 
+[INFO|8:36:28]: Hit count! 
+[INFO|8:36:28]: 332056__qubodup__fast-collision.wav load complete 
+[INFO|8:36:29]: Removed enemy 3 from column 2 
+[INFO|8:36:29]: Bullet's fire_id is 3 
+[FINE|8:36:29]: 214990__peridactyloptrix__laser-blast-x3.wav is loading 
+[INFO|8:36:29]: 214990__peridactyloptrix__laser-blast-x3.wav load complete 
+[INFO|8:36:29]: Destroyed ship in (2,2) 
+[FINE|8:36:29]: 332056__qubodup__fast-collision.wav is loading 
+[INFO|8:36:29]: Hit count! 
+[INFO|8:36:29]: 332056__qubodup__fast-collision.wav load complete 
+[INFO|8:36:29]: Destroyed ship in (1,3) 
+[FINE|8:36:29]: 332056__qubodup__fast-collision.wav is loading 
+[INFO|8:36:29]: 332056__qubodup__fast-collision.wav load complete 
+[INFO|8:36:29]: Bullet's fire_id is 4 
+[FINE|8:36:29]: 214990__peridactyloptrix__laser-blast-x3.wav is loading 
+[INFO|8:36:29]: 214990__peridactyloptrix__laser-blast-x3.wav load complete 
+[FINE|8:36:29]: enemyGunShot01.wav is loading 
+[INFO|8:36:29]: enemyGunShot01.wav load complete 
+[INFO|8:36:30]: Removed enemy 3 from column 1 
+[INFO|8:36:30]: Removed enemy 2 from column 2 
+[FINE|8:36:30]: obstacle_explosion.wav is loading 
+[INFO|8:36:30]: obstacle_explosion.wav load complete 
+[INFO|8:36:30]: Bullet's fire_id is 5 
+[FINE|8:36:30]: 214990__peridactyloptrix__laser-blast-x3.wav is loading 
+[INFO|8:36:30]: 214990__peridactyloptrix__laser-blast-x3.wav load complete 
+[INFO|8:36:30]: Destroyed ship in (1,2) 
+[FINE|8:36:30]: 332056__qubodup__fast-collision.wav is loading 
+[INFO|8:36:30]: Hit count! 
+[INFO|8:36:30]: 332056__qubodup__fast-collision.wav load complete 
+[INFO|8:36:30]: Removed enemy 2 from column 1 
+[INFO|8:36:31]: Bullet's fire_id is 6 
+[FINE|8:36:31]: 214990__peridactyloptrix__laser-blast-x3.wav is loading 
+[INFO|8:36:31]: 214990__peridactyloptrix__laser-blast-x3.wav load complete 
+[INFO|8:36:31]: Destroyed ship in (1,1) 
+[FINE|8:36:31]: 332056__qubodup__fast-collision.wav is loading 
+[INFO|8:36:31]: Hit count! 
+[INFO|8:36:31]: 332056__qubodup__fast-collision.wav load complete 
+[FINE|8:36:32]: 214990__peridactyloptrix__laser-blast-x3.wav is loading 
+[INFO|8:36:32]: Bullet's fire_id is 7 
+[INFO|8:36:32]: 214990__peridactyloptrix__laser-blast-x3.wav load complete 
+[FINE|8:36:32]: enemyGunShot01.wav is loading 
+[INFO|8:36:32]: enemyGunShot01.wav load complete 
+[INFO|8:36:32]: Removed enemy 1 from column 1 
+[INFO|8:36:32]: Destroyed ship in (1,0) 
+[FINE|8:36:32]: 332056__qubodup__fast-collision.wav is loading 
+[INFO|8:36:32]: Shooters list reduced to 4 members. 
+[INFO|8:36:32]: Hit count! 
+[INFO|8:36:32]: 332056__qubodup__fast-collision.wav load complete 
+[INFO|8:36:32]: Bullet's fire_id is 8 
+[FINE|8:36:32]: 214990__peridactyloptrix__laser-blast-x3.wav is loading 
+[INFO|8:36:32]: 214990__peridactyloptrix__laser-blast-x3.wav load complete 
+[INFO|8:36:33]: Removed enemy 0 from column 1 
+[INFO|8:36:33]: Removed column 1 
+[FINE|8:36:33]: 214990__peridactyloptrix__laser-blast-x3.wav is loading 
+[INFO|8:36:33]: Bullet's fire_id is 9 
+[INFO|8:36:33]: 214990__peridactyloptrix__laser-blast-x3.wav load complete 
+[INFO|8:36:34]: Bullet's fire_id is 10 
+[FINE|8:36:34]: 214990__peridactyloptrix__laser-blast-x3.wav is loading 
+[INFO|8:36:34]: 214990__peridactyloptrix__laser-blast-x3.wav load complete 
+[FINE|8:36:34]: enemyGunShot01.wav is loading 
+[INFO|8:36:34]: enemyGunShot01.wav load complete 
+[INFO|8:36:34]: Destroyed ship in (0,1) 
+[FINE|8:36:34]: 332056__qubodup__fast-collision.wav is loading 
+[INFO|8:36:34]: Hit count! 
+[INFO|8:36:34]: 332056__qubodup__fast-collision.wav load complete 
+[INFO|8:36:35]: Destroyed ship in (0,3) 
+[FINE|8:36:35]: 332056__qubodup__fast-collision.wav is loading 
+[INFO|8:36:35]: 332056__qubodup__fast-collision.wav load complete 
+[INFO|8:36:35]: Bullet's fire_id is 11 
+[FINE|8:36:35]: 214990__peridactyloptrix__laser-blast-x3.wav is loading 
+[INFO|8:36:35]: 214990__peridactyloptrix__laser-blast-x3.wav load complete 
+[INFO|8:36:35]: Removed enemy 1 from column 0 
+[INFO|8:36:35]: Removed enemy 3 from column 0 
+[INFO|8:36:35]: Bullet's fire_id is 12 
+[FINE|8:36:35]: 214990__peridactyloptrix__laser-blast-x3.wav is loading 
+[INFO|8:36:35]: 214990__peridactyloptrix__laser-blast-x3.wav load complete 
+[INFO|8:36:35]: Destroyed ship in (0,0) 
+[FINE|8:36:35]: 332056__qubodup__fast-collision.wav is loading 
+[INFO|8:36:35]: Hit count! 
+[INFO|8:36:35]: 332056__qubodup__fast-collision.wav load complete 
+[FINE|8:36:36]: 332056__qubodup__fast-collision.wav is loading 
+[INFO|8:36:36]: Destroyed ship in (0,1) 
+[INFO|8:36:36]: Shooters list reduced to 3 members. 
+[INFO|8:36:36]: 332056__qubodup__fast-collision.wav load complete 
+[INFO|8:36:36]: Removed enemy 0 from column 0 
+[INFO|8:36:36]: Removed enemy 1 from column 0 
+[INFO|8:36:36]: Removed column 0 
+[FINE|8:36:36]: enemyGunShot01.wav is loading 
+[INFO|8:36:36]: enemyGunShot01.wav load complete 
+[INFO|8:36:37]: Bullet's fire_id is 13 
+[FINE|8:36:37]: 214990__peridactyloptrix__laser-blast-x3.wav is loading 
+[INFO|8:36:37]: 214990__peridactyloptrix__laser-blast-x3.wav load complete 
+[FINE|8:36:39]: 214990__peridactyloptrix__laser-blast-x3.wav is loading 
+[INFO|8:36:39]: Bullet's fire_id is 14 
+[INFO|8:36:39]: 214990__peridactyloptrix__laser-blast-x3.wav load complete 
+[FINE|8:36:40]: enemyGunShot01.wav is loading 
+[INFO|8:36:40]: enemyGunShot01.wav load complete 
+[FINE|8:36:41]: 332056__qubodup__fast-collision.wav is loading 
+[INFO|8:36:41]: Destroyed ship in (0,1) 
+[INFO|8:36:41]: Hit count! 
+[INFO|8:36:41]: 332056__qubodup__fast-collision.wav load complete 
+[INFO|8:36:41]: Removed enemy 1 from column 0 
+[INFO|8:36:41]: Enemy ship lost 1 HP in (0,0) 
+[FINE|8:36:44]: enemyGunShot01.wav is loading 
+[INFO|8:36:44]: enemyGunShot01.wav load complete 
+[INFO|8:36:45]: A special ship appears 
+[FINE|8:36:45]: 276885__18hiltc__rocket-fly-by.wav is loading 
+[INFO|8:36:45]: 276885__18hiltc__rocket-fly-by.wav load complete 
