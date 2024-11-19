@@ -1062,7 +1062,9 @@ public class GameScreen extends Screen {
                 pausedTime += 100;
             }
         } catch (InterruptedException e) {
-            e.printStackTrace();
+            Thread.currentThread().interrupt();  // 스레드의 인터럽트 상태를 재설정
+            // 필요 시 로그를 남깁니다.
+            logger.warning("Thread was interrupted");
         }
     }
 

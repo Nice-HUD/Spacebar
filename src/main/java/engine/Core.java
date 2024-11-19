@@ -293,7 +293,10 @@ public final class Core {
 
 						LOGGER.info("Starting " + WIDTH + "x" + HEIGHT
 								+ " game screen at " + FPS + " fps.");
-						frame.setScreen(currentScreen);
+						returnCode = frame.setScreen(currentScreen);
+
+						if (returnCode == 1 || returnCode == 2) break;
+
 						LOGGER.info("Closing game screen.");
 						
 						
@@ -345,7 +348,9 @@ public final class Core {
 						}
 						
 					} while ((gameState.getLivesRemaining() > 0 || gameState.getLivesTwoRemaining() > 0) && gameState.getLevel() <= NUM_LEVELS);
-					
+
+					if (returnCode == 1 || returnCode == 2) break;
+
 					LOGGER.info("Stop InGameBGM");
 					// Sound Operator
 					sm.stopAllBGM();
