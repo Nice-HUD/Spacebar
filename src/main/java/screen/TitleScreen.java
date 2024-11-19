@@ -83,6 +83,9 @@ public class TitleScreen extends Screen {
 			return 4; //return 4 instead of 2
 		}
 
+		if (this.returnCode == 6) {
+			return 6; // Return 6 for SettingsScreen
+		}
 		return this.returnCode;
 	}
 
@@ -296,26 +299,28 @@ public class TitleScreen extends Screen {
 			throw new RuntimeException(e);
 		}
 	}
+
 	private void nextMenuItem() {
-		if (this.returnCode == 5) // Team Clover changed values because recordMenu added
-			this.returnCode = 0; // from '2 player mode' to 'Exit' (Starter)
-		else if (this.returnCode == 0)
-			this.returnCode = 2; // from 'Exit' to 'Play' (Starter)
+		// 순환: Exit -> 1/2 Player Mode
+		if (this.returnCode == 0)
+			this.returnCode = 2; // Exit에서 1/2 Player Mode로 이동
+		else if (this.returnCode == 6)
+			this.returnCode = 0; // Settings에서 Exit로 이동
 		else
-			this.returnCode++; // go next (Starter)
+			this.returnCode++; // 다음 항목으로 이동
 	}
 
 	/**
 	 * Shifts the focus to the previous menu item.
 	 */
 	private void previousMenuItem() {
-		this.merchantState =0;
-		if (this.returnCode == 0)
-			this.returnCode = 5; // from 'Exit' to '2 player mode' (Starter) // Team Clover changed values because recordMenu added
-		else if (this.returnCode == 2)
-			this.returnCode = 0; // from 'Play' to 'Exit' (Starter)
+		// 순환: 1/2 Player Mode -> Exit
+		if (this.returnCode == 2)
+			this.returnCode = 0; // 1/2 Player Mode에서 Exit로 이동
+		else if (this.returnCode == 0)
+			this.returnCode = 6; // Exit에서 Settings로 이동
 		else
-			this.returnCode--; // go previous (Starter)
+			this.returnCode--; // 이전 항목으로 이동
 	}
 
 	// left and right move -- produced by Starter
