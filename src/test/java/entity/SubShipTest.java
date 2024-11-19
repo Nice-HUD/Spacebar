@@ -1,8 +1,8 @@
+package entity;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 import engine.DrawManager;
-import entity.PiercingBullet;
-import entity.SubShip;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.Disabled;

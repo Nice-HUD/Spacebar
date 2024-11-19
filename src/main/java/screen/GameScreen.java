@@ -347,28 +347,10 @@ public class GameScreen extends Screen {
      * @return Next screen code.
      */
     public final int run() {
-//		super.run();
-
-        this.isRunning = true;
-
-        while (this.isRunning) {
-            long time = System.currentTimeMillis();
-
-            update(); // 게임 업데이트
-
-            time = (1000 / this.fps) - (System.currentTimeMillis() - time);
-            if (time > 0) {
-                try {
-                    TimeUnit.MILLISECONDS.sleep(time);
-                } catch (InterruptedException e) {
-                    return 0;
-                }
-            }
-        }
+		super.run();
 
         this.score += LIFE_SCORE * (this.lives - 1);
         this.logger.info("Screen cleared with a score of " + this.scoreManager.getAccumulatedScore());
-        this.logger.info("game screen return code: " + this.returnCode);
 
         return this.returnCode;
     }

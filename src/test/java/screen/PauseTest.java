@@ -1,12 +1,11 @@
+package screen;
+
 import engine.*;
-import entity.*;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
-import screen.GameScreen;
 
 import java.awt.event.KeyEvent;
-import java.util.Set;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
