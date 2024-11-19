@@ -13,6 +13,8 @@ repositories {
 dependencies {
     testImplementation platform('org.junit:junit-bom:5.10.0')
     testImplementation 'org.junit.jupiter:junit-jupiter'
+    testImplementation 'org.mockito:mockito-core:5.6.0' // 최신 버전 확인 후 업데이트
+    testImplementation 'org.mockito:mockito-junit-jupiter:5.6.0'
 }
 
 jacoco {
@@ -71,3 +73,4 @@ jacocoTestCoverageVerification {
         }
     }
 }
+
