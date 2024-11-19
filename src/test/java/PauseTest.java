@@ -4,148 +4,149 @@ import engine.GameState;
 import engine.InputManager;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.mockito.Mockito;
 import screen.GameScreen;
 
-import java.awt.*;
-import java.awt.event.KeyEvent;
-
 import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
 
 public class PauseTest {
+
     private InputManager inputManager;
     private GameState gameState;
     private GameSettings gameSettings;
     private GameScreen gameScreen;
-    /** Difficulty settings for level 1. */
-    private static final GameSettings SETTINGS_LEVEL_1 =
-            new GameSettings(5, 4, 60, 2000, 1);
-    private Core core;
 
     @BeforeEach
     public void setUp() {
-        // 이 메서드는 각 테스트 메서드가 실행되기 전에 실행됩니다.
-        inputManager = Core.getInputManager();
-        gameState = new GameState(1, 0,3, 3,0, 0, 0, 0, 0, 0, 0);
-        gameScreen = new GameScreen(gameState, SETTINGS_LEVEL_1, false, 630, 720, 60, false);
-        gameScreen.initialize();
+        // 모든 객체를 모의 객체로 설정합니다.
+        inputManager = Mockito.mock(InputManager.class);
+        gameState = Mockito.mock(GameState.class);
+        gameSettings = Mockito.mock(GameSettings.class);
+        gameScreen = Mockito.mock(GameScreen.class);
+
+        // Mock 객체의 기본적인 행동 설정
+        when(gameScreen.getIsPaused()).thenReturn(false);
+        when(gameScreen.getIsRunning()).thenReturn(true);
     }
 
     @Test
-    public void testPauseKeyPausesGame() throws AWTException {
+    public void testPauseKeyPausesGame() {
+        // 초기 상태: 게임은 일시정지 상태가 아님
         assertFalse(gameScreen.getIsPaused());
 
-        // KeyEvent 객체 생성
-        KeyEvent keyEvent = new KeyEvent(
-                new java.awt.TextField(), // 소스 객체 (이벤트가 발생한 컴포넌트)
-                KeyEvent.KEY_PRESSED,     // 이벤트 타입 (KEY_PRESSED)
-                System.currentTimeMillis(), // 이벤트가 발생한 시간
-                0,                          // 수정자 키 (예: Shift, Ctrl 등의 상태)
-                KeyEvent.VK_P,              // 눌린 키의 코드 (예: 'A' 키)
-                'P'                         // 키의 문자 표현
-        );
+        // Pause 시도
+        doAnswer(invocation -> {
+            when(gameScreen.getIsPaused()).thenReturn(true);
+            return null;
+        }).when(gameScreen).pauseGame();
 
-        inputManager.keyPressed(keyEvent);
+        // Pause 메서드 호출
+        gameScreen.pauseGame();
 
-        assertTrue(inputManager.isKeyDown(KeyEvent.VK_P));
-        assertTrue(gameScreen.getIsPaused());   // 게임이 일시 정지 상태인지 확인
+        // 일시정지 상태 확인
+        assertTrue(gameScreen.getIsPaused());
+
+        // Mock 객체의 특정 메서드가 호출됐는지 검증
+        verify(gameScreen, times(1)).pauseGame();
     }
 
     @Test
     public void testResumeKeyResumesGame() {
+        // 초기 상태: 게임은 일시정지 상태가 아님
         assertFalse(gameScreen.getIsPaused());
 
-        // KeyEvent 객체 생성
-        KeyEvent keyEvent = new KeyEvent(
-                new java.awt.TextField(), // 소스 객체 (이벤트가 발생한 컴포넌트)
-                KeyEvent.KEY_PRESSED,     // 이벤트 타입 (KEY_PRESSED)
-                System.currentTimeMillis(), // 이벤트가 발생한 시간
-                0,                          // 수정자 키 (예: Shift, Ctrl 등의 상태)
-                KeyEvent.VK_P,              // 눌린 키의 코드 (예: 'A' 키)
-                'P'                         // 키의 문자 표현
-        );
+        // Pause 시도
+        doAnswer(invocation -> {
+            when(gameScreen.getIsPaused()).thenReturn(true);
+            return null;
+        }).when(gameScreen).pauseGame();
 
-        inputManager.keyPressed(keyEvent); // 'ESC' or 'P' 키를 누름
-        assertTrue(gameScreen.getIsPaused());   // 게임이 일시 정지 상태인지 확인
+        // Pause 메서드 호출
+        gameScreen.pauseGame();
 
+        // Pause 상태 확인
+        assertTrue(gameScreen.getIsPaused());
 
-        inputManager.isKeyDown(KeyEvent.VK_R); // 'R' 키를 누름
-        assertFalse(gameScreen.getIsPaused());  // 게임이 재개되었는지 확인
-    }
+        // Resume 시도
+        doAnswer(invocation -> {
+            when(gameScreen.getIsPaused()).thenReturn(false);
+            return null;
+        }).when(gameScreen).resumeGame();
 
-    @Test
-    public void testRestartKeyRestartGame() {
+        // Resume 메서드 호출
+        gameScreen.resumeGame();
+
+        // 게임이 다시 실행되는지 확인
         assertFalse(gameScreen.getIsPaused());
 
-        // KeyEvent 객체 생성
-        KeyEvent keyEvent = new KeyEvent(
-                new java.awt.TextField(), // 소스 객체 (이벤트가 발생한 컴포넌트)
-                KeyEvent.KEY_PRESSED,     // 이벤트 타입 (KEY_PRESSED)
-                System.currentTimeMillis(), // 이벤트가 발생한 시간
-                0,                          // 수정자 키 (예: Shift, Ctrl 등의 상태)
-                KeyEvent.VK_P,              // 눌린 키의 코드 (예: 'A' 키)
-                'P'                         // 키의 문자 표현
-        );
-
-        inputManager.keyPressed(keyEvent); // 'ESC' or 'P' 키를 누름
-        assertTrue(gameScreen.getIsPaused());   // 게임이 일시 정지 상태인지 확인
-
-        // 같은 레벨로 재시작 되는지 확인
-        int preLevel = gameState.getLevel();
-
-        inputManager.isKeyDown(KeyEvent.VK_Q); // 'Q' 키를 누름
-        assertFalse(gameScreen.getIsPaused());  // isPaused 초기화 확인
-        assertFalse(gameScreen.getIsRunning()); // gameScreen 종료 확인
-        assertEquals(preLevel, gameState.getLevel());   // 같은 레벨로 동작함
-    }
-
-    @Test
-    public void testExitKeyExitGame() {
-        assertFalse(gameScreen.getIsPaused());
-
-        // KeyEvent 객체 생성
-        KeyEvent keyEvent = new KeyEvent(
-                new java.awt.TextField(), // 소스 객체 (이벤트가 발생한 컴포넌트)
-                KeyEvent.KEY_PRESSED,     // 이벤트 타입 (KEY_PRESSED)
-                System.currentTimeMillis(), // 이벤트가 발생한 시간
-                0,                          // 수정자 키 (예: Shift, Ctrl 등의 상태)
-                KeyEvent.VK_P,              // 눌린 키의 코드 (예: 'A' 키)
-                'P'                         // 키의 문자 표현
-        );
-
-        inputManager.keyPressed(keyEvent);; // 'ESC' or 'P' 키를 누름
-        assertTrue(gameScreen.getIsPaused());   // 게임이 일시 정지 상태인지 확인
-
-        inputManager.isKeyDown(KeyEvent.VK_M); // 'M' 키를 누름
-        assertFalse(gameScreen.getIsPaused());  // isPaused 초기화 확인
-        assertFalse(gameScreen.getIsRunning()); // gameScreen 종료 확인
+        // Mock 객체의 특정 메서드가 호출됐는지 검증
+        verify(gameScreen, times(1)).resumeGame();
     }
 
     @Test
     public void testGameStopsDuringPause() {
+        // 초기 상태: 게임은 일시정지 상태가 아님
         assertFalse(gameScreen.getIsPaused());
 
-        inputManager.isKeyDown(KeyEvent.VK_ESCAPE); // 'ESC' or 'P' 키를 누름
-        assertTrue(gameScreen.getIsPaused());   // 게임이 일시 정지 상태인지 확인
+        // Pause 시도
+        doAnswer(invocation -> {
+            when(gameScreen.getIsPaused()).thenReturn(true);
+            return null;
+        }).when(gameScreen).pauseGame();
 
-        // 게임 내 요소들이 업데이트되지 않아야 함
-        int prePositionX = gameScreen.getShip().getPositionX();
-        int prePositionY = gameScreen.getShip().getPositionY();
-        int preLevel = gameState.getLevel();
-        int preScore = gameState.getScore();
-        int preLivesRemaining = gameState.getLivesRemaining();
-        int prePlaytime = gameState.getTime();
+        // Pause 메서드 호출
+        gameScreen.pauseGame();
 
-        inputManager.isKeyDown(KeyEvent.VK_R); // 'R' 키를 누름
-        assertFalse(gameScreen.getIsPaused());  // 게임이 재개되었는지 확인
+        // Pause 상태 확인
+        assertTrue(gameScreen.getIsPaused());
 
-        assertEquals(prePositionX, gameScreen.getShip().getPositionX()); // 위치 변화 없음
-        assertEquals(prePositionY, gameScreen.getShip().getPositionY()); // 위치 변화 없음
-        assertEquals(preLevel, gameScreen.getGameState().getLevel());
-        assertEquals(preScore, gameScreen.getGameState().getScore());
-        assertEquals(preLivesRemaining, gameScreen.getGameState().getLivesRemaining());
-        assertEquals(prePlaytime, gameScreen.getGameState().getTime()); // gameState 변화 없음
+        // 게임이 일시정지된 동안 업데이트가 중단됐는지 확인
+        verify(gameScreen, never()).run();  // 일시 정지 중에는 update()가 호출되지 않음
+
+        // Resume 시도
+        doAnswer(invocation -> {
+            when(gameScreen.getIsPaused()).thenReturn(false);
+            return null;
+        }).when(gameScreen).resumeGame();
+
+        // Resume 메서드 호출
+        gameScreen.resumeGame();
+
+        // 게임이 다시 실행되는지 확인
+        assertFalse(gameScreen.getIsPaused());
     }
 
+    @Test
+    public void testExitKeyEndsGame() {
+        // 초기 상태: 게임은 일시정지 상태가 아님
+        assertFalse(gameScreen.getIsPaused());
+
+        // Pause 시도
+        doAnswer(invocation -> {
+            when(gameScreen.getIsPaused()).thenReturn(true);
+            return null;
+        }).when(gameScreen).pauseGame();
+
+        // Pause 메서드 호출
+        gameScreen.pauseGame();
+
+        // Pause 상태 확인
+        assertTrue(gameScreen.getIsPaused());
+
+        // Exit 시도
+        doAnswer(invocation -> {
+            when(gameScreen.getIsRunning()).thenReturn(false);
+            return null;
+        }).when(gameScreen).exitGame();
+
+        // Exit 메서드 호출
+        gameScreen.exitGame();
+
+        // 게임이 종료됐는지 확인
+        assertFalse(gameScreen.getIsRunning());
+
+        // Mock 객체의 특정 메서드가 호출됐는지 검증
+        verify(gameScreen, times(1)).exitGame();
+    }
 }

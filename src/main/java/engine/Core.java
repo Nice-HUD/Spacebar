@@ -140,6 +140,7 @@ public final class Core {
 		
 		int returnCode = 1;
 		do {
+			// level 선택 기능과 병합하며, gameState 수정(pause 기능 중 restart 관련)
 			// Add playtime parameter - Soomin Lee / TeamHUD
 			// Add hitCount parameter - Ctrl S
 			// Add coinItemsCollected parameter - Ctrl S
