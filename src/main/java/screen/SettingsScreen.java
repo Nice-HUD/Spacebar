@@ -1,6 +1,6 @@
 package screen;
 
-import engine.Core;
+import engine.Cooldown;
 import engine.DrawManager;
 import engine.InputManager;
 
@@ -83,4 +83,5 @@ public class SettingsScreen extends Screen {
         return this.isRunning;
     }
 
+    public void setInputDelay(Cooldown inputDelayMock) { this.inputDelay = inputDelayMock; }
 }

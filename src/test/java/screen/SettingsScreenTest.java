@@ -97,6 +97,7 @@
 
 package screen;
 
+import engine.Cooldown;
 import engine.DrawManager;
 import engine.Frame;
 import engine.InputManager;
@@ -114,6 +115,7 @@ public class SettingsScreenTest {
     private SettingsScreen settingsScreen;
     private InputManager inputManagerMock;
     private DrawManager drawManagerMock;
+    private Cooldown inputDelayMock;
 
     @BeforeEach
     public void setUp() {
@@ -123,6 +125,7 @@ public class SettingsScreenTest {
         // Mock InputManager와 DrawManager 생성
         inputManagerMock = mock(InputManager.class);
         drawManagerMock = mock(DrawManager.class);
+        inputDelayMock = mock(Cooldown.class);
 
         // DrawManager에 Frame 설정
         DrawManager.getInstance().setFrame(frame);
@@ -133,6 +136,7 @@ public class SettingsScreenTest {
         // SettingsScreen에 Mock InputManager와 DrawManager 설정
         settingsScreen.setInputManager(inputManagerMock);
         settingsScreen.setDrawManager(drawManagerMock);
+        settingsScreen.setInputDelay(inputDelayMock);
     }
 
     @Test
@@ -146,7 +150,7 @@ public class SettingsScreenTest {
     public void testExitOnEscapeKey() {
         // ESC 키 입력 시 SettingsScreen 종료
         when(inputManagerMock.isKeyDown(KeyEvent.VK_ESCAPE)).thenReturn(true);
-
+        when(inputDelayMock.checkFinished()).thenReturn(true);
         settingsScreen.update(); // update 호출
 
         // isRunning이 false로 업데이트되었는지 확인
@@ -158,7 +162,7 @@ public class SettingsScreenTest {
     public void testApplySettingsOnSpaceKey() {
         // SPACE 키 입력 시 SettingsScreen 종료
         when(inputManagerMock.isKeyDown(KeyEvent.VK_SPACE)).thenReturn(true);
-
+        when(inputDelayMock.checkFinished()).thenReturn(true);
         settingsScreen.update(); // update 호출
 
         // isRunning이 false로 업데이트되었는지 확인
