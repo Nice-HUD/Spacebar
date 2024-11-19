@@ -31,75 +31,130 @@ public class GameScreen extends Screen {
 	private boolean isPaused = false;
 	private long pausedTime = 0;
 
-	/** Milliseconds until the screen accepts user input. */
+	/**
+	 * Milliseconds until the screen accepts user input.
+	 */
 	private static final int INPUT_DELAY = 6000;
-	/** Bonus score for each life remaining at the end of the level. */
+	/**
+	 * Bonus score for each life remaining at the end of the level.
+	 */
 	private static final int LIFE_SCORE = 100;
-	/** Minimum time between bonus ship's appearances. */
+	/**
+	 * Minimum time between bonus ship's appearances.
+	 */
 	private static final int BONUS_SHIP_INTERVAL = 20000;
-	/** Maximum variance in the time between bonus ship's appearances. */
+	/**
+	 * Maximum variance in the time between bonus ship's appearances.
+	 */
 	private static final int BONUS_SHIP_VARIANCE = 10000;
-	/** Time until bonus ship explosion disappears. */
+	/**
+	 * Time until bonus ship explosion disappears.
+	 */
 	private static final int BONUS_SHIP_EXPLOSION = 500;
-	/** Time from finishing the level to screen change. */
+	/**
+	 * Time from finishing the level to screen change.
+	 */
 	private static final int SCREEN_CHANGE_INTERVAL = 1500;
-	/** Height of the interface separation line. */
+	/**
+	 * Height of the interface separation line.
+	 */
 	private static final int SEPARATION_LINE_HEIGHT = 40;
 
-	/** Current game difficulty settings. */
+	/**
+	 * Current game difficulty settings.
+	 */
 	private GameSettings gameSettings;
-	/** Current difficulty level number. */
+	/**
+	 * Current difficulty level number.
+	 */
 	private int level;
-	/** Formation of enemy ships. */
+	/**
+	 * Formation of enemy ships.
+	 */
 	private EnemyShipFormation enemyShipFormation;
-	/** Player's ship. */
+	/**
+	 * Player's ship.
+	 */
 	private Ship ship;
 	public Ship player2;
-	/** Bonus enemy ship that appears sometimes. */
+	/**
+	 * Bonus enemy ship that appears sometimes.
+	 */
 	private EnemyShip enemyShipSpecial;
-	/** Minimum time between bonus ship appearances. */
+	/**
+	 * Minimum time between bonus ship appearances.
+	 */
 	private Cooldown enemyShipSpecialCooldown;
-	/** Time until bonus ship explosion disappears. */
+	/**
+	 * Time until bonus ship explosion disappears.
+	 */
 	private Cooldown enemyShipSpecialExplosionCooldown;
-	/** Time from finishing the level to screen change. */
+	/**
+	 * Time from finishing the level to screen change.
+	 */
 	private Cooldown screenFinishedCooldown;
-	/** Set of all bullets fired by on screen ships. */
+	/**
+	 * Set of all bullets fired by on screen ships.
+	 */
 	public Set<PiercingBullet> bullets; //by Enemy team
-	/** Add an itemManager Instance */
+	/**
+	 * Add an itemManager Instance
+	 */
 	public static ItemManager itemManager; //by Enemy team
-	/** Shield item */
-	private ItemBarrierAndHeart item;	// team Inventory
+	/**
+	 * Shield item
+	 */
+	private ItemBarrierAndHeart item;    // team Inventory
 	private FeverTimeItem feverTimeItem;
-	/** Speed item */
+	/**
+	 * Speed item
+	 */
 	private SpeedItem speedItem;
-	/** Current score. */
+	/**
+	 * Current score.
+	 */
 	private int score;
-	/** Player lives left. */
+	/**
+	 * Player lives left.
+	 */
 	private int lives;
-	/** player2 lives left.*/
+	/**
+	 * player2 lives left.
+	 */
 	private int livestwo;
-	/** Total bullets shot by the player. */
+	/**
+	 * Total bullets shot by the player.
+	 */
 	private int bulletsShot;
-	/** Total ships destroyed by the player. */
+	/**
+	 * Total ships destroyed by the player.
+	 */
 	private int shipsDestroyed;
-	/** Moment the game starts. */
+	/**
+	 * Moment the game starts.
+	 */
 	private long gameStartTime;
-	/** Checks if the level is finished. */
+	/**
+	 * Checks if the level is finished.
+	 */
 	private boolean levelFinished;
-	/** Checks if a bonus life is received. */
+	/**
+	 * Checks if a bonus life is received.
+	 */
 	private boolean bonusLife;
 	/**
 	 * Added by the Level Design team
-	 *
+	 * <p>
 	 * Counts the number of waves destroyed
-	 * **/
+	 **/
 	private int waveCounter;
 
 	/** ### TEAM INTERNATIONAL ### */
-	/** Booleans for horizontal background movement */
+	/**
+	 * Booleans for horizontal background movement
+	 */
 	private boolean backgroundMoveLeft = false;
 	private boolean backgroundMoveRight = false;
-
 
 
 	// --- OBSTACLES
@@ -109,40 +164,64 @@ public class GameScreen extends Screen {
 
 
 	// Soomin Lee / TeamHUD
-	/** Moment the user starts to play */
+	/**
+	 * Moment the user starts to play
+	 */
 	private long playStartTime;
-	/** Total time to play */
+	/**
+	 * Total time to play
+	 */
 	private int playTime = 0;
-	/** Play time on previous levels */
+	/**
+	 * Play time on previous levels
+	 */
 	private int playTimePre = 0;
 
 	// Sound Operator
 	private static SoundManager sm;
 
 	// Team-Ctrl-S(Currency)
-	/** Total coin **/
+	/**
+	 * Total coin
+	 **/
 	private int coin;
-	/** Total gem **/
+	/**
+	 * Total gem
+	 **/
 	private int gem;
-	/** Total hitCount **/		//CtrlS
+	/**
+	 * Total hitCount
+	 **/        //CtrlS
 	private int hitCount;
-	/** Unique id for shot of bullets **/ //CtrlS
+	/**
+	 * Unique id for shot of bullets
+	 **/ //CtrlS
 	private int fire_id;
-	/** Set of fire_id **/
+	/**
+	 * Set of fire_id
+	 **/
 	private Set<Integer> processedFireBullet;
 
-	/** Score calculation. */
+	/**
+	 * Score calculation.
+	 */
 	private ScoreManager scoreManager;    //clove
-	/** Check start-time*/
+	/**
+	 * Check start-time
+	 */
 	private long startTime;    //clove
-	/** Check end-time*/
+	/**
+	 * Check end-time
+	 */
 	private long endTime;    //clove
 
 	private Statistics statistics; //Team Clove
 	private AchievementConditions achievementConditions;
 	private int fastKill;
 
-	/** CtrlS: Count the number of coin collected in game */
+	/**
+	 * CtrlS: Count the number of coin collected in game
+	 */
 	private int coinItemsCollected;
 
 	private boolean twoPlayerMode;
@@ -150,18 +229,12 @@ public class GameScreen extends Screen {
 	/**
 	 * Constructor, establishes the properties of the screen.
 	 *
-	 * @param gameState
-	 *            Current game state.
-	 * @param gameSettings
-	 *            Current game settings.
-	 * @param bonusLife
-	 *            Checks if a bonus life is awarded this level.
-	 * @param width
-	 *            Screen width.
-	 * @param height
-	 *            Screen height.
-	 * @param fps
-	 *            Frames per second, frame rate at which the game is run.
+	 * @param gameState    Current game state.
+	 * @param gameSettings Current game settings.
+	 * @param bonusLife    Checks if a bonus life is awarded this level.
+	 * @param width        Screen width.
+	 * @param height       Screen height.
+	 * @param fps          Frames per second, frame rate at which the game is run.
 	 */
 	public GameScreen(final GameState gameState,
 					  final GameSettings gameSettings, final boolean bonusLife,
@@ -197,8 +270,7 @@ public class GameScreen extends Screen {
 		 * **/
 		this.waveCounter = 1;
 
-		// Soomin Lee / TeamHUD
-		this.playTime = gameState.getTime();
+		this.playTime = gameState.getTime(); // Soomin Lee / TeamHUD
 		this.scoreManager = gameState.scoreManager; //Team Clove
 		this.statistics = new Statistics(); //Team Clove
 		this.achievementConditions = new AchievementConditions();
@@ -223,12 +295,11 @@ public class GameScreen extends Screen {
 		this.itemManager.initialize(); //by Enemy team
 		enemyShipFormation.setItemManager(this.itemManager);//add by team Enemy
 
-		if(twoPlayerMode){
+		if (twoPlayerMode) {
 			this.setTwoPlayerMode(true);
 			this.player2 = new Ship(this.width / 4, this.height - 30, Color.BLUE); // add by team HUD
-		}
-		else{
-			this.player2=null;
+		} else {
+			this.player2 = null;
 		}
 
 		Set<EnemyShip> enemyShipSet = new HashSet<>();
@@ -290,7 +361,7 @@ public class GameScreen extends Screen {
 
 		this.score += LIFE_SCORE * (this.lives - 1);
 		this.logger.info("Screen cleared with a score of " + this.scoreManager.getAccumulatedScore());
-		this.logger.info("game screen return code: "+ this.returnCode);
+		this.logger.info("game screen return code: " + this.returnCode);
 
 		return this.returnCode;
 	}
@@ -493,7 +564,7 @@ public class GameScreen extends Screen {
 		enemyShipFormation.draw();
 
 		drawManager.drawSpeed(this, ship.getSpeed()); // Ko jesung / HUD team
-		drawManager.drawSeparatorLine(this,  this.height-65); // Ko jesung / HUD team
+		drawManager.drawSeparatorLine(this, this.height - 65); // Ko jesung / HUD team
 
 
 		for (PiercingBullet bullet : this.bullets)
@@ -513,7 +584,7 @@ public class GameScreen extends Screen {
 		// Interface.
 //		drawManager.drawScore(this, this.scoreManager.getAccumulatedScore());    //clove -> edit by jesung ko - TeamHUD(to udjust score)
 //		drawManager.drawScore(this, this.score); // by jesung ko - TeamHUD
-		drawManager.drawScore2(this,this.score); // by jesung ko - TeamHUD
+		drawManager.drawScore2(this, this.score); // by jesung ko - TeamHUD
 		drawManager.drawLives(this, this.lives);
 		drawManager.drawHorizontalLine(this, SEPARATION_LINE_HEIGHT - 1);
 		drawManager.drawRemainingEnemies(this, getRemainingEnemies()); // by HUD team SeungYun
@@ -524,7 +595,7 @@ public class GameScreen extends Screen {
 		// Call the method in drawManager - Soomin Lee / TeamHUD
 		drawManager.drawItem(this); // HUD team - Jo Minseo
 
-		if(player2 != null){
+		if (player2 != null) {
 			drawManager.drawBulletSpeed2P(this, player2.getBulletSpeed());
 			drawManager.drawSpeed2P(this, player2.getSpeed());
 			drawManager.drawLives2P(this, livestwo);
@@ -562,11 +633,6 @@ public class GameScreen extends Screen {
 			playTime = (int) ((System.currentTimeMillis() - playStartTime - pausedTime) / 1000) + playTimePre;
 		}
 
-		if (isPaused) {
-			// 일시 정지 UI 그리기
-			drawManager.drawPauseOverlay(this);
-		}
-
 		super.drawPost();
 		drawManager.completeDrawing(this);
 	}
@@ -579,7 +645,7 @@ public class GameScreen extends Screen {
 		for (PiercingBullet bullet : this.bullets) { // Edited by Enemy
 			bullet.update();
 			if (bullet.getPositionY() < SEPARATION_LINE_HEIGHT
-					|| bullet.getPositionY() > this.height-70) // ko jesung / HUD team
+					|| bullet.getPositionY() > this.height - 70) // ko jesung / HUD team
 			{
 				//Ctrl-S : set true of CheckCount if the bullet is planned to recycle.
 				bullet.setCheckCount(true);
@@ -614,7 +680,7 @@ public class GameScreen extends Screen {
 			if (bullet.getSpeed() > 0) {
 				if (checkCollision(bullet, this.ship) && !this.levelFinished) {
 					recyclable.add(bullet);
-					if (!this.ship.isDestroyed() && !this.item.isbarrierActive()) {	// team Inventory
+					if (!this.ship.isDestroyed() && !this.item.isbarrierActive()) {    // team Inventory
 						this.ship.destroy();
 						this.lives--;
 						this.logger.info("Hit on player ship, " + this.lives
@@ -660,14 +726,14 @@ public class GameScreen extends Screen {
 			if (bullet.getSpeed() > 0) {
 				if (checkCollision(bullet, this.ship) && !this.levelFinished) {
 					recyclable.add(bullet);
-					if (!this.ship.isDestroyed() && !this.item.isbarrierActive()) {	// team Inventory
+					if (!this.ship.isDestroyed() && !this.item.isbarrierActive()) {    // team Inventory
 						this.ship.destroy();
 						this.lives--;
 						this.logger.info("Hit on player ship, " + this.lives
 								+ " lives remaining.");
 
 						// Sound Operator
-						if (this.lives == 0){
+						if (this.lives == 0) {
 							sm = SoundManager.getInstance();
 							sm.playShipDieSounds();
 						}
@@ -683,9 +749,9 @@ public class GameScreen extends Screen {
 						this.shipsDestroyed += CntAndPnt[0];
 						int feverScore = CntAndPnt[0]; //TEAM CLOVE //Edited by team Enemy
 
-						if(enemyShip.getHp() <= 0) {
+						if (enemyShip.getHp() <= 0) {
 							//inventory_f fever time is activated, the score is doubled.
-							if(feverTimeItem.isActive()) {
+							if (feverTimeItem.isActive()) {
 								feverScore = feverScore * 10;
 							}
 							this.shipsDestroyed++;
@@ -730,7 +796,9 @@ public class GameScreen extends Screen {
 						&& checkCollision(bullet, this.enemyShipSpecial)) {
 					int feverSpecialScore = enemyShipSpecial.getPointValue();
 					// inventory - Score bonus when acquiring fever items
-					if (feverTimeItem.isActive()) { feverSpecialScore *= 10; } //TEAM CLOVE //Team inventory
+					if (feverTimeItem.isActive()) {
+						feverSpecialScore *= 10;
+					} //TEAM CLOVE //Team inventory
 
 					// CtrlS - If collision occur then check the bullet can process
 					if (!processedFireBullet.contains(bullet.getFire_id())) {
@@ -757,7 +825,7 @@ public class GameScreen extends Screen {
 					}
 
 					//// Drop item to 100%
-					this.itemManager.dropItem(enemyShipSpecial,1,2);
+					this.itemManager.dropItem(enemyShipSpecial, 1, 2);
 				}
 
 				for (Obstacle obstacle : this.obstacles) {
@@ -795,7 +863,7 @@ public class GameScreen extends Screen {
 		PiercingBulletPool.recycle(recyclable);
 
 		//Check item and ship collision
-		for(Item item : itemManager.items){
+		for (Item item : itemManager.items) {
 			if (checkCollision(item, ship)) {
 				itemManager.OperateItem(item);
 				// CtrlS: Count coin
@@ -812,10 +880,8 @@ public class GameScreen extends Screen {
 	/**
 	 * Checks if two entities are colliding.
 	 *
-	 * @param a
-	 *            First entity, the bullet.
-	 * @param b
-	 *            Second entity, the ship.
+	 * @param a First entity, the bullet.
+	 * @param b Second entity, the ship.
 	 * @return Result of the collision test.
 	 */
 	public static boolean checkCollision(final Entity a, final Entity b) {
@@ -834,7 +900,7 @@ public class GameScreen extends Screen {
 		return distanceX < maxDistanceX && distanceY < maxDistanceY;
 	}
 
-	public int getBulletsShot(){    //clove
+	public int getBulletsShot() {    //clove
 		return this.bulletsShot;    //clove
 	}                               //clove
 
@@ -845,32 +911,34 @@ public class GameScreen extends Screen {
 	 * @return Current game state.
 	 */
 	public final GameState getGameState() {
-		return new GameState(this.level, this.scoreManager.getAccumulatedScore(), this.lives,this.livestwo,
+		return new GameState(this.level, this.scoreManager.getAccumulatedScore(), this.lives, this.livestwo,
 				this.bulletsShot, this.shipsDestroyed, this.playTime, this.coin, this.gem, this.hitCount, this.coinItemsCollected); // Team-Ctrl-S(Currency)
 	}
+
 	public int getLives() {
 		return lives;
 	}
+
 	public void setLives(int lives) {
 		this.lives = lives;
 	}
 
 	public Ship getShip() {
 		return ship;
-	}	// Team Inventory(Item)
+	}    // Team Inventory(Item)
 
 	public ItemBarrierAndHeart getItem() {
 		return item;
-	}	// Team Inventory(Item)
+	}    // Team Inventory(Item)
 
 	public FeverTimeItem getFeverTimeItem() {
 		return feverTimeItem;
 	} // Team Inventory(Item)
+
 	/**
 	 * Check remaining enemies
 	 *
 	 * @return remaining enemies count.
-	 *
 	 */
 	private int getRemainingEnemies() {
 		int remainingEnemies = 0;
@@ -888,8 +956,8 @@ public class GameScreen extends Screen {
 	}
 
 	// Player 2의 총알과 충돌 처리
-	private void handleBulletCollisionsForPlayer2( Set<PiercingBullet> bullets, Ship player2) {
-		if(player2==null) return;
+	private void handleBulletCollisionsForPlayer2(Set<PiercingBullet> bullets, Ship player2) {
+		if (player2 == null) return;
 		Set<Bullet> recyclable = new HashSet<>();
 		for (Bullet bullet : bullets) {
 			if (bullet.getSpeed() > 0 && checkCollision(bullet, player2)) {
@@ -910,7 +978,7 @@ public class GameScreen extends Screen {
 
 	// Player 2의 장애물과 충돌 처리
 	private void handleObstacleCollisionsForPlayer2(Set<Obstacle> obstacles, Ship player2) {
-		if(player2==null) return;
+		if (player2 == null) return;
 		for (Obstacle obstacle : obstacles) {
 			if (!obstacle.isDestroyed() && checkCollision(player2, obstacle)) {
 				livestwo--;
@@ -930,7 +998,7 @@ public class GameScreen extends Screen {
 
 	// Player 2의 아이템과 충돌 처리
 	private void handleItemCollisionsForPlayer2(Ship player2) {
-		if(player2==null) return;
+		if (player2 == null) return;
 		for (Item item : itemManager.items) {
 			if (checkCollision(item, player2)) {
 				itemManager.OperateItem(item); // 아이템 효과 적용
@@ -939,13 +1007,23 @@ public class GameScreen extends Screen {
 		}
 	}
 
+	public void drawPauseOverlay() {
+		drawManager.initDrawing(this);
+		if (this.isPaused) {
+			// 일시 정지 UI 그리기
+			drawManager.drawPauseOverlay(this);
+		}
+		drawManager.completeDrawing(this);
+	}
+
 	public void pauseGame() {
-		isPaused = true;
+		this.isPaused = true;
 		try {
 			// 특정 키가 눌릴 때까지 대기
-			while (isPaused) {
+			while (this.isPaused) {
+				if (isTestMode) break;
 
-				draw();
+				drawPauseOverlay();
 
 				if (inputManager.isKeyDown(KeyEvent.VK_R)) {
 					resumeGame();
@@ -967,21 +1045,21 @@ public class GameScreen extends Screen {
 
 	public void resumeGame() {
 		logger.info("Game resumed.");
-		isPaused = false; // 사용자가 일시 정지 키를 다시 누르면 게임을 재개함
+		this.isPaused = false; // 사용자가 일시 정지 키를 다시 누르면 게임을 재개함
 	}
 
 	public void restartGame() {
 		logger.info("Game restarting.");
 		this.returnCode = 2;
 		this.isRunning = false;
-		isPaused = false;
+		this.isPaused = false;
 	}
 
 	public void exitGame() {
 		logger.info("Exit to main menu.");
 		this.returnCode = 1;
 		this.isRunning = false;
-		isPaused = false;
+		this.isPaused = false;
 	}
 
 	// Getter for isPaused
@@ -1004,14 +1082,18 @@ public class GameScreen extends Screen {
 		this.isRunning = isRunning;
 	}
 
-	public void pressPKey() throws AWTException {
-		Robot robot = new Robot();
-
-		// 'P' 키를 누름
-		robot.keyPress(KeyEvent.VK_P);
-		robot.keyRelease(KeyEvent.VK_P);
+	public int getReturnCode() {
+		return this.returnCode;
 	}
 
-	public int getReturnCode() { return this.returnCode; }
+	public void setDrawManager(DrawManager drawManagerMock) {
+		this.drawManager = drawManagerMock;
+	}
+
+	private boolean isTestMode = false;
+
+	public void setTestMode(boolean isTestMode) {
+		this.isTestMode = isTestMode;
+	}
 
 }
