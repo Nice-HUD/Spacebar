@@ -1,5 +1,6 @@
 plugins {
     id 'java'
+    id 'jacoco'    // Jacoco 플러그인 추가
 }
 
 group = 'Spacebar'
@@ -15,6 +16,59 @@ dependencies {
     testImplementation 'org.mockito:mockito-core:5.5.0'
 }
 
+jacoco {
+    toolVersion = '0.8.7'    // Jacoco 버전 설정
+}
+
 test {
     useJUnitPlatform()
+    finalizedBy jacocoTestReport    // 테스트 후 리포트 생성
+}
+
+jacocoTestReport {
+    reports {
+        html.required = true
+        xml.required = true    // SonarCloud 연동을 위해 필요
+        csv.required = false
+    }
+
+    // 테스트 커버리지 제외 대상 설정
+    afterEvaluate {
+        classDirectories.setFrom(files(classDirectories.files.collect {
+            fileTree(dir: it, exclude: [
+                    '**/Main.class',
+                    '**/Screen.class',
+                    '**/config/**',
+                    '**/dto/**'
+            ])
+        }))
+    }
+
+    finalizedBy jacocoTestCoverageVerification    // 리포트 생성 후 검증 실행
+}
+
+jacocoTestCoverageVerification {
+    violationRules {
+        rule {
+            element = 'CLASS'
+
+            limit {
+                counter = 'LINE'
+                value = 'COVEREDRATIO'
+                minimum = 0.0    // 초기에는 낮은 기준으로 시작
+            }
+
+            limit {
+                counter = 'BRANCH'
+                value = 'COVEREDRATIO'
+                minimum = 0.0    // 브랜치 커버리지도 초기에는 낮게 설정
+            }
+
+            excludes = [
+                    'screen.*',
+                    'engine.Core',
+                    '**/Main*'
+            ]
+        }
+    }
 }

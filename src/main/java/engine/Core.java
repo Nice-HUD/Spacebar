@@ -1,6 +1,5 @@
 package engine;
 
-import java.awt.event.KeyEvent;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -140,12 +139,12 @@ public final class Core {
 		
 		int returnCode = 1;
 		do {
-			// level 선택 기능과 병합하며, gameState 수정(pause 기능 중 restart 관련)
+			// level 선택 기능과 병합하며, gameState 수정 필요(pause 기능 중 restart 관련)
 			// Add playtime parameter - Soomin Lee / TeamHUD
 			// Add hitCount parameter - Ctrl S
 			// Add coinItemsCollected parameter - Ctrl S
 			gameState = new GameState(1, 0
-					, MAX_LIVES, MAX_LIVES,0, 0, 0, 0, 0, 0, 0);
+					, MAX_LIVES, MAX_LIVES,0, 0, 0, 0, 0, 0, 0, false);
 			switch (returnCode) {
 				case 1:
 					// Main menu.
@@ -167,11 +166,11 @@ public final class Core {
 						boolean bonusLife = gameState.getLevel()
 								% EXTRA_LIFE_FRECUENCY == 0
 								&& gameState.getLivesRemaining() < MAX_LIVES;
-						
+						gameState.setTwoPlayerMode(false);
 						GameState prevState = gameState;
 						currentScreen = new GameScreen(gameState,
 								gameSettings.get(gameState.getLevel() - 1),
-								bonusLife, width, height, FPS, false);
+								bonusLife, width, height, FPS, gameState.isTwoPlayerMode());
 						LOGGER.info("Starting " + WIDTH + "x" + HEIGHT
 								+ " game screen at " + FPS + " fps.");
 						returnCode = frame.setScreen(currentScreen);
@@ -198,11 +197,12 @@ public final class Core {
 								gameState.getCoin() + roundState.getRoundCoin(),
 								gameState.getGem(),
 								gameState.getHitCount(),
-								gameState.getCoinItemsCollected());
+								gameState.getCoinItemsCollected(),
+								gameState.isTwoPlayerMode());
 						LOGGER.info("Round Coin: " + roundState.getRoundCoin());
 						LOGGER.info("Round Hit Rate: " + roundState.getRoundHitRate());
 						LOGGER.info("Round Time: " + roundState.getRoundTime());
-
+						
 						try { //Clove
 							statistics.addTotalPlayTime(roundState.getRoundTime());
 							LOGGER.info("RoundTime Saving");
@@ -231,7 +231,7 @@ public final class Core {
 							&& gameState.getLevel() <= NUM_LEVELS);
 
 					if (returnCode == 1 || returnCode == 2) break;
-					
+
 					LOGGER.info("Stop InGameBGM");
 					// Sound Operator
 					sm.stopAllBGM();
@@ -246,7 +246,6 @@ public final class Core {
 					returnCode = frame.setScreen(currentScreen);
 					LOGGER.info("Closing score screen.");
 					break;
-
 				case 3:
 					// High scores.
 					currentScreen = new HighScoreScreen(width, height, FPS);
@@ -278,15 +277,20 @@ public final class Core {
 						int fps = FPS;
 						boolean bonusLife = gameState.getLevel() % EXTRA_LIFE_FRECUENCY == 0 &&
 								(gameState.getLivesRemaining() < MAX_LIVES || gameState.getLivesTwoRemaining() < MAX_LIVES);
-						
-						GameState prevState = gameState;
-						
-						// TwoPlayerMode의 생성자를 호출할 때 필요한 매개변수를 모두 전달
-						currentScreen = new GameScreen(gameState, currentGameSettings, bonusLife, width, height, fps, true);
-						currentScreen.setTwoPlayerMode(true);
-						Statistics statistics = new Statistics(); //Clove
-						
-						
+
+						gameState.setTwoPlayerMode(true); // 2인용 모드 설정
+						GameState prevState = gameState; // 이전 상태 저장
+
+						boolean isTwoPlayerMode = gameState.isTwoPlayerMode(); // 현재 모드 저장
+						// 새로운 GameScreen 객체 생성
+						System.out.println("GameState twoPlayerMode: " + gameState.isTwoPlayerMode());
+						currentScreen = new GameScreen(gameState, currentGameSettings, bonusLife, width, height, fps, isTwoPlayerMode);
+						currentScreen.setTwoPlayerMode(isTwoPlayerMode);
+
+						Statistics statistics = new Statistics(); // 추가 로직
+
+
+
 						LOGGER.info("Starting " + WIDTH + "x" + HEIGHT
 								+ " game screen at " + FPS + " fps.");
 						frame.setScreen(currentScreen);
@@ -310,7 +314,8 @@ public final class Core {
 								gameState.getCoin() + roundState.getRoundCoin(),
 								gameState.getGem(),
 								gameState.getHitCount(),
-								gameState.getCoinItemsCollected());
+								gameState.getCoinItemsCollected(),
+								gameState.isTwoPlayerMode());
 						LOGGER.info("Round Coin: " + roundState.getRoundCoin());
 						LOGGER.info("Round Hit Rate: " + roundState.getRoundHitRate());
 						LOGGER.info("Round Time: " + roundState.getRoundTime());
@@ -362,12 +367,6 @@ public final class Core {
 							+ " recent record screen at " + FPS + " fps.");
 					returnCode = frame.setScreen(currentScreen);
 					LOGGER.info("Closing recent record screen.");
-					break;
-				case 6:
-					// PauseScreen으로 전환
-					currentScreen = new PauseScreen(width, height, FPS);
-					LOGGER.info("Opening pause screen.");
-					returnCode = frame.setScreen(currentScreen);
 					break;
 				default:
 					break;

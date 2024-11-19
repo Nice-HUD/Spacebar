@@ -10,17 +10,18 @@ jobs:
   notify-on-pr:
     runs-on: ubuntu-latest
     steps:
-      - name: PR이벤트 발생 시 slack알림 보냄
+      - name: PR 이벤트 발생 시 Slack 알림 보냄
         if: github.event_name == 'pull_request' && (github.event.action == 'opened' || github.event.action == 'review_requested')
-        uses: slackapi/slack-github-action@v1.24.0
+        uses: slackapi/slack-github-action@v2.0.0
         with:
-          channel-id: ${{ secrets.SLACK_CHANNEL }}
+          webhook-type: incoming-webhook
+          webhook: ${{ secrets.SLACK_WEBHOOK_URL }}
           payload: |
-           {
+            {
               "attachments":[ 
                 {
                   "title": "*🎁 새 PR 생성*",
-                  "color": "adff2f",
+                  "color": "#adff2f",
                   "fields": [
                       {
                         "title": "📑 제목",
@@ -41,17 +42,16 @@ jobs:
                 }
               ]
             }
-        env:
-          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
 
   notify-on-review:
     runs-on: ubuntu-latest
     steps:
       - name: PR 리뷰 등록
         if: github.event_name == 'pull_request_review' && github.event.action == 'submitted'
-        uses: slackapi/slack-github-action@v1.24.0
+        uses: slackapi/slack-github-action@v2.0.0
         with:
-          channel-id: ${{ secrets.SLACK_CHANNEL }}
+          webhook-type: incoming-webhook
+          webhook: ${{ secrets.SLACK_WEBHOOK_URL }}
           payload: |
             {
               "attachments": [
@@ -88,5 +88,3 @@ jobs:
                 }
               ]
             }
-        env:
-          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
