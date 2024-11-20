@@ -9,7 +9,7 @@ jobs:
     runs-on: [ubuntu-latest]
     steps:
       - name: Notify PR LineCount
-        uses: naver/notify-pr-line-count@latest
+        uses: naver/notify-pr-line-count@lastest
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           slackBotToken: ${{ secrets.SLACK_BOT_TOKEN }}
