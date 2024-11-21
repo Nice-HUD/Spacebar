@@ -420,4 +420,14 @@ public class TitleScreen extends Screen {
 		drawManager.completeDrawing(this);
 	}
 
+	public int getReturnCode(){return returnCode;}
+	public void setReturnCode(int returnCode){this.returnCode = returnCode;}
+
+	public int getSelectedLevel(){return selectedLevel;}
+	public void setSelectedLevel(int selectedLevel){this.selectedLevel = selectedLevel;}
+
+	public void setInputManager(InputManager inputManager){this.inputManager = inputManager;}
+	public void setDrawManager(DrawManager drawManager){this.drawManager = drawManager;}
+	public void setInputDelay(Cooldown inputDelay){this.inputDelay = inputDelay;}
+
 }
