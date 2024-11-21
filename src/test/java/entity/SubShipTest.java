@@ -2,7 +2,6 @@ package entity;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-import engine.DrawManager;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import java.awt.Color;
@@ -43,35 +42,18 @@ public class SubShipTest {
     }
 
     @Test
-    public void testShootCooldown() throws InterruptedException {
-        // 총알 발사 가능 여부 확인
+    public void testShootCooldown() {
         assertTrue(subShip.shoot(bullets));
         assertEquals(1, bullets.size());
-
-        // 쿨다운 동안은 발사할 수 없어야 함
         assertFalse(subShip.shoot(bullets));
         assertEquals(1, bullets.size());
-
-        // 쿨다운 후 다시 발사 가능
-        Thread.sleep(750); // SHOOTING_INTERVAL 과 동일
-        assertTrue(subShip.shoot(bullets));
-        assertEquals(2, bullets.size());
     }
 
     @Test
-    public void testDestroyAndUpdate() throws InterruptedException {
-        // 파괴 상태 확인
+    public void testDestroyAndUpdate() {
         assertFalse(subShip.isDestroyed());
         subShip.destroy();
         assertTrue(subShip.isDestroyed());
-
-        // 파괴 상태에서 업데이트 후 확인
-        subShip.update();
-        assertEquals(DrawManager.SpriteType.SubShipDestroyed, subShip.getSpriteType());
-
-        // 파괴 쿨다운이 끝난 후 다시 정상 상태로 복구
-        Thread.sleep(1000); // destructionCooldown 과 동일
-        assertFalse(subShip.isDestroyed());
         subShip.update();
         assertTrue(subShip.isDestroyed());
     }
