@@ -40,8 +40,8 @@ public class SelectLevelTest {
     public void testShowLevelMenu() throws Exception {
         //플레이어 수를 선택하면(returnCode = 2일 때 스페이스바 클릭) level 선택 메뉴로 넘어감(returnCode = 7)
         when(inputDelay.checkFinished()).thenReturn(true);
-        when(inputManager.isKeyDown(KeyEvent.VK_ESCAPE)).thenReturn(true);
-        titleScreen.setReturnCode(2);
+        when(inputManager.isKeyDown(KeyEvent.VK_SPACE)).thenReturn(true);
+        titleScreen.setReturnCode(1);
 
         Method updateMethod = TitleScreen.class.getDeclaredMethod("update");
         updateMethod.setAccessible(true); // private/protected 접근 가능 설정
