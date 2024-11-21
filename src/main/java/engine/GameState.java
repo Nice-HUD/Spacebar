@@ -114,6 +114,7 @@ public class GameState {
 	public final int getLevel() {
 		return level;
 	}
+	public void setLevel(int level) {this.level = level;}
 
 	/**
 	 * @return the score
