@@ -41,7 +41,7 @@ public class SubShipTest {
         subShip.moveLeft();
         assertEquals(initialX - subShip.getSpeed(), subShip.getPositionX(), 0.001);
     }
-    
+
     @Test
     public void testShootCooldown() throws InterruptedException {
         // 총알 발사 가능 여부 확인

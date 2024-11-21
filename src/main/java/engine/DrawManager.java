@@ -478,7 +478,72 @@ public class DrawManager {
 		drawCenteredRegularString(screen, exitString, screen.getHeight()
 				/ 4 * 2 + fontRegularMetrics.getHeight() * 10); // adjusted Height
 	}
-	
+
+	/**
+	 * Draws the pause menu.
+	 *
+	 * @param screen Screen to draw on.
+	 * @param selectedOption Currently selected option.
+	 */
+	public void drawPauseMenu(final Screen screen, final int selectedOption) {
+		String pauseTitle = "Paused";
+		String continueOption = "Continue";
+		String restartOption = "Restart";
+		String settingsOption = "Settings";
+		String exitOption = "Exit";
+
+		backBufferGraphics.setColor(Color.WHITE);
+		drawCenteredBigString(screen, pauseTitle, screen.getHeight() / 4);
+
+		if (selectedOption == 0) {
+			backBufferGraphics.setColor(Color.CYAN);
+		} else {
+			backBufferGraphics.setColor(Color.WHITE);
+		}
+		drawCenteredRegularString(screen, continueOption, screen.getHeight() / 2);
+
+		if (selectedOption == 1) {
+			backBufferGraphics.setColor(Color.CYAN);
+		} else {
+			backBufferGraphics.setColor(Color.WHITE);
+		}
+		drawCenteredRegularString(screen, restartOption, screen.getHeight() / 2 + 50);
+
+		if (selectedOption == 2) {
+			backBufferGraphics.setColor(Color.CYAN);
+		} else {
+			backBufferGraphics.setColor(Color.WHITE);
+		}
+		drawCenteredRegularString(screen, settingsOption, screen.getHeight() / 2 + 100);
+
+		if (selectedOption == 3) {
+			backBufferGraphics.setColor(Color.CYAN);
+		} else {
+			backBufferGraphics.setColor(Color.WHITE);
+		}
+		drawCenteredRegularString(screen, exitOption, screen.getHeight() / 2 + 150);
+	}
+
+	public void drawPauseOverlay(final Screen screen) {
+		String pauseTitle = "Paused";
+		String resumeOption = "Resume: Pressed R";
+		String restartOption = "Restart: Pressed Q";
+		String exitOption = "Exit to main menu: Pressed M";
+
+		// 반투명한 검은색 배경
+		backBufferGraphics.setColor(new Color(0, 0, 0, 150)); // 150은 투명도 (0-255)
+		backBufferGraphics.fillRect(0, 0, screen.getWidth(), screen.getHeight());
+
+		backBufferGraphics.setColor(Color.WHITE);
+		drawCenteredBigString(screen, pauseTitle, screen.getHeight() / 4);
+
+		drawCenteredRegularString(screen, resumeOption, screen.getHeight() / 2);
+		drawCenteredRegularString(screen, restartOption, screen.getHeight() / 2 + 50);
+		drawCenteredRegularString(screen, exitOption, screen.getHeight() / 2 + 100);
+	}
+
+
+
 	/**
 	 * Draws game results.
 	 *
