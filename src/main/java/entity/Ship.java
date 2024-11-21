@@ -16,12 +16,15 @@ import java.util.Set;
  *
  */
 public class Ship extends Entity {
+
+	private boolean isActive = true;
+
 	/** Minimum time between shots. */
 	private Cooldown shootingCooldown;
 	/** Time spent inactive between hits. */
 	private Cooldown destructionCooldown;
 	/** PlayerGrowth 인스턴스 / PlayerGrowth instance */
-	private PlayerGrowth growth;
+	public PlayerGrowth growth;
 	/** ShipStaus instance*/
 	private ShipStatus shipStatus;
 	/** Item */
@@ -134,6 +137,7 @@ public class Ship extends Entity {
 	 */
 	public final void destroy() {
 		this.destructionCooldown.reset();
+		this.isActive = true;
 		// Sound Operator
 		sm = SoundManager.getInstance();
 		sm.playES("ally_airship_damage");
@@ -202,4 +206,11 @@ public class Ship extends Entity {
 	}	// Team Inventory(Item)
 
 
+	public boolean isActive() {
+		return isActive;
+	}
+
+	public void setActive(boolean active) {
+		isActive = active;
+	}
 }
