@@ -389,6 +389,7 @@ public class DrawManager {
 		String RecentRecord = "Recent Records";
 		String playString = "Play";
 		String highScoresString = "High scores";
+		String settings = "Settings";
 		String exitString = "exit";
 		String merchant = "Merchant";
 		String bulletCountString = String.format("bullet count up"); // Starter
@@ -460,7 +461,15 @@ public class DrawManager {
 			backBufferGraphics.setColor(Color.WHITE);
 		drawCenteredRegularString(screen, RecentRecord, screen.getHeight()
 				/ 4 * 2 + fontRegularMetrics.getHeight() * 6); // adjusted Height
-		
+
+		// Settings - Saeum Jung
+		if (option == 6)
+			backBufferGraphics.setColor(Color.GREEN);
+		else
+			backBufferGraphics.setColor(Color.WHITE);
+		drawCenteredRegularString(screen, settings, screen.getHeight()
+				/ 4 * 2 + fontRegularMetrics.getHeight() * 8);
+
 		// Exit (Starter)
 		if (option == 0)
 			backBufferGraphics.setColor(Color.GREEN);
@@ -702,7 +711,27 @@ public class DrawManager {
 		drawCenteredRegularString(screen, instructionsString,
 				screen.getHeight() / 5);
 	}
-	
+
+	/**
+	 * Draws the settings menu.
+	 *
+	 * @param screen Screen to draw on.
+	 */
+	public void drawSettingsMenu(final Screen screen) {
+		String settingsTitle = "Settings";
+		String applyInstructions = "Press SPACE to apply changes";
+		String returnInstructions = "Press ESC to return to the Main Menu";
+
+		// Title
+		backBufferGraphics.setColor(Color.GREEN);
+		drawCenteredBigString(screen, settingsTitle, screen.getHeight() / 4);
+
+		// Instructions
+		backBufferGraphics.setColor(Color.GRAY);
+		drawCenteredRegularString(screen, applyInstructions, screen.getHeight() / 2);
+		drawCenteredRegularString(screen, returnInstructions, screen.getHeight() / 2 + 50);
+	}
+
 	/**
 	 * Draws high scores.
 	 *

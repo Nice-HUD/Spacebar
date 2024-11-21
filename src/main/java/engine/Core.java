@@ -373,6 +373,13 @@ public final class Core {
 					returnCode = frame.setScreen(currentScreen);
 					LOGGER.info("Closing recent record screen.");
 					break;
+
+				case 6: // Settings 화면
+					currentScreen = new SettingsScreen(width, height, FPS);
+					LOGGER.info("Starting Settings screen.");
+					returnCode = frame.setScreen(currentScreen);
+					LOGGER.info("Closing Settings screen.");
+					break;
 				default:
 					break;
 			}
