@@ -12,6 +12,12 @@ def get_open_prs():
     response = requests.get(url, headers=headers)
     return response.json()
 
+def format_labels(labels):
+    if not labels:
+        return "-"
+        
+    return " · ".join(label['name'] for label in labels)
+
 def send_slack_message(blocks):
     payload = {'blocks': blocks}
     requests.post(SLACK_WEBHOOK_URL, json=payload)
@@ -35,12 +41,14 @@ blocks = [
 
 if prs:
     for pr in prs:
+        labels_text = format_labels(pr['labels'])
         blocks.append({
             "type": "section",
             "text": {
                 "type": "mrkdwn",
                 "text": f"*<{pr['html_url']}|{pr['title']}>*\n"
-                        f"작성자: {pr['user']['login']} | 작성일: {pr['created_at'][:10]}"
+                        f"작성자: {pr['user']['login']} | 작성일: {pr['created_at'][:10]}\n"
+                        f"라벨: {labels_text}"
             },
             "accessory": {
                 "type": "button",
