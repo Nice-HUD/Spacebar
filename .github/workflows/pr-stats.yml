@@ -5,8 +5,19 @@ on:
 jobs:
   pr-stats:
     runs-on: ubuntu-latest
+
     steps:
-      - name: PR Stats
-        uses: "naver/pr-stats@v1.0.0" 
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Generate PR Stats
+        uses: "naver/pr-stats@v1.0.0"
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Show Generated Stats
+        run: |
+          echo "Displaying generated statistics..."
+          ls -al ./stats
+          cat ./stats/pr.csv
+          cat ./stats/user.csv
