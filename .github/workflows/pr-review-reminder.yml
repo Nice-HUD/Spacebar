@@ -2,6 +2,7 @@ name: PR Review Reminder
 on:
   schedule:
     - cron: '0 1 * * *'  # UTC 기준 매일 01:00 (한국 시간 10:00)
+  workflow_dispatch:
 
 jobs:
   send-reminder:
