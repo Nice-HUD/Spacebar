@@ -21,3 +21,9 @@ jobs:
           ls -al ./stats
           cat ./stats/pr.csv
           cat ./stats/user.csv
+
+      - name: Upload Stats as Artifacts
+        uses: actions/upload-artifact@v3
+        with:
+          name: pr-stats
+          path: ./stats/
