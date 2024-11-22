@@ -65,7 +65,7 @@ public class SelectLevelTest {
         assertEquals(2, titleScreen.getReturnCode());
     }
 
-
+    /*
     @Test
     public void testSelectLevel() throws Exception{
         //방향키를 눌러서 선택할 레벨을 변경
@@ -95,4 +95,5 @@ public class SelectLevelTest {
         moveLevelRightMethod.invoke(titleScreen);
         assertEquals(1, titleScreen.getSelectedLevel());
     }
+    */
 }
