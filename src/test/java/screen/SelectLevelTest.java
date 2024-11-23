@@ -6,6 +6,7 @@ import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 
 import java.awt.event.KeyEvent;
+import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -21,7 +22,7 @@ public class SelectLevelTest {
     private Cooldown inputDelay;
 
     @BeforeEach
-    public void setUp() {
+    public void setUp() throws Exception {
         gameState = Mockito.mock(GameState.class);
         inputManager = mock(InputManager.class);
         drawManager = mock(DrawManager.class);
@@ -34,6 +35,15 @@ public class SelectLevelTest {
         titleScreen.setInputManager(inputManager);
         titleScreen.setDrawManager(drawManager);
         titleScreen.setInputDelay(inputDelay);
+
+        // Cooldown 초기화
+        Field selectionCooldownField = TitleScreen.class.getDeclaredField("selectionCooldown");
+        selectionCooldownField.setAccessible(true);
+
+        // Mock Cooldown 설정
+        Cooldown mockCooldown = mock(Cooldown.class);
+        when(mockCooldown.checkFinished()).thenReturn(true);
+        selectionCooldownField.set(titleScreen, mockCooldown);
     }
 
     @Test
@@ -52,7 +62,7 @@ public class SelectLevelTest {
 
 
     @Test
-    public void testCalcelLevel() throws Exception{
+    public void testCancelLevel() throws Exception{
         //레벨 선택을 취소하면(returnCode = 7일 때 아래쪽 방향키 클릭) 플레이어 선택 메뉴로 돌아감(returnCode = 2)
         when(inputManager.isKeyDown(KeyEvent.VK_DOWN)).thenReturn(true);
         when(inputDelay.checkFinished()).thenReturn(true);
@@ -65,7 +75,7 @@ public class SelectLevelTest {
         assertEquals(2, titleScreen.getReturnCode());
     }
 
-    /*
+
     @Test
     public void testSelectLevel() throws Exception{
         //방향키를 눌러서 선택할 레벨을 변경
@@ -74,26 +84,21 @@ public class SelectLevelTest {
         Method moveLevelRightMethod = TitleScreen.class.getDeclaredMethod("moveLevelRight");
         moveLevelLeftMethod.setAccessible(true);
         moveLevelRightMethod.setAccessible(true);
-
         //레벨 1에서 왼쪽 방향키 클릭 -> 레벨 7
         titleScreen.setSelectedLevel(1);
         moveLevelLeftMethod.invoke(titleScreen);
         assertEquals(7, titleScreen.getSelectedLevel());
-
         //레벨 3에서 왼쪽 방향키 클릭 -> 레벨 2
         titleScreen.setSelectedLevel(3);
         moveLevelLeftMethod.invoke(titleScreen);
         assertEquals(2, titleScreen.getSelectedLevel());
-
         //레벨 4에서 오른쪽 방향키 클릭 -> 레벨 5
         titleScreen.setSelectedLevel(4);
         moveLevelRightMethod.invoke(titleScreen);
         assertEquals(5, titleScreen.getSelectedLevel());
-
         //레벨 7에서 오른쪽 방향키 클릭 -> 레벨 1
         titleScreen.setSelectedLevel(7);
         moveLevelRightMethod.invoke(titleScreen);
         assertEquals(1, titleScreen.getSelectedLevel());
     }
-    */
 }
