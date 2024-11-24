@@ -2,14 +2,22 @@ package screen;
 
 import engine.Cooldown;
 import engine.DrawManager;
+import engine.Frame;
 import engine.InputManager;
 
+import javax.swing.*;
+import java.awt.*;
 import java.awt.event.KeyEvent;
 
 /**
  * Implements the settings screen.
  */
 public class SettingsScreen extends Screen {
+
+    private final String[] resolutions = {"1920x1080", "1280x720", "800x600"};
+    private int selectedResolutionIndex = 0;
+    private final Frame frame; // Frame 객체
+
 
     /**
      * Constructor, establishes the properties of the screen.
@@ -18,8 +26,9 @@ public class SettingsScreen extends Screen {
      * @param height Screen height.
      * @param fps    Frames per second, frame rate at which the game is run.
      */
-    public SettingsScreen(final int width, final int height, final int fps) {
+    public SettingsScreen(final int width, final int height, final int fps, final Frame frame) {
         super(width, height, fps);
+        this.frame = frame;
         this.isRunning = true; // 초기 상태 활성화
         this.returnCode = 1; // Return to main menu by default
     }
@@ -45,11 +54,17 @@ public class SettingsScreen extends Screen {
 
         if (this.inputDelay.checkFinished()) {
             if (inputManager.isKeyDown(KeyEvent.VK_ESCAPE)) {
-                // Exit settings and return to main menu
+                // 메인 메뉴로 돌아가기
                 this.isRunning = false;
-            } else if (inputManager.isKeyDown(KeyEvent.VK_SPACE)) {
-                // Apply settings (you can add additional logic here if needed)
-                this.isRunning = false;
+            } else if (inputManager.isKeyDown(KeyEvent.VK_UP)) {
+                // 이전 해상도 선택
+                selectedResolutionIndex = (selectedResolutionIndex - 1 + resolutions.length) % resolutions.length;
+            } else if (inputManager.isKeyDown(KeyEvent.VK_DOWN)) {
+                // 다음 해상도 선택
+                selectedResolutionIndex = (selectedResolutionIndex + 1) % resolutions.length;
+            } else if (inputManager.isKeyDown(KeyEvent.VK_ENTER)) {
+                // 설정 적용
+                applyResolution();
             }
         }
     }
@@ -60,12 +75,26 @@ public class SettingsScreen extends Screen {
     private void draw() {
         drawManager.initDrawing(this);
 
-        drawManager.drawSettingsMenu(this);
+        drawManager.drawSettingsMenu(this, resolutions, selectedResolutionIndex);
 
-        super.drawPost();
+
         drawManager.completeDrawing(this);
     }
 
+    private void applyResolution() {
+        String selectedResolution = resolutions[selectedResolutionIndex];
+        String[] dimensions = selectedResolution.split("x");
+        int newWidth = Integer.parseInt(dimensions[0]);
+        int newHeight = Integer.parseInt(dimensions[1]);
+
+        // 게임 창 크기 변경
+        this.width = newWidth;
+        this.height = newHeight;
+
+        frame.updateSize(newWidth, newHeight);
+
+        System.out.println("Resolution changed to: " + selectedResolution);
+    }
 
     public void setInputManager(InputManager inputManagerMock) {
         this.inputManager = inputManagerMock;

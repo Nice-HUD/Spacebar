@@ -13,6 +13,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.logging.Logger;
 
+import Util.PositionUtil;
 import entity.Gem;
 import entity.AddSign;
 import entity.Coin;
@@ -375,7 +376,20 @@ public class DrawManager {
 		backBufferGraphics.setColor(Color.GREEN);
 		drawCenteredBigString(screen, titleString, screen.getHeight() / 4);
 	}
-	
+
+	public void drawText(String text, int x, int y, Color color) {
+		// Graphics 객체가 초기화되어야 함
+		if (graphics == null) {
+			throw new IllegalStateException("Graphics context is not initialized.");
+		}
+
+		// 텍스트 색상 설정
+		graphics.setColor(color);
+
+		// 텍스트 렌더링
+		graphics.drawString(text, x, y);
+	}
+
 	/**
 	 * Draws main menu.
 	 *
@@ -397,10 +411,10 @@ public class DrawManager {
 		String attackSpeedString = String.format("attack speed up"); // Starter
 		String coinGainString = String.format("coin gain up"); // Starter
 		String merchantState = merchant;
-		
+
 		AddSign addSign = new AddSign();
-		
-		
+
+
 		// Play (Starter)
 		if (option == 2 && option2 == 0)
 			backBufferGraphics.setColor(Color.CYAN);
@@ -412,7 +426,7 @@ public class DrawManager {
 		if (option == 2) {mode = "<- " + mode + " ->";}
 		drawCenteredRegularString(screen, mode, screen.getHeight()
 				/ 4 * 2); // adjusted Height
-		
+
 		// High scores (Starter)
 		if (option == 3)
 			backBufferGraphics.setColor(Color.GREEN);
@@ -420,7 +434,7 @@ public class DrawManager {
 			backBufferGraphics.setColor(Color.WHITE);
 		drawCenteredRegularString(screen, highScoresString, screen.getHeight()
 				/ 4 * 2 + fontRegularMetrics.getHeight() * 2); // adjusted Height
-		
+
 		if (option3 == 0) {merchantState = merchant;}
 		try {
 			if (option3 == 1) {
@@ -441,19 +455,19 @@ public class DrawManager {
 		} catch (IOException e){
 			throw new RuntimeException(e);
 		}
-		
+
 		if (option == 4 && option3 == 0)
 			backBufferGraphics.setColor(Color.GREEN);
 		else if (option == 4 && option3 != 0)
 			backBufferGraphics.setColor(Color.CYAN);
 		else
 			backBufferGraphics.setColor(Color.WHITE);
-		
+
 		drawCenteredRegularString(screen, merchantState, screen.getHeight()
 				/ 4 * 2 + fontRegularMetrics.getHeight() * 4);
 		/*drawEntity(addSign, screen.getWidth()/2 + 50, screen.getHeight()
 				/ 4 * 2 + fontRegularMetrics.getHeight() * 6 - 12);*/
-		
+
 		// Record scores (Team Clove)
 		if (option == 5)
 			backBufferGraphics.setColor(Color.GREEN);
@@ -652,19 +666,36 @@ public class DrawManager {
 	 *
 	 * @param screen Screen to draw on.
 	 */
-	public void drawSettingsMenu(final Screen screen) {
-		String settingsTitle = "Settings";
-		String applyInstructions = "Press SPACE to apply changes";
-		String returnInstructions = "Press ESC to return to the Main Menu";
+	public void drawSettingsMenu(final Screen screen,final String[] resolutions, final int selectedResolutionIndex) {
 
-		// Title
-		backBufferGraphics.setColor(Color.GREEN);
+
+		String settingsTitle = "Settings";
+		// 해상도 옵션
+		int[][] supportedResolutions = {
+				{800, 600},
+				{1280, 720},
+				{1920, 1080}
+		};
+
+
+		backBufferGraphics.setColor(Color.WHITE);
 		drawCenteredBigString(screen, settingsTitle, screen.getHeight() / 4);
 
-		// Instructions
-		backBufferGraphics.setColor(Color.GRAY);
-		drawCenteredRegularString(screen, applyInstructions, screen.getHeight() / 2);
-		drawCenteredRegularString(screen, returnInstructions, screen.getHeight() / 2 + 50);
+		// 사용자 안내 메시지
+		String instructions = "Use UP/DOWN to navigate, ENTER to apply, ESC to go back";
+		backBufferGraphics.setColor(Color.LIGHT_GRAY);
+		drawCenteredRegularString(screen, instructions, screen.getHeight() - 50);
+
+
+		// 해상도 옵션 출력
+		int optionStartY = screen.getHeight() / 3;
+		for (int i = 0; i < resolutions.length; i++) {
+			// 선택된 해상도를 강조하기 위해 접두사 추가
+			String prefix = (i == selectedResolutionIndex) ? "> " : "  ";
+			String optionText = prefix + resolutions[i];
+			drawCenteredRegularString(screen, optionText, optionStartY + (i * 30));
+		}
+
 	}
 
 	/**
