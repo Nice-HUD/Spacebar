@@ -36,6 +36,7 @@ public class PauseTest {
         when(inputManager.isKeyDown(KeyEvent.VK_P)).thenReturn(true);
         when(inputManager.isKeyDown(KeyEvent.VK_R)).thenReturn(true);
         when(inputManager.isKeyDown(KeyEvent.VK_M)).thenReturn(true);
+        when(inputManager.isKeyDown(KeyEvent.VK_Q)).thenReturn(true);
     }
 
     @Test
@@ -76,7 +77,7 @@ public class PauseTest {
         // 게임이 다시 실행되는지 확인
         assertFalse(gameScreen.getIsPaused());
 
-        // Mock 객체의 특정 메서드가 호출됐는지 검증
+        // GameScreen Spy 객체의 resumeGame() 메서드가 호출됐는지 검증
         verify(gameScreen, times(1)).resumeGame();
     }
 
@@ -102,42 +103,32 @@ public class PauseTest {
         assertFalse(gameScreen.getIsRunning());
         assertFalse(gameScreen.getIsPaused());
 
-        // Mock 객체의 특정 메서드가 호출됐는지 검증
+        // GameScreen Spy 객체의 exitGame() 메서드가 호출됐는지 검증
         verify(gameScreen, times(1)).exitGame();
     }
 
-//    @Test
-//    public void testGameStopsDuringPause() {
-//        // 초기 상태: 게임은 일시정지 상태가 아님
-//        assertFalse(gameScreen.getIsPaused());
-//
-//        int preTime = gameState.getTime();
-//        int preLevel = gameState.getLevel();
-//        int preLives = gameState.getLivesRemaining();
-//
-//        // Pause 시도
-//        if (inputManager.isKeyDown(KeyEvent.VK_P)) {
-//            gameScreen.pauseGame();
-//        }
-//
-//        // 일시정지 상태 확인
-//        assertTrue(gameScreen.getIsPaused());
-//
-//        // Resume 시도
-//        doAnswer(invocation -> {
-//            when(gameScreen.getIsPaused()).thenReturn(false);
-//            return null;
-//        }).when(gameScreen).resumeGame();
-//
-//        // Resume 메서드 호출
-//        gameScreen.resumeGame();
-//
-//        // 게임이 다시 실행되는지 확인
-//        assertFalse(gameScreen.getIsPaused());
-//
-//        // 게임이 일시정지된 동안 GameState가 바뀌지 않았는지 확인
-//        assertEquals(preTime, gameState.getTime());
-//        assertEquals(preLevel, gameState.getLevel());
-//        assertEquals(preLives, gameState.getLivesRemaining());
-//    }
+    @Test
+    public void testRestartKeyRestartsGame() {
+        // 초기 상태: 게임은 일시정지 상태가 아님
+        assertFalse(gameScreen.getIsPaused());
+
+        // Pause 시도
+        if (inputManager.isKeyDown(KeyEvent.VK_P)) {
+            gameScreen.pauseGame();
+        }
+
+        // 일시정지 상태 확인
+        assertTrue(gameScreen.getIsPaused());
+
+        // Resume 시도
+        if (gameScreen.getIsPaused() && inputManager.isKeyDown(KeyEvent.VK_Q)) {
+            gameScreen.restartGame();
+        }
+
+        // 게임이 재시작됐는지 확인
+        assertFalse(gameScreen.getIsPaused());
+
+        // GameScreen Spy 객체의 restartGame() 메서드가 호출됐는지 검증
+        verify(gameScreen, times(1)).restartGame();
+    }
 }

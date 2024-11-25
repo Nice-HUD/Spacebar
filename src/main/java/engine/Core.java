@@ -179,7 +179,11 @@ public final class Core {
 						returnCode = frame.setScreen(currentScreen);
 						LOGGER.info("Closing game screen.");
 
-						if (returnCode == 1 || returnCode == 2) break;
+						if (returnCode == 1) {
+							level = 1;
+							break;
+						}
+						if (returnCode == 2) break;
 						
 						achievementManager.updateAchievements(currentScreen); // TEAM CLOVER : Achievement
 						
