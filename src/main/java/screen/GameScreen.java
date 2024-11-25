@@ -70,7 +70,7 @@ public class GameScreen extends Screen {
     /**
      * Formation of enemy ships.
      */
-    private EnemyShipFormation enemyShipFormation;
+    EnemyShipFormation enemyShipFormation;
     /**
      * Player's ship.
      */
@@ -501,6 +501,19 @@ public class GameScreen extends Screen {
 
         }
 
+        /**
+         * Checks if any enemy ship has reached the bottom line of the screen.
+         *
+         * If any enemy ship's position overlaps or exceeds the screen's bottom line,
+         * the level is marked as finished, and a log message is recorded to indicate
+         * that the game is over.
+         */
+        if (this.enemyShipFormation.hasEnemyReachedBottom(this.height - 65)) {
+            this.levelFinished = true; // Mark the level as finished.
+            this.logger.info("Enemies have reached the bottom. Game Over!"); // Log game over message.
+        }
+
+        
         /**
          * Wave counter condition added by the Level Design team*
          * Changed the conditions for the game to end  by team Enemy
@@ -1120,4 +1133,9 @@ public class GameScreen extends Screen {
     public void setTestMode(boolean isTestMode) {
         this.isTestMode = isTestMode;
     }
+
+    public boolean getLevelFinished() {
+        return this.levelFinished;
+    }
+
 }
