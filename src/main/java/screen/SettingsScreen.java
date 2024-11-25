@@ -12,7 +12,7 @@ import java.awt.event.KeyEvent;
  */
 public class SettingsScreen extends Screen {
 
-    private final String[] resolutions = {"1920x1080", "1280x720", "800x600","630x720"};
+    private final String[] resolutions = {"1024x576", "960x540", "800x600","630x720"};
     private int selectedResolutionIndex = 0;
     private final Frame frame; // Frame 객체
     private boolean resolutionChanged = false; // 해상도 변경 플래그
@@ -65,11 +65,11 @@ public class SettingsScreen extends Screen {
             if (inputManager.isKeyDown(KeyEvent.VK_ESCAPE)) {
                 // 메인 메뉴로 돌아가기
                 this.isRunning = false;
-            } else if (inputManager.isKeyDown(KeyEvent.VK_UP)) {
+            } else if (inputManager.isKeyDown(KeyEvent.VK_LEFT)) {
                 // 이전 해상도 선택
                 selectedResolutionIndex = (selectedResolutionIndex - 1 + resolutions.length) % resolutions.length;
                 this.inputDelay.reset();
-            } else if (inputManager.isKeyDown(KeyEvent.VK_DOWN)) {
+            } else if (inputManager.isKeyDown(KeyEvent.VK_RIGHT)) {
                 // 다음 해상도 선택
                 selectedResolutionIndex = (selectedResolutionIndex + 1) % resolutions.length;
                 this.inputDelay.reset();
@@ -98,8 +98,8 @@ public class SettingsScreen extends Screen {
         String selectedResolution = resolutions[selectedResolutionIndex];
         String[] dimensions = selectedResolution.split("x");
 
-        int newWidth = Integer.parseInt(dimensions[0]);
-        int newHeight = Integer.parseInt(dimensions[1]);
+        int newWidth = Integer.parseInt(dimensions[0].trim());
+        int newHeight = Integer.parseInt(dimensions[1].trim());
 
 
         Core.setWidth(newWidth);
@@ -109,9 +109,6 @@ public class SettingsScreen extends Screen {
 
 
         DrawManager.getInstance().initDrawing(this); // 새로운 해상도에 맞게 초기화
-
-        System.out.println("Resolution changed to: " + selectedResolution);
-        System.out.println("Core WIDTH: " + Core.getWidth() + ", HEIGHT: " + Core.getHeight());
 
     }
 

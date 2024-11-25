@@ -627,21 +627,6 @@ public class DrawManager {
 		backBufferGraphics.setColor(acceptsInput ? Color.GREEN : Color.GRAY);
 		drawCenteredRegularString(screen, continueOrExitString, calculatePositionY(screen, 0.7));
 
-//		backBufferGraphics.setColor(Color.GREEN);
-//		drawCenteredBigString(screen, gameEndString, screen.getHeight()
-//				/ height - fontBigMetrics.getHeight() * 2);
-//		if (!isGameClear) {
-//			backBufferGraphics.setColor(Color.GRAY);
-//			drawCenteredRegularString(screen, lostBonus, screen.getHeight()
-//					/ height - fontRegularMetrics.getHeight() - 20);
-//		}
-//
-//		if (acceptsInput)
-//			backBufferGraphics.setColor(Color.GREEN);
-//		else
-//			backBufferGraphics.setColor(Color.GRAY);
-//		drawCenteredRegularString(screen, continueOrExitString,
-//				screen.getHeight() / 2 + fontRegularMetrics.getHeight() * 10);
 	}
 	
 	/**
@@ -655,12 +640,9 @@ public class DrawManager {
 		String instructionsString = "Press Space to return";
 		
 		backBufferGraphics.setColor(Color.GREEN);
-//		drawCenteredBigString(screen, highScoreString, screen.getHeight() / 8);
 		drawCenteredBigString(screen, highScoreString, calculatePositionY(screen, 0.2));
 
 		backBufferGraphics.setColor(Color.GRAY);
-//		drawCenteredRegularString(screen, instructionsString,
-//				screen.getHeight() / 5);
 		drawCenteredRegularString(screen, instructionsString, calculatePositionY(screen, 0.3));
 
 	}
@@ -677,12 +659,9 @@ public class DrawManager {
 		String instructionsString = "Press Space to return";
 		
 		backBufferGraphics.setColor(Color.GREEN);
-//		drawCenteredBigString(screen, recentScoreString, screen.getHeight() / 8);
 		drawCenteredBigString(screen, recentScoreString, calculatePositionY(screen, 0.2));
 
 		backBufferGraphics.setColor(Color.GRAY);
-//		drawCenteredRegularString(screen, instructionsString,
-//				screen.getHeight() / 5);
 		drawCenteredRegularString(screen, instructionsString, calculatePositionY(screen, 0.3));
 
 	}
@@ -696,33 +675,25 @@ public class DrawManager {
 
 
 		String settingsTitle = "Settings";
-		// 해상도 옵션
-		int[][] supportedResolutions = {
-				{800, 600},
-				{1280, 720},
-				{1920, 1080},
-				{630, 720}
-		};
-
 
 		backBufferGraphics.setColor(Color.WHITE);
-		drawCenteredBigString(screen, settingsTitle, screen.getHeight() / 4);
+		drawCenteredBigString(screen, settingsTitle, calculatePositionY(screen, 0.2));
 
 		// 사용자 안내 메시지
 		String instructions = "Use UP/DOWN to navigate, ENTER to apply, ESC to go back";
 		backBufferGraphics.setColor(Color.LIGHT_GRAY);
-		drawCenteredRegularString(screen, instructions, screen.getHeight() - 50);
+		drawCenteredRegularString(screen, instructions, calculatePositionY(screen, 0.9));
 
 
-		// 해상도 옵션 출력
-		int optionStartY = screen.getHeight() / 3;
-		for (int i = 0; i < resolutions.length; i++) {
-			// 선택된 해상도를 강조하기 위해 접두사 추가
-			String prefix = (i == selectedResolutionIndex) ? "> " : "  ";
-			String optionText = prefix + resolutions[i];
-			drawCenteredRegularString(screen, optionText, optionStartY + (i * 30));
-		}
+		// 선택된 해상도 출력
+		String leftArrow = "<- ";
+		String rightArrow = " ->";
+		String selectedResolution = resolutions[selectedResolutionIndex];
 
+		// 선택된 해상도를 중앙에 표시, 양옆에 화살표
+		String resolutionDisplay = leftArrow + selectedResolution + rightArrow;
+		backBufferGraphics.setColor(Color.GREEN); // 선택된 해상도는 초록색으로 표시
+		drawCenteredRegularString(screen, resolutionDisplay, calculatePositionY(screen, 0.3)); // 화면 중앙 30% 위치에 표시
 	}
 
 	/**
