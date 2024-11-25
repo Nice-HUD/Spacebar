@@ -355,6 +355,13 @@ public class GameScreen extends Screen {
         return this.returnCode;
     }
 
+    private void handleGameOver() {
+        this.levelFinished = true; // 레벨 종료
+        this.isRunning = false; // 게임 루프 종료
+        this.returnCode = 1; // 메인 메뉴로 복귀
+        this.logger.info("Game Over. Returning to main menu.");
+    }
+
     /**
      * Updates the elements on screen and checks for events.
      */
@@ -501,19 +508,40 @@ public class GameScreen extends Screen {
 
         }
 
-        /**
-         * Checks if any enemy ship has reached the bottom line of the screen.
-         *
-         * If any enemy ship's position overlaps or exceeds the screen's bottom line,
-         * the level is marked as finished, and a log message is recorded to indicate
-         * that the game is over.
-         */
-        if (this.enemyShipFormation.hasEnemyReachedBottom(this.height - 65)) {
-            this.levelFinished = true; // Mark the level as finished.
-            this.logger.info("Enemies have reached the bottom. Game Over!"); // Log game over message.
-        }
+//        /**
+//         * Checks if any enemy ship has reached the bottom line of the screen.
+//         *
+//         * If any enemy ship's position overlaps or exceeds the screen's bottom line,
+//         * the level is marked as finished, and a log message is recorded to indicate
+//         * that the game is over.
+//         */
+//        if (this.enemyShipFormation.hasEnemyReachedBottom(this.height - 65)) {
+//            this.levelFinished = true; // Mark the level as finished.
+//            this.logger.info("Enemies have reached the bottom. Game Over!"); // Log game over message.
+//        }
 
-        
+    /**
+     * Checks if any enemy ship has reached the bottom line of the screen.
+     *
+     * If any enemy ship's position overlaps or exceeds the screen's bottom line,
+     * the level is marked as finished, and a log message is recorded to indicate
+     * that the game is over.
+     */
+    if (this.enemyShipFormation.hasEnemyReachedBottom(this.height - 65)) {
+        this.lives = 0; // 목숨을 0으로 설정하여 게임 오버 조건 충족
+        this.logger.info("Enemies have reached the bottom. Game Over!"); // 로그 기록
+
+        handleGameOver(); // 게임 오버 처리 메서드 호출
+        return; // 이후 로직을 실행하지 않도록 종료
+    }
+
+
+    if (areAllPlayersDestroyed()) {
+        handleGameOver(); // 모든 플레이어가 파괴된 경우 게임 오버 처리
+        return; // 이후 로직 실행 방지
+    }
+
+
         /**
          * Wave counter condition added by the Level Design team*
          * Changed the conditions for the game to end  by team Enemy
