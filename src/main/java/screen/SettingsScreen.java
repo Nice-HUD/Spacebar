@@ -68,13 +68,16 @@ public class SettingsScreen extends Screen {
             } else if (inputManager.isKeyDown(KeyEvent.VK_UP)) {
                 // 이전 해상도 선택
                 selectedResolutionIndex = (selectedResolutionIndex - 1 + resolutions.length) % resolutions.length;
+                this.inputDelay.reset();
             } else if (inputManager.isKeyDown(KeyEvent.VK_DOWN)) {
                 // 다음 해상도 선택
                 selectedResolutionIndex = (selectedResolutionIndex + 1) % resolutions.length;
+                this.inputDelay.reset();
             } else if (inputManager.isKeyDown(KeyEvent.VK_ENTER)) {
                 // 설정 적용
                 applyResolution();
                 resolutionChanged = true; // 해상도 변경 플래그 설정
+                this.inputDelay.reset();
             }
         }
     }
