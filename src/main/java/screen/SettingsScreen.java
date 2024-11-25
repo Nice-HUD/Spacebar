@@ -94,6 +94,9 @@ public class SettingsScreen extends Screen {
         drawManager.completeDrawing(this);
     }
 
+    /**
+     * 바뀐 해상도를 적용시키는 메서드
+     * */
     private void applyResolution() {
         String selectedResolution = resolutions[selectedResolutionIndex];
         String[] dimensions = selectedResolution.split("x");
