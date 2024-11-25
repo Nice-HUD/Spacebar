@@ -136,22 +136,25 @@ public final class Core {
 		
 		GameState gameState;
 		RoundState roundState;
-		
+
+		int level = 1;
 		int returnCode = 1;
 		do {
 			// level 선택 기능과 병합하며, gameState 수정 필요(pause 기능 중 restart 관련)
 			// Add playtime parameter - Soomin Lee / TeamHUD
 			// Add hitCount parameter - Ctrl S
 			// Add coinItemsCollected parameter - Ctrl S
-			gameState = new GameState(1, 0
+			gameState = new GameState(level, 0
 					, MAX_LIVES, MAX_LIVES,0, 0, 0, 0, 0, 0, 0, false);
+			loopOut:
 			switch (returnCode) {
 				case 1:
 					// Main menu.
-					currentScreen = new TitleScreen(width, height, FPS);
+					currentScreen = new TitleScreen(width, height, FPS, gameState);
 					LOGGER.info("Starting " + WIDTH + "x" + HEIGHT
 							+ " title screen at " + FPS + " fps.");
 					returnCode = frame.setScreen(currentScreen);
+					level = gameState.getLevel();
 					LOGGER.info("Closing title screen.");
 					break;
 				case 2:
@@ -219,7 +222,8 @@ public final class Core {
 							
 							LOGGER.info("Starting " + WIDTH + "x" + HEIGHT
 									+ " receipt screen at " + FPS + " fps.");
-							frame.setScreen(currentScreen);
+							returnCode = frame.setScreen(currentScreen);
+							if(returnCode == 1) break loopOut;
 							LOGGER.info("Closing receiptScreen.");
 						}
 						
@@ -244,6 +248,7 @@ public final class Core {
 							+ gameState.getShipsDestroyed() + " ships destroyed.");
 					currentScreen = new ScoreScreen(width, height, FPS, gameState);
 					returnCode = frame.setScreen(currentScreen);
+					level = 1;
 					LOGGER.info("Closing score screen.");
 					break;
 				case 3:
@@ -339,7 +344,8 @@ public final class Core {
 							
 							LOGGER.info("Starting " + WIDTH + "x" + HEIGHT
 									+ " receipt screen at " + FPS + " fps.");
-							frame.setScreen(currentScreen);
+							returnCode = frame.setScreen(currentScreen);
+							if(returnCode == 1) break loopOut;
 							LOGGER.info("Closing receiptScreen.");
 						}
 						
@@ -363,6 +369,7 @@ public final class Core {
 							+ gameState.getShipsDestroyed() + " ships destroyed.");
 					currentScreen = new ScoreScreen(width, height, FPS, gameState);
 					returnCode = frame.setScreen(currentScreen);
+					level = 1;
 					LOGGER.info("Closing score screen.");
 					break;
 				case 5: // 7 -> 5 replaced by Starter

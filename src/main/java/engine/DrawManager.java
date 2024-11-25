@@ -167,8 +167,8 @@ public class DrawManager {
 			spriteMap.put(SpriteType.ItemSpeedSlow, new boolean[9][9]);
 			spriteMap.put(SpriteType.SubShip, new boolean[5][5]);
 			spriteMap.put(SpriteType.SubShipDestroyed, new boolean[5][5]);
-			
-			
+
+
 			fileManager.loadSprite(spriteMap);
 			logger.info("Finished loading the sprites.");
 			
@@ -478,6 +478,28 @@ public class DrawManager {
 		drawCenteredRegularString(screen, exitString, screen.getHeight()
 				/ 4 * 2 + fontRegularMetrics.getHeight() * 10); // adjusted Height
 	}
+
+	/**
+	 * Draws level Menu
+	 *
+	 * @param screen
+	 * 			  Screen to draw on.
+	 * @param level
+	 *  		  Selected level.
+	 */
+	public void drawLevelMenu(final Screen screen, final int level){
+		for(int i = 1; i <= 7; i++) {
+			if(i == level) {
+				backBufferGraphics.setColor(Color.green);
+			}
+			else{
+				backBufferGraphics.setColor(Color.white);
+			}
+			backBufferGraphics.setFont(fontRegular);
+			backBufferGraphics.drawString(i+"", screen.getWidth()/2 + 30*i - 125, screen.getHeight() / 4 * 2 - fontRegularMetrics.getHeight());
+		}
+	}
+
 
 	/**
 	 * Draws the pause menu.
@@ -950,10 +972,51 @@ public class DrawManager {
 		backBufferGraphics.setColor(Color.WHITE);
 		drawCenteredBigString(screen, Integer.toString(roundState.getRoundCoin()), screen.getHeight() / 3 + 120 + fontBigMetrics.getHeight() / 2 * 3);
 		
+		/*
 		//draw instructionString part
 		backBufferGraphics.setColor(Color.GRAY);
 		drawCenteredRegularString(screen, instructionsString,
 				screen.getHeight() / 2 + fontRegularMetrics.getHeight() * 10);
+		*/
+	}
+
+	public void drawReceiptMenu(final Screen screen, final int option, final int level) {
+		String nextLevelString = "Next Level";
+		String changeLevelString = "Change Level";
+		String meinMenuString = "Mein Menu";
+
+		if (option == 2)
+			backBufferGraphics.setColor(Color.GREEN);
+		else
+			backBufferGraphics.setColor(Color.WHITE);
+		drawCenteredRegularString(screen, nextLevelString, screen.getHeight()
+				/ 4 * 3 - fontRegularMetrics.getHeight());
+
+		if (option == 3)
+			backBufferGraphics.setColor(Color.GREEN);
+		else
+			backBufferGraphics.setColor(Color.WHITE);
+		drawCenteredRegularString(screen, changeLevelString, screen.getHeight()
+				/ 4 * 3 + fontRegularMetrics.getHeight());
+
+		if(option == 4){
+			for (int i = 1; i <= 7; i++) {
+				if (i == level) {
+					backBufferGraphics.setColor(Color.green);
+				} else {
+					backBufferGraphics.setColor(Color.white);
+				}
+				backBufferGraphics.setFont(fontRegular);
+				backBufferGraphics.drawString(i + "", screen.getWidth() / 2 + 30 * i - 125, screen.getHeight() / 4 * 3 + fontRegularMetrics.getHeight() * 2);
+			}
+		}
+
+		if (option == 1)
+			backBufferGraphics.setColor(Color.GREEN);
+		else
+			backBufferGraphics.setColor(Color.WHITE);
+		drawCenteredRegularString(screen, meinMenuString, screen.getHeight()
+				/ 4 * 3 + fontRegularMetrics.getHeight() * 4);
 	}
 	
 	/**
