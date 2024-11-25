@@ -1,9 +1,7 @@
 package screen;
 
-import engine.Cooldown;
-import engine.DrawManager;
+import engine.*;
 import engine.Frame;
-import engine.InputManager;
 
 import javax.swing.*;
 import java.awt.*;
@@ -14,9 +12,12 @@ import java.awt.event.KeyEvent;
  */
 public class SettingsScreen extends Screen {
 
-    private final String[] resolutions = {"1920x1080", "1280x720", "800x600"};
+    private final String[] resolutions = {"1920x1080", "1280x720", "800x600","630x720"};
     private int selectedResolutionIndex = 0;
     private final Frame frame; // Frame 객체
+    private boolean resolutionChanged = false; // 해상도 변경 플래그
+
+
 
 
     /**
@@ -50,6 +51,14 @@ public class SettingsScreen extends Screen {
     protected final void update() {
         super.update();
 
+
+        // 새 해상도에 맞춰 DrawManager 초기화
+        if (resolutionChanged) {
+            DrawManager.getInstance().initDrawing(this);
+            resolutionChanged = false; // 초기화 완료 후 플래그 해제
+        }
+
+
         draw();
 
         if (this.inputDelay.checkFinished()) {
@@ -65,6 +74,7 @@ public class SettingsScreen extends Screen {
             } else if (inputManager.isKeyDown(KeyEvent.VK_ENTER)) {
                 // 설정 적용
                 applyResolution();
+                resolutionChanged = true; // 해상도 변경 플래그 설정
             }
         }
     }
@@ -84,16 +94,22 @@ public class SettingsScreen extends Screen {
     private void applyResolution() {
         String selectedResolution = resolutions[selectedResolutionIndex];
         String[] dimensions = selectedResolution.split("x");
+
         int newWidth = Integer.parseInt(dimensions[0]);
         int newHeight = Integer.parseInt(dimensions[1]);
 
-        // 게임 창 크기 변경
-        this.width = newWidth;
-        this.height = newHeight;
+
+        Core.setWidth(newWidth);
+        Core.setHeight(newHeight);
 
         frame.updateSize(newWidth, newHeight);
 
+
+        DrawManager.getInstance().initDrawing(this); // 새로운 해상도에 맞게 초기화
+
         System.out.println("Resolution changed to: " + selectedResolution);
+        System.out.println("Core WIDTH: " + Core.getWidth() + ", HEIGHT: " + Core.getHeight());
+
     }
 
     public void setInputManager(InputManager inputManagerMock) {

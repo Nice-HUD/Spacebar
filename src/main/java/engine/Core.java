@@ -24,9 +24,10 @@ import screen.*;
 public final class Core {
 
 	/** Width of current screen. */
-	private static final int WIDTH = 630;
+	private static int WIDTH = 630;
 	/** Height of current screen. */
-	private static final int HEIGHT = 720;
+	private static int HEIGHT = 720;
+
 	/** Max fps of current screen. */
 	private static final int FPS = 60;
 
@@ -470,5 +471,21 @@ public final class Core {
 	// Team-Ctrl-S(Currency)
 	public static UpgradeManager getUpgradeManager() {
 		return UpgradeManager.getInstance();
+	}
+	public static int getWidth(){
+		return WIDTH;
+	}
+
+	public static int getHeight(){
+		return HEIGHT;
+	}
+
+
+	public static void setWidth(int width){
+		WIDTH = width;
+	}
+
+	public static void setHeight(int height){
+		HEIGHT = height;
 	}
 }
