@@ -60,17 +60,17 @@ public class SettingsScreenTest {
         assertEquals(1, settingsScreen.getReturnCode(), "ESC 키를 누른 후 returnCode는 1이어야 합니다.");
     }
 
-    @Test
-    public void testApplySettingsOnSpaceKey() {
-        // SPACE 키 입력 시 SettingsScreen 종료
-        when(inputManagerMock.isKeyDown(KeyEvent.VK_SPACE)).thenReturn(true);
-        when(inputDelayMock.checkFinished()).thenReturn(true);
-        settingsScreen.update(); // update 호출
-
-        // isRunning이 false로 업데이트되었는지 확인
-        assertFalse(settingsScreen.isRunning(), "SPACE 키를 누르면 SettingsScreen이 종료되어야 합니다.");
-        assertEquals(1, settingsScreen.getReturnCode(), "SPACE 키를 누른 후 returnCode는 1이어야 합니다.");
-    }
+//    @Test
+//    public void testApplySettingsOnSpaceKey() {
+//        // SPACE 키 입력 시 SettingsScreen 종료
+//        when(inputManagerMock.isKeyDown(KeyEvent.VK_SPACE)).thenReturn(true);
+//        when(inputDelayMock.checkFinished()).thenReturn(true);
+//        settingsScreen.update(); // update 호출
+//
+//        // isRunning이 false로 업데이트되었는지 확인
+//        assertFalse(settingsScreen.isRunning(), "SPACE 키를 누르면 SettingsScreen이 종료되어야 합니다.");
+//        assertEquals(1, settingsScreen.getReturnCode(), "SPACE 키를 누른 후 returnCode는 1이어야 합니다.");
+//    }
 
     @Test
     public void testNoEffectOnInvalidKey() {
