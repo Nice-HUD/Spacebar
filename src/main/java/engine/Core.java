@@ -101,12 +101,12 @@ public final class Core {
 				options.setDebug(true);
 				options.setEnvironment("development"); // 개발 환경
 			});
-			try {
-				throw new RuntimeException("Sentry 연동 테스트 에러");
-			} catch (Exception e) {
-				Sentry.captureException(e);
-				LOGGER.severe("Test Error: " + e.getMessage());
-			}
+//			try {
+//				throw new RuntimeException("Sentry 연동 테스트 에러");
+//			} catch (Exception e) {
+//				Sentry.captureException(e);
+//				LOGGER.severe("Test Error: " + e.getMessage());
+//			}
 //			// Sentry 테스트를 위한 강제 에러
 //			GameState nullState = null;
 //			try {
