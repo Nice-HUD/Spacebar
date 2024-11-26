@@ -94,7 +94,7 @@ public final class Core {
 				String dsn = System.getenv("SENTRY_DSN");
 				if (dsn == null) {
 					// 환경변수가 없으면 properties에서 읽기
-					dsn = properties.getProperty("SENTRY_AUTH_TOKEN");
+					dsn = properties.getProperty("sentry.dsn");
 				}
 				options.setDsn(dsn);
 				options.setTracesSampleRate(1.0);  // 성능 모니터링을 위한 샘플링 비율 추가
@@ -106,6 +106,22 @@ public final class Core {
 			} catch (Exception e) {
 				Sentry.captureException(e);
 				LOGGER.severe("Test Error: " + e.getMessage());
+			}
+			// Sentry 테스트를 위한 강제 에러
+			GameState nullState = null;
+			try {
+				// NullPointerException 발생
+				nullState.getLevel();
+			} catch (Exception e) {
+				Sentry.captureException(e);
+				LOGGER.severe("Game State Error: " + e.getMessage());
+			}
+			// ArrayIndexOutOfBoundsException 발생
+			try {
+				gameSettings.get(999);
+			} catch (Exception e) {
+				Sentry.captureException(e);
+				LOGGER.severe("Settings Error: " + e.getMessage());
 			}
 			LOGGER.setUseParentHandlers(false);
 			
