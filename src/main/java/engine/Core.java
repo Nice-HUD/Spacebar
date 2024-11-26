@@ -3,6 +3,7 @@ package engine;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Properties;
 import java.util.logging.ConsoleHandler;
 import java.util.logging.FileHandler;
 import java.util.logging.Handler;
@@ -75,7 +76,9 @@ public final class Core {
 	// Sound Operator
 	private static SoundManager sm;
 	private static AchievementManager achievementManager; // Team CLOVER
-	
+
+	private static final Properties properties = new Properties();
+
 	/**
 	 * Test implementation.
 	 *
