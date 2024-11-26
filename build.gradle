@@ -21,6 +21,12 @@ dependencies {
     testImplementation 'org.mockito:mockito-junit-jupiter:5.6.0'
 }
 
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(17) // JDK 17로 고정
+    }
+}
+
 jacoco {
     toolVersion = '0.8.7'    // Jacoco 버전 설정
 }
