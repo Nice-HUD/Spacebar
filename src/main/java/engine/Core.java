@@ -136,21 +136,25 @@ public final class Core {
 		
 		GameState gameState;
 		RoundState roundState;
-		
+
+		int level = 1;
 		int returnCode = 1;
 		do {
+			// level 선택 기능과 병합하며, gameState 수정 필요(pause 기능 중 restart 관련)
 			// Add playtime parameter - Soomin Lee / TeamHUD
 			// Add hitCount parameter - Ctrl S
 			// Add coinItemsCollected parameter - Ctrl S
-			gameState = new GameState(1, 0
-					, MAX_LIVES, MAX_LIVES,0, 0, 0, 0, 0, 0, 0);
+			gameState = new GameState(level, 0
+					, MAX_LIVES, MAX_LIVES,0, 0, 0, 0, 0, 0, 0, false);
+			loopOut:
 			switch (returnCode) {
 				case 1:
 					// Main menu.
-					currentScreen = new TitleScreen(width, height, FPS);
+					currentScreen = new TitleScreen(width, height, FPS, gameState);
 					LOGGER.info("Starting " + WIDTH + "x" + HEIGHT
 							+ " title screen at " + FPS + " fps.");
 					returnCode = frame.setScreen(currentScreen);
+					level = gameState.getLevel();
 					LOGGER.info("Closing title screen.");
 					break;
 				case 2:
@@ -165,16 +169,21 @@ public final class Core {
 						boolean bonusLife = gameState.getLevel()
 								% EXTRA_LIFE_FRECUENCY == 0
 								&& gameState.getLivesRemaining() < MAX_LIVES;
-						
+						gameState.setTwoPlayerMode(false);
 						GameState prevState = gameState;
 						currentScreen = new GameScreen(gameState,
 								gameSettings.get(gameState.getLevel() - 1),
-								bonusLife, width, height, FPS, false);
+								bonusLife, width, height, FPS, gameState.isTwoPlayerMode());
 						LOGGER.info("Starting " + WIDTH + "x" + HEIGHT
 								+ " game screen at " + FPS + " fps.");
-						frame.setScreen(currentScreen);
+						returnCode = frame.setScreen(currentScreen);
 						LOGGER.info("Closing game screen.");
-						
+
+						if (returnCode == 1) {
+							level = 1;
+							break;
+						}
+						if (returnCode == 2) break;
 						
 						achievementManager.updateAchievements(currentScreen); // TEAM CLOVER : Achievement
 						
@@ -195,7 +204,8 @@ public final class Core {
 								gameState.getCoin() + roundState.getRoundCoin(),
 								gameState.getGem(),
 								gameState.getHitCount(),
-								gameState.getCoinItemsCollected());
+								gameState.getCoinItemsCollected(),
+								gameState.isTwoPlayerMode());
 						LOGGER.info("Round Coin: " + roundState.getRoundCoin());
 						LOGGER.info("Round Hit Rate: " + roundState.getRoundHitRate());
 						LOGGER.info("Round Time: " + roundState.getRoundTime());
@@ -216,7 +226,8 @@ public final class Core {
 							
 							LOGGER.info("Starting " + WIDTH + "x" + HEIGHT
 									+ " receipt screen at " + FPS + " fps.");
-							frame.setScreen(currentScreen);
+							returnCode = frame.setScreen(currentScreen);
+							if(returnCode == 1) break loopOut;
 							LOGGER.info("Closing receiptScreen.");
 						}
 						
@@ -226,7 +237,9 @@ public final class Core {
 						
 					} while (gameState.getLivesRemaining() > 0
 							&& gameState.getLevel() <= NUM_LEVELS);
-					
+
+					if (returnCode == 1 || returnCode == 2) break;
+
 					LOGGER.info("Stop InGameBGM");
 					// Sound Operator
 					sm.stopAllBGM();
@@ -239,6 +252,7 @@ public final class Core {
 							+ gameState.getShipsDestroyed() + " ships destroyed.");
 					currentScreen = new ScoreScreen(width, height, FPS, gameState);
 					returnCode = frame.setScreen(currentScreen);
+					level = 1;
 					LOGGER.info("Closing score screen.");
 					break;
 				case 3:
@@ -272,18 +286,26 @@ public final class Core {
 						int fps = FPS;
 						boolean bonusLife = gameState.getLevel() % EXTRA_LIFE_FRECUENCY == 0 &&
 								(gameState.getLivesRemaining() < MAX_LIVES || gameState.getLivesTwoRemaining() < MAX_LIVES);
-						
-						GameState prevState = gameState;
-						
-						// TwoPlayerMode의 생성자를 호출할 때 필요한 매개변수를 모두 전달
-						currentScreen = new GameScreen(gameState, currentGameSettings, bonusLife, width, height, fps, true);
-						currentScreen.setTwoPlayerMode(true);
-						Statistics statistics = new Statistics(); //Clove
-						
-						
+
+						gameState.setTwoPlayerMode(true); // 2인용 모드 설정
+						GameState prevState = gameState; // 이전 상태 저장
+
+						boolean isTwoPlayerMode = gameState.isTwoPlayerMode(); // 현재 모드 저장
+						// 새로운 GameScreen 객체 생성
+						System.out.println("GameState twoPlayerMode: " + gameState.isTwoPlayerMode());
+						currentScreen = new GameScreen(gameState, currentGameSettings, bonusLife, width, height, fps, isTwoPlayerMode);
+						currentScreen.setTwoPlayerMode(isTwoPlayerMode);
+
+						Statistics statistics = new Statistics(); // 추가 로직
+
+
+
 						LOGGER.info("Starting " + WIDTH + "x" + HEIGHT
 								+ " game screen at " + FPS + " fps.");
-						frame.setScreen(currentScreen);
+						returnCode = frame.setScreen(currentScreen);
+
+						if (returnCode == 1 || returnCode == 2) break;
+
 						LOGGER.info("Closing game screen.");
 						
 						
@@ -304,7 +326,8 @@ public final class Core {
 								gameState.getCoin() + roundState.getRoundCoin(),
 								gameState.getGem(),
 								gameState.getHitCount(),
-								gameState.getCoinItemsCollected());
+								gameState.getCoinItemsCollected(),
+								gameState.isTwoPlayerMode());
 						LOGGER.info("Round Coin: " + roundState.getRoundCoin());
 						LOGGER.info("Round Hit Rate: " + roundState.getRoundHitRate());
 						LOGGER.info("Round Time: " + roundState.getRoundTime());
@@ -325,7 +348,8 @@ public final class Core {
 							
 							LOGGER.info("Starting " + WIDTH + "x" + HEIGHT
 									+ " receipt screen at " + FPS + " fps.");
-							frame.setScreen(currentScreen);
+							returnCode = frame.setScreen(currentScreen);
+							if(returnCode == 1) break loopOut;
 							LOGGER.info("Closing receiptScreen.");
 						}
 						
@@ -334,7 +358,9 @@ public final class Core {
 						}
 						
 					} while ((gameState.getLivesRemaining() > 0 || gameState.getLivesTwoRemaining() > 0) && gameState.getLevel() <= NUM_LEVELS);
-					
+
+					if (returnCode == 1 || returnCode == 2) break;
+
 					LOGGER.info("Stop InGameBGM");
 					// Sound Operator
 					sm.stopAllBGM();
@@ -347,6 +373,7 @@ public final class Core {
 							+ gameState.getShipsDestroyed() + " ships destroyed.");
 					currentScreen = new ScoreScreen(width, height, FPS, gameState);
 					returnCode = frame.setScreen(currentScreen);
+					level = 1;
 					LOGGER.info("Closing score screen.");
 					break;
 				case 5: // 7 -> 5 replaced by Starter
@@ -356,6 +383,13 @@ public final class Core {
 							+ " recent record screen at " + FPS + " fps.");
 					returnCode = frame.setScreen(currentScreen);
 					LOGGER.info("Closing recent record screen.");
+					break;
+
+				case 6: // Settings 화면
+					currentScreen = new SettingsScreen(width, height, FPS);
+					LOGGER.info("Starting Settings screen.");
+					returnCode = frame.setScreen(currentScreen);
+					LOGGER.info("Closing Settings screen.");
 					break;
 				default:
 					break;

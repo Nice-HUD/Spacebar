@@ -1,56 +1,52 @@
 ################
-#[Template] Please follow the format below.
-#Be careful not to comment out the actual commit when committing, as it won't be recognized.
-#feat: Add login function
+#[양식]
+#feat: 로그인 기능 구현
 
-#- Implement user authentication
-#- Add login form with username and password fields
-#- Integrate backend API for login requests
-#- Handle authentication errors and display messages
+#- 사용자 인증 구현
+#- 사용자 이름 및 비밀번호 필드가 포함된 로그인 양식 추가
+#- 로그인 요청을 위한 백엔드 API 통합
+#- 인증 오류 처리 및 메시지 표시
 
-#Closes #45
+#Closes #45 
 ################
-#The section below provides an explanation of the template.
-################
-#[Structure]
-#<type>(<scope>): <subject>          -- Header
+#[구조]
+#<type>(<scope>): <subject>          -- 헤더
 #<BLANK LINE>
-#<body>                              -- Body
+#<body>                              -- 본문
 #<BLANK LINE>
-#<footer>                            -- Footer
+#<footer>                            -- 바닥글
 ################
 #[type]
-#feat : Adding new functionality or modifying existing features to meet requirements
-#fix : Fixing bugs related to functionality
-#build : Changes related to the build
-#chore : Changes to package manager or other minor changes (e.g., .gitignore)
-#ci : Modifications related to CI settings
-#docs : Documentation (or comments) changes
-#style : Code style or formatting changes
-#refactor : Code refactoring without changing functionality (e.g., renaming variables)
-#test : Adding or modifying test code
-#release : Releasing a new version
+#feat : 새로운 기능 추가, 기존의 기능을 요구 사항에 맞추어 수정
+#fix : 기능에 대한 버그 수정
+#build : 빌드 관련 수정
+#chore : 패키지 매니저 수정, 그 외 기타 수정 ex) .gitignore
+#ci : CI 관련 설정 수정
+#docs : 문서(주석) 수정
+#style : 코드 스타일, 포맷팅에 대한 수정
+#refactor : 기능의 변화가 아닌 코드 리팩터링 ex) 변수 이름 변경
+#test : 테스트 코드 추가/수정
+#release : 버전 릴리즈
 ################
-# The title should be written in the format of <type>: <subject>
-# The title should be within 50 characters, clearly stating "what" was changed (with details included in the body), without a period at the end.
-# Example: feat: Add login function
-# Leave a blank line immediately after the title to separate it from the body.
-feat: Add login function
+# <타입> : <제목> 의 형식으로 제목을 아래 공백줄에 작성
+# 제목은 50자 이내 / 변경사항이 "무엇"인지 명확히 작성(본문 내용이 담기는) / 끝에 마침표 금지
+# 제목 작성 후 바로 아래 공백을 만들어야 합니다. (제목과 본문의 분리를 위함)
+feat: 로그인 기능 구현
+################
+# 본문(구체적인 내용)을 아랫줄에 작성
+# 여러 줄의 메시지를 작성할 땐 "-"로 구분 (한 줄은 72자 이내)
+# 본문 작성 후 바로 아래 공백을 만들어야 합니다. (본문과 꼬릿말의 분리를 위함)
+- 사용자 인증 구현
+- 사용자 이름 및 비밀번호 필드가 포함된 로그인 양식 추가
+- 로그인 요청을 위한 백엔드 API 통합
+- 인증 오류 처리 및 메시지 표시
 
 ################
-# Write the body (specific details) below the line
-# Use "-" to separate multiple lines (each line should be within 72 characters)
-# Leave a blank line immediately after the body to separate it from the footer.
-- Implement user authentication
-- Add login form with username and password fields
-- Integrate backend API for login requests
-- Handle authentication errors and display messages
-
-################
-# Write the footer (optional, e.g., related issue numbers) below the line
-#closes: Used to indicate that a specific task (feature implementation, overall task completion) is done and no further work is required.
-#fixes: Used when a specific bug or issue has been fixed.
-#resolves: Used when a general issue has been resolved, such as when a feature has been added or improved.
-# Example: Close #45 (Since the login feature is implemented, the related issue #45 is closed)
-Closes #45
+# 꼬릿말(footer)을 아랫줄에 작성 (현재 커밋과 관련된 이슈 번호 추가 등, 옵션)
+#closes : 이슈나 작업을 종료한다는 의미로 특정 작업(기능 구현, 전체적인 작업 완료)이 완료된 경우 사용.
+#          더이상 작업이 필요할 필요가 없음을 알림.
+#fixes : 특정 버그나 문제를 수정했을 때 사용.
+#resolves : 일반적인 문제나 이슈를 해결. 기능 추가나 개선 작업이 완료된 경우 사용.
+# 예) Close #45(45번 이슈인 로그인 구현을 했으니 해당 이슈[작업]을 종료)
+Closes #45 
 ################

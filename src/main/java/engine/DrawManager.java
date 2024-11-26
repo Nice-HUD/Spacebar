@@ -114,7 +114,11 @@ public class DrawManager {
 		AddSign,
 		/** Gem - Added by CtrlS */
 		Gem,
-		ItemSpeedUp, ItemSpeedSlow, Obstacle
+		ItemSpeedUp, ItemSpeedSlow, Obstacle,
+		/** 보조 비행기 **/
+		SubShip,
+		/** 파괴된 보조 비행기 **/
+		SubShipDestroyed,
 		
 	};
 	
@@ -161,7 +165,10 @@ public class DrawManager {
 			spriteMap.put(SpriteType.ItemPierce, new boolean[7][7]);
 			spriteMap.put(SpriteType.ItemSpeedUp, new boolean[9][9]);
 			spriteMap.put(SpriteType.ItemSpeedSlow, new boolean[9][9]);
-			
+			spriteMap.put(SpriteType.SubShip, new boolean[5][5]);
+			spriteMap.put(SpriteType.SubShipDestroyed, new boolean[5][5]);
+
+
 			fileManager.loadSprite(spriteMap);
 			logger.info("Finished loading the sprites.");
 			
@@ -382,6 +389,7 @@ public class DrawManager {
 		String RecentRecord = "Recent Records";
 		String playString = "Play";
 		String highScoresString = "High scores";
+		String settings = "Settings";
 		String exitString = "exit";
 		String merchant = "Merchant";
 		String bulletCountString = String.format("bullet count up"); // Starter
@@ -453,7 +461,15 @@ public class DrawManager {
 			backBufferGraphics.setColor(Color.WHITE);
 		drawCenteredRegularString(screen, RecentRecord, screen.getHeight()
 				/ 4 * 2 + fontRegularMetrics.getHeight() * 6); // adjusted Height
-		
+
+		// Settings - Saeum Jung
+		if (option == 6)
+			backBufferGraphics.setColor(Color.GREEN);
+		else
+			backBufferGraphics.setColor(Color.WHITE);
+		drawCenteredRegularString(screen, settings, screen.getHeight()
+				/ 4 * 2 + fontRegularMetrics.getHeight() * 8);
+
 		// Exit (Starter)
 		if (option == 0)
 			backBufferGraphics.setColor(Color.GREEN);
@@ -462,7 +478,94 @@ public class DrawManager {
 		drawCenteredRegularString(screen, exitString, screen.getHeight()
 				/ 4 * 2 + fontRegularMetrics.getHeight() * 10); // adjusted Height
 	}
-	
+
+	/**
+	 * Draws level Menu
+	 *
+	 * @param screen
+	 * 			  Screen to draw on.
+	 * @param level
+	 *  		  Selected level.
+	 */
+	public void drawLevelMenu(final Screen screen, final int level){
+		for(int i = 1; i <= 7; i++) {
+			if(i == level) {
+				backBufferGraphics.setColor(Color.green);
+			}
+			else{
+				backBufferGraphics.setColor(Color.white);
+			}
+			backBufferGraphics.setFont(fontRegular);
+			backBufferGraphics.drawString(i+"", screen.getWidth()/2 + 30*i - 125, screen.getHeight() / 4 * 2 - fontRegularMetrics.getHeight());
+		}
+	}
+
+
+	/**
+	 * Draws the pause menu.
+	 *
+	 * @param screen Screen to draw on.
+	 * @param selectedOption Currently selected option.
+	 */
+	public void drawPauseMenu(final Screen screen, final int selectedOption) {
+		String pauseTitle = "Paused";
+		String continueOption = "Continue";
+		String restartOption = "Restart";
+		String settingsOption = "Settings";
+		String exitOption = "Exit";
+
+		backBufferGraphics.setColor(Color.WHITE);
+		drawCenteredBigString(screen, pauseTitle, screen.getHeight() / 4);
+
+		if (selectedOption == 0) {
+			backBufferGraphics.setColor(Color.CYAN);
+		} else {
+			backBufferGraphics.setColor(Color.WHITE);
+		}
+		drawCenteredRegularString(screen, continueOption, screen.getHeight() / 2);
+
+		if (selectedOption == 1) {
+			backBufferGraphics.setColor(Color.CYAN);
+		} else {
+			backBufferGraphics.setColor(Color.WHITE);
+		}
+		drawCenteredRegularString(screen, restartOption, screen.getHeight() / 2 + 50);
+
+		if (selectedOption == 2) {
+			backBufferGraphics.setColor(Color.CYAN);
+		} else {
+			backBufferGraphics.setColor(Color.WHITE);
+		}
+		drawCenteredRegularString(screen, settingsOption, screen.getHeight() / 2 + 100);
+
+		if (selectedOption == 3) {
+			backBufferGraphics.setColor(Color.CYAN);
+		} else {
+			backBufferGraphics.setColor(Color.WHITE);
+		}
+		drawCenteredRegularString(screen, exitOption, screen.getHeight() / 2 + 150);
+	}
+
+	public void drawPauseOverlay(final Screen screen) {
+		String pauseTitle = "Paused";
+		String resumeOption = "Resume: Pressed R";
+		String restartOption = "Restart: Pressed Q";
+		String exitOption = "Exit to main menu: Pressed M";
+
+		// 반투명한 검은색 배경
+		backBufferGraphics.setColor(new Color(0, 0, 0, 150)); // 150은 투명도 (0-255)
+		backBufferGraphics.fillRect(0, 0, screen.getWidth(), screen.getHeight());
+
+		backBufferGraphics.setColor(Color.WHITE);
+		drawCenteredBigString(screen, pauseTitle, screen.getHeight() / 4);
+
+		drawCenteredRegularString(screen, resumeOption, screen.getHeight() / 2);
+		drawCenteredRegularString(screen, restartOption, screen.getHeight() / 2 + 50);
+		drawCenteredRegularString(screen, exitOption, screen.getHeight() / 2 + 100);
+	}
+
+
+
 	/**
 	 * Draws game results.
 	 *
@@ -630,7 +733,27 @@ public class DrawManager {
 		drawCenteredRegularString(screen, instructionsString,
 				screen.getHeight() / 5);
 	}
-	
+
+	/**
+	 * Draws the settings menu.
+	 *
+	 * @param screen Screen to draw on.
+	 */
+	public void drawSettingsMenu(final Screen screen) {
+		String settingsTitle = "Settings";
+		String applyInstructions = "Press SPACE to apply changes";
+		String returnInstructions = "Press ESC to return to the Main Menu";
+
+		// Title
+		backBufferGraphics.setColor(Color.GREEN);
+		drawCenteredBigString(screen, settingsTitle, screen.getHeight() / 4);
+
+		// Instructions
+		backBufferGraphics.setColor(Color.GRAY);
+		drawCenteredRegularString(screen, applyInstructions, screen.getHeight() / 2);
+		drawCenteredRegularString(screen, returnInstructions, screen.getHeight() / 2 + 50);
+	}
+
 	/**
 	 * Draws high scores.
 	 *
@@ -849,10 +972,51 @@ public class DrawManager {
 		backBufferGraphics.setColor(Color.WHITE);
 		drawCenteredBigString(screen, Integer.toString(roundState.getRoundCoin()), screen.getHeight() / 3 + 120 + fontBigMetrics.getHeight() / 2 * 3);
 		
+		/*
 		//draw instructionString part
 		backBufferGraphics.setColor(Color.GRAY);
 		drawCenteredRegularString(screen, instructionsString,
 				screen.getHeight() / 2 + fontRegularMetrics.getHeight() * 10);
+		*/
+	}
+
+	public void drawReceiptMenu(final Screen screen, final int option, final int level) {
+		String nextLevelString = "Next Level";
+		String changeLevelString = "Change Level";
+		String meinMenuString = "Mein Menu";
+
+		if (option == 2)
+			backBufferGraphics.setColor(Color.GREEN);
+		else
+			backBufferGraphics.setColor(Color.WHITE);
+		drawCenteredRegularString(screen, nextLevelString, screen.getHeight()
+				/ 4 * 3 - fontRegularMetrics.getHeight());
+
+		if (option == 3)
+			backBufferGraphics.setColor(Color.GREEN);
+		else
+			backBufferGraphics.setColor(Color.WHITE);
+		drawCenteredRegularString(screen, changeLevelString, screen.getHeight()
+				/ 4 * 3 + fontRegularMetrics.getHeight());
+
+		if(option == 4){
+			for (int i = 1; i <= 7; i++) {
+				if (i == level) {
+					backBufferGraphics.setColor(Color.green);
+				} else {
+					backBufferGraphics.setColor(Color.white);
+				}
+				backBufferGraphics.setFont(fontRegular);
+				backBufferGraphics.drawString(i + "", screen.getWidth() / 2 + 30 * i - 125, screen.getHeight() / 4 * 3 + fontRegularMetrics.getHeight() * 2);
+			}
+		}
+
+		if (option == 1)
+			backBufferGraphics.setColor(Color.GREEN);
+		else
+			backBufferGraphics.setColor(Color.WHITE);
+		drawCenteredRegularString(screen, meinMenuString, screen.getHeight()
+				/ 4 * 3 + fontRegularMetrics.getHeight() * 4);
 	}
 	
 	/**

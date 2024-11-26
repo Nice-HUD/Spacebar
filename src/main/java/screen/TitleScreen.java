@@ -1,8 +1,6 @@
 package screen;
 
-import engine.SoundManager;
-import engine.Cooldown;
-import engine.Core;
+import engine.*;
 import entity.ShipStatus;
 
 import java.awt.event.KeyEvent;
@@ -31,6 +29,8 @@ public class TitleScreen extends Screen {
 	private int merchantState;
 	//inventory
 	private ShipStatus shipStatus;
+	private int selectedLevel = 1;
+	private GameState gameState;
 
 
 	/**
@@ -43,9 +43,10 @@ public class TitleScreen extends Screen {
 	 * @param fps
 	 *            Frames per second, frame rate at which the game is run.
 	 */
-	public TitleScreen(final int width, final int height, final int fps) {
+	public TitleScreen(final int width, final int height, final int fps, final GameState gameState) {
 		super(width, height, fps);
 
+		this.gameState = gameState;
 		// Defaults to play.
 		this.merchantState = 0;
 		this.pnumSelectionCode = 0;
@@ -79,10 +80,15 @@ public class TitleScreen extends Screen {
 		super.run();
 
 		// produced by Starter
-		if (this.pnumSelectionCode == 1 && this.returnCode == 2){
-			return 4; //return 4 instead of 2
+		if (this.pnumSelectionCode == 0 && this.returnCode == 7) {
+			return 2;
+		} else if (this.pnumSelectionCode == 1 && this.returnCode == 7) {
+			return 4;
 		}
 
+		if (this.returnCode == 6) {
+			return 6; // Return 6 for SettingsScreen
+		}
 		return this.returnCode;
 	}
 
@@ -95,8 +101,8 @@ public class TitleScreen extends Screen {
 		draw();
 		if (this.selectionCooldown.checkFinished()
 				&& this.inputDelay.checkFinished()) {
-			if (inputManager.isKeyDown(KeyEvent.VK_UP)
-					|| inputManager.isKeyDown(KeyEvent.VK_W)) {
+			if ((inputManager.isKeyDown(KeyEvent.VK_UP)
+					|| inputManager.isKeyDown(KeyEvent.VK_W)) && returnCode != 7) {
 				previousMenuItem();
 				this.selectionCooldown.reset();
 				// Sound Operator
@@ -146,8 +152,29 @@ public class TitleScreen extends Screen {
 
 			}
 
+			if (returnCode == 7) {
+				if (inputManager.isKeyDown(KeyEvent.VK_LEFT)
+						|| inputManager.isKeyDown(KeyEvent.VK_A)) {
+					moveLevelLeft();
+					gameState.setLevel(selectedLevel);
+					this.selectionCooldown.reset();
+					SoundManager.getInstance().playES("menuSelect_es");
+				}
+				if (inputManager.isKeyDown(KeyEvent.VK_RIGHT)
+						|| inputManager.isKeyDown(KeyEvent.VK_D)) {
+					moveLevelRight();
+					gameState.setLevel(selectedLevel);
+					this.selectionCooldown.reset();
+					SoundManager.getInstance().playES("menuSelect_es");
+				}
+			}
+
 			if (inputManager.isKeyDown(KeyEvent.VK_SPACE))
-				if(returnCode == 4) {
+				if (returnCode == 2) {
+					returnCode = 7;
+					this.selectionCooldown.reset();
+					SoundManager.getInstance().playES("menuSelect_es");
+				} else if (returnCode == 4) {
 					testStatUpgrade();
                     this.selectionCooldown.reset();
 				}
@@ -296,26 +323,44 @@ public class TitleScreen extends Screen {
 			throw new RuntimeException(e);
 		}
 	}
+
 	private void nextMenuItem() {
-		if (this.returnCode == 5) // Team Clover changed values because recordMenu added
-			this.returnCode = 0; // from '2 player mode' to 'Exit' (Starter)
-		else if (this.returnCode == 0)
-			this.returnCode = 2; // from 'Exit' to 'Play' (Starter)
+		// 순환: Exit -> 1/2 Player Mode
+		if (this.returnCode == 0)
+			this.returnCode = 2; // Exit에서 1/2 Player Mode로 이동
+		else if (this.returnCode == 6)
+			this.returnCode = 0; // Settings에서 Exit로 이동
+		else if (this.returnCode == 7)
+			this.returnCode = 2;
 		else
-			this.returnCode++; // go next (Starter)
+			this.returnCode++; // 다음 항목으로 이동
 	}
 
 	/**
 	 * Shifts the focus to the previous menu item.
 	 */
 	private void previousMenuItem() {
-		this.merchantState =0;
-		if (this.returnCode == 0)
-			this.returnCode = 5; // from 'Exit' to '2 player mode' (Starter) // Team Clover changed values because recordMenu added
-		else if (this.returnCode == 2)
-			this.returnCode = 0; // from 'Play' to 'Exit' (Starter)
+		// 순환: 1/2 Player Mode -> Exit
+		if (this.returnCode == 2)
+			this.returnCode = 0; // 1/2 Player Mode에서 Exit로 이동
+		else if (this.returnCode == 0)
+			this.returnCode = 6; // Exit에서 Settings로 이동
 		else
-			this.returnCode--; // go previous (Starter)
+			this.returnCode--; // 이전 항목으로 이동
+	}
+
+	private void moveLevelLeft() {
+		if (selectedLevel == 1)
+			selectedLevel = 7;
+		else
+			selectedLevel--;
+	}
+
+	private void moveLevelRight() {
+		if (selectedLevel == 7)
+			selectedLevel = 1;
+		else
+			selectedLevel++;
 	}
 
 	// left and right move -- produced by Starter
@@ -364,6 +409,9 @@ public class TitleScreen extends Screen {
 
 		drawManager.drawTitle(this);
 		drawManager.drawMenu(this, this.returnCode, this.pnumSelectionCode, this.merchantState);
+		if (returnCode == 7) {
+			drawManager.drawLevelMenu(this, selectedLevel);
+		}
 		// CtrlS
 		drawManager.drawCurrentCoin(this, coin);
 		drawManager.drawCurrentGem(this, gem);
@@ -371,5 +419,15 @@ public class TitleScreen extends Screen {
 		super.drawPost();
 		drawManager.completeDrawing(this);
 	}
+
+	public int getReturnCode(){return returnCode;}
+	public void setReturnCode(int returnCode){this.returnCode = returnCode;}
+
+	public int getSelectedLevel(){return selectedLevel;}
+	public void setSelectedLevel(int selectedLevel){this.selectedLevel = selectedLevel;}
+
+	public void setInputManager(InputManager inputManager){this.inputManager = inputManager;}
+	public void setDrawManager(DrawManager drawManager){this.drawManager = drawManager;}
+	public void setInputDelay(Cooldown inputDelay){this.inputDelay = inputDelay;}
 
 }
