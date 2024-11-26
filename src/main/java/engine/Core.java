@@ -1,5 +1,6 @@
 package engine;
 
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -14,6 +15,7 @@ import engine.achievement.AchievementManager;
 import engine.achievement.Statistics;
 import screen.ReceiptScreen;
 import screen.*;
+import io.sentry.Sentry;
 
 
 /**
@@ -77,7 +79,7 @@ public final class Core {
 	private static SoundManager sm;
 	private static AchievementManager achievementManager; // Team CLOVER
 
-	private static final Properties properties = new Properties();
+	private static final Properties properties = new Properties(); // application.properties에서 값 가져오기
 
 	/**
 	 * Test implementation.
@@ -87,6 +89,18 @@ public final class Core {
 	 */
 	public static void main(final String[] args) {
 		try {
+			properties.load(new FileInputStream("application.properties")); //
+			Sentry.init(options -> {
+				String dsn = System.getenv("SENTRY_DSN");
+				if (dsn == null) {
+					// 환경변수가 없으면 properties에서 읽기
+					dsn = properties.getProperty("sentry.dsn");
+				}
+				options.setDsn(dsn);
+				options.setTracesSampleRate(1.0);  // 성능 모니터링을 위한 샘플링 비율 추가
+				options.setDebug(true);
+				options.setEnvironment("development"); // 개발 환경
+			});
 			LOGGER.setUseParentHandlers(false);
 			
 			fileHandler = new FileHandler("log");
