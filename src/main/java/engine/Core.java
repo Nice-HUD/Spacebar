@@ -107,22 +107,22 @@ public final class Core {
 				Sentry.captureException(e);
 				LOGGER.severe("Test Error: " + e.getMessage());
 			}
-			// Sentry 테스트를 위한 강제 에러
-			GameState nullState = null;
-			try {
-				// NullPointerException 발생
-				nullState.getLevel();
-			} catch (Exception e) {
-				Sentry.captureException(e);
-				LOGGER.severe("Game State Error: " + e.getMessage());
-			}
-			// ArrayIndexOutOfBoundsException 발생
-			try {
-				gameSettings.get(999);
-			} catch (Exception e) {
-				Sentry.captureException(e);
-				LOGGER.severe("Settings Error: " + e.getMessage());
-			}
+//			// Sentry 테스트를 위한 강제 에러
+//			GameState nullState = null;
+//			try {
+//				// NullPointerException 발생
+//				nullState.getLevel();
+//			} catch (Exception e) {
+//				Sentry.captureException(e);
+//				LOGGER.severe("Game State Error: " + e.getMessage());
+//			}
+//			// ArrayIndexOutOfBoundsException 발생
+//			try {
+//				gameSettings.get(999);
+//			} catch (Exception e) {
+//				Sentry.captureException(e);
+//				LOGGER.severe("Settings Error: " + e.getMessage());
+//			}
 			LOGGER.setUseParentHandlers(false);
 			
 			fileHandler = new FileHandler("log");
