@@ -5,6 +5,7 @@ import java.awt.event.KeyEvent;
 import java.util.*;
 
 import java.io.IOException;
+import java.util.concurrent.TimeUnit;
 
 import engine.*;
 import engine.achievement.AchievementConditions;
@@ -15,6 +16,8 @@ import entity.*;
 // Sound Operator
 import engine.SoundManager;
 
+import java.awt.event.KeyEvent;
+
 
 /**
  * Implements the game screen, where the action happens.
@@ -23,6 +26,9 @@ import engine.SoundManager;
  *
  */
 public class GameScreen extends Screen {
+
+    private boolean isPaused = false;
+    private long pausedTime = 0;
 
     /**
      * Milliseconds until the screen accepts user input.
@@ -73,7 +79,7 @@ public class GameScreen extends Screen {
     private SubShip rightSubShip;
     // 왼쪽 보조 비행기 생성
     private SubShip leftSubShip;
-    
+
     public Ship player2;
     /**
      * Bonus enemy ship that appears sometimes.
@@ -290,7 +296,7 @@ public class GameScreen extends Screen {
         this.ship = new Ship(this.width / 2, this.height - 30, Color.RED); // add by team HUD
         this.rightSubShip = new SubShip(this.width / 2 + 25, this.height - 90, Color.RED);//보조 비행기 생성
         this.leftSubShip = new SubShip(this.width / 2 - 10, this.height - 90, Color.RED);//보조 비행기 생성
-        
+
         /** initialize itemManager */
         this.itemManager = new ItemManager(this.height, drawManager, this); //by Enemy team
         this.itemManager.initialize(); //by Enemy team
@@ -341,7 +347,7 @@ public class GameScreen extends Screen {
      * @return Next screen code.
      */
     public final int run() {
-        super.run();
+		super.run();
 
         this.score += LIFE_SCORE * (this.lives - 1);
         this.logger.info("Screen cleared with a score of " + this.scoreManager.getAccumulatedScore());
@@ -477,6 +483,9 @@ public class GameScreen extends Screen {
         cleanObstacles();
         this.itemManager.cleanItems(); //by Enemy team
 
+        if (inputManager.isKeyDown(KeyEvent.VK_P) || inputManager.isKeyDown(KeyEvent.VK_ESCAPE)) {
+            pauseGame();
+        }
 
         /**
          * Added by the Level Design team and edit by team Enemy
@@ -1019,5 +1028,96 @@ public class GameScreen extends Screen {
     // 플레이어 상태 확인 메서드 추가
     private boolean areAllPlayersDestroyed() {
         return this.lives == 0 && (!this.twoPlayerMode || this.livestwo == 0);
+    }
+
+    public void drawPauseOverlay() {
+        drawManager.initDrawing(this);
+        if (this.isPaused) {
+            // 일시 정지 UI 그리기
+            drawManager.drawPauseOverlay(this);
+        }
+        drawManager.completeDrawing(this);
+    }
+
+    public void pauseGame() {
+        this.isPaused = true;
+        try {
+            // 특정 키가 눌릴 때까지 대기
+            while (this.isPaused) {
+                if (isTestMode) break;
+
+                drawPauseOverlay();
+
+                if (inputManager.isKeyDown(KeyEvent.VK_R)) {
+                    resumeGame();
+                    break;
+                } else if (inputManager.isKeyDown(KeyEvent.VK_Q)) {
+                    restartGame();
+                    break;
+                } else if (inputManager.isKeyDown(KeyEvent.VK_M)) {
+                    exitGame();
+                    break;
+                }
+                Thread.sleep(100); // 0.1초 동안 대기
+                pausedTime += 100;
+            }
+        } catch (InterruptedException e) {
+            Thread.currentThread().interrupt();  // 스레드의 인터럽트 상태를 재설정
+            // 필요 시 로그를 남깁니다.
+            logger.warning("Thread was interrupted");
+        }
+    }
+
+    public void resumeGame() {
+        logger.info("Game resumed.");
+        this.isPaused = false; // 사용자가 일시 정지 키를 다시 누르면 게임을 재개함
+    }
+
+    public void restartGame() {
+        logger.info("Game restarting.");
+        this.returnCode = 2;
+        this.isRunning = false;
+        this.isPaused = false;
+    }
+
+    public void exitGame() {
+        logger.info("Exit to main menu.");
+        this.returnCode = 1;
+        this.isRunning = false;
+        this.isPaused = false;
+    }
+
+    // Getter for isPaused
+    public boolean getIsPaused() {
+        return this.isPaused;
+    }
+
+    // Setter for isPaused
+    public void setIsPaused(boolean isPaused) {
+        this.isPaused = isPaused;
+    }
+
+    // Getter for isRunning
+    public boolean getIsRunning() {
+        return this.isRunning;
+    }
+
+    // Setter for isRunning
+    public void setIsRunning(boolean isRunning) {
+        this.isRunning = isRunning;
+    }
+
+    public int getReturnCode() {
+        return this.returnCode;
+    }
+
+    public void setDrawManager(DrawManager drawManagerMock) {
+        this.drawManager = drawManagerMock;
+    }
+
+    private boolean isTestMode = false;
+
+    public void setTestMode(boolean isTestMode) {
+        this.isTestMode = isTestMode;
     }
 }
