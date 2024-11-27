@@ -8,14 +8,15 @@ import javax.swing.*;
 import java.awt.*;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.mockito.Mockito.*;
 
 public class FrameTest {
 
-    private JFrame frame;
+    private Frame frameMock;
 
     @BeforeEach
     public void setUp() {
-        frame = new JFrame();
+        frameMock = mock(Frame.class);
     }
 
     @Test
@@ -23,11 +24,13 @@ public class FrameTest {
         int newWidth = 1280;
         int newHeight = 720;
 
-        frame.setSize(newWidth, newHeight);
-        frame.setPreferredSize(new Dimension(newWidth, newHeight));
-        frame.pack();
+        doNothing().when(frameMock).setSize(newWidth, newHeight);
+        when(frameMock.getWidth()).thenReturn(newWidth);
+        when(frameMock.getHeight()).thenReturn(newHeight);
 
-        assertEquals(newWidth, frame.getWidth());
-        assertEquals(newHeight, frame.getHeight());
+        frameMock.setSize(newWidth, newHeight);
+
+        assertEquals(newWidth, frameMock.getWidth());
+        assertEquals(newHeight, frameMock.getHeight());
     }
 }

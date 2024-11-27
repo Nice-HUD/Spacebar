@@ -18,21 +18,17 @@ public class SettingsScreenTest {
     private InputManager inputManagerMock;
     private DrawManager drawManagerMock;
     private Cooldown inputDelayMock;
-    private Frame frame;
+    private Frame frameMock;
 
     @BeforeEach
     public void setUp() {
         inputManagerMock = mock(InputManager.class);
         drawManagerMock = mock(DrawManager.class);
         inputDelayMock = mock(Cooldown.class);
-
-        frame = new Frame(800, 600);
-
-        // DrawManager에 Frame 설정
-        DrawManager.getInstance().setFrame(frame);
+        frameMock = mock(Frame.class);
 
         // SettingsScreen 초기화
-        settingsScreen = new SettingsScreen(800, 600, 60, frame);
+        settingsScreen = new SettingsScreen(800, 600, 60, frameMock);
 
         // SettingsScreen에 Mock InputManager와 DrawManager 설정
         settingsScreen.setInputManager(inputManagerMock);
