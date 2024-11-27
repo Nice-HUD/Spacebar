@@ -1,5 +1,6 @@
 package entity;
 
+import engine.DrawManager;
 import engine.SoundManager;
 import engine.Cooldown;
 import engine.Core;
@@ -63,7 +64,7 @@ public class EnemyShip extends Entity {
 		super(positionX, positionY, 12 * 2, 8 * 2, HpEnemyShip.determineColor(hp));
 
 		this.hp = hp;// Add by team Enemy
-		this.spriteType = spriteType;
+		this.spriteType = (spriteType != null) ? spriteType : DrawManager.SpriteType.EnemyShipA1;
 		this.animationCooldown = Core.getCooldown(500);
 		this.isDestroyed = false;
 		this.x = x; // Add by team enemy
