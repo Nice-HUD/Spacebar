@@ -504,5 +504,3 @@ public final class Core {
 		HEIGHT = height;
 	}
 }
-}
-
