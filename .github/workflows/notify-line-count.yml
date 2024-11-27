@@ -3,6 +3,8 @@ name: notify line count
 on:
   pull_request:
     types: [opened, reopened]
+    branches:
+      - develop
 
 jobs:
   notify:
