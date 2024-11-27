@@ -16,4 +16,4 @@ jobs:
           slackChannelId: "C07UWE43Y2J"
           maxChanges: "300"
           ext: ".java"
-          glob: "packages/**, !**/node_modules/*"
+          glob: "src/main/java/**"
