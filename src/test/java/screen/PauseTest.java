@@ -27,9 +27,9 @@ public class PauseTest {
      */
     @BeforeEach
     void setUp() {
-        // 모든 객체를 모의 객체로 설정합니다.
-//        inputManager = Mockito.mock(InputManager.class);
         inputManager = Core.getInputManager();
+        
+        // 모의 객체 생성
         drawManagerMock = Mockito.mock(DrawManager.class);
         gameState = Mockito.mock(GameState.class);
         gameSettings = Mockito.mock(GameSettings.class);
