@@ -26,6 +26,8 @@ public class SettingsScreenTest {
         drawManagerMock = mock(DrawManager.class);
         inputDelayMock = mock(Cooldown.class);
 
+        frame = new Frame(800, 600);
+
         // DrawManager에 Frame 설정
         DrawManager.getInstance().setFrame(frame);
 
