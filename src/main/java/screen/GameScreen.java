@@ -1072,7 +1072,6 @@ public class GameScreen extends Screen {
         try {
             // 특정 키가 눌릴 때까지 대기
             while (this.isPaused) {
-                if (isTestMode) break;
 
                 drawPauseOverlay();
 
@@ -1086,6 +1085,8 @@ public class GameScreen extends Screen {
                     exitGame();
                     break;
                 }
+                if (isTestMode) break;
+
                 Thread.sleep(100); // 0.1초 동안 대기
                 pausedTime += 100;
             }
@@ -1138,6 +1139,8 @@ public class GameScreen extends Screen {
     public int getReturnCode() {
         return this.returnCode;
     }
+
+    public void setInputManager(InputManager inputManager) {this.inputManager = inputManager;}
 
     public void setDrawManager(DrawManager drawManagerMock) {
         this.drawManager = drawManagerMock;
