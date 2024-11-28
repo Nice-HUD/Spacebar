@@ -1079,7 +1079,6 @@ public class GameScreen extends Screen {
         try {
             while (this.isPaused) {
                 drawPauseOverlay();
-                if (isTestMode) break;
 
                 if (inputManager.isKeyDown(KeyEvent.VK_R)) {
                     resumeGame();
@@ -1091,6 +1090,7 @@ public class GameScreen extends Screen {
                     exitGame();
                     break;
                 }
+                if (isTestMode) break;
                 Thread.sleep(100);
                 pausedTime += 100;
             }
