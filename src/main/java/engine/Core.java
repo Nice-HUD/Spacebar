@@ -1,8 +1,10 @@
 package engine;
 
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Properties;
 import java.util.logging.ConsoleHandler;
 import java.util.logging.FileHandler;
 import java.util.logging.Handler;
@@ -13,6 +15,7 @@ import engine.achievement.AchievementManager;
 import engine.achievement.Statistics;
 import screen.ReceiptScreen;
 import screen.*;
+import io.sentry.Sentry;
 
 
 /**
@@ -75,7 +78,9 @@ public final class Core {
 	// Sound Operator
 	private static SoundManager sm;
 	private static AchievementManager achievementManager; // Team CLOVER
-	
+
+	private static final Properties properties = new Properties(); // application.properties에서 값 가져오기
+
 	/**
 	 * Test implementation.
 	 *
@@ -84,6 +89,40 @@ public final class Core {
 	 */
 	public static void main(final String[] args) {
 		try {
+			properties.load(new FileInputStream("application.properties")); //
+			Sentry.init(options -> {
+				String dsn = System.getenv("SENTRY_DSN");
+				if (dsn == null) {
+					// 환경변수가 없으면 properties에서 읽기
+					dsn = properties.getProperty("sentry.dsn");
+				}
+				options.setDsn(dsn);
+				options.setTracesSampleRate(1.0);  // 성능 모니터링을 위한 샘플링 비율 추가
+				options.setDebug(true);
+				options.setEnvironment("development"); // 개발 환경
+			});
+//			try {
+//				throw new RuntimeException("Sentry 연동 테스트 에러");
+//			} catch (Exception e) {
+//				Sentry.captureException(e);
+//				LOGGER.severe("Test Error: " + e.getMessage());
+//			}
+//			// Sentry 테스트를 위한 강제 에러
+//			GameState nullState = null;
+//			try {
+//				// NullPointerException 발생
+//				nullState.getLevel();
+//			} catch (Exception e) {
+//				Sentry.captureException(e);
+//				LOGGER.severe("Game State Error: " + e.getMessage());
+//			}
+//			// ArrayIndexOutOfBoundsException 발생
+//			try {
+//				gameSettings.get(999);
+//			} catch (Exception e) {
+//				Sentry.captureException(e);
+//				LOGGER.severe("Settings Error: " + e.getMessage());
+//			}
 			LOGGER.setUseParentHandlers(false);
 			
 			fileHandler = new FileHandler("log");
@@ -120,7 +159,7 @@ public final class Core {
 		DrawManager.getInstance().setFrame(frame);
 		int width = frame.getWidth();
 		int height = frame.getHeight();
-		
+
 		/** ### TEAM INTERNATIONAL ###*/
 		/** Initialize singleton instance of a background*/
 		Background.getInstance().initialize(frame);
