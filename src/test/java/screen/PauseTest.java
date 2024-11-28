@@ -5,6 +5,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 
+import java.awt.*;
 import java.awt.event.KeyEvent;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -41,9 +42,10 @@ public class PauseTest {
         gameScreen.setDrawManager(drawManagerMock);
         gameScreen.setTestMode(true);
 
+        TextField mockField = mock(TextField.class);
         // KeyEvent 객체 생성
         p = new KeyEvent(
-                new java.awt.TextField(), // 소스 객체 (이벤트가 발생한 컴포넌트)
+                mockField, // 소스 객체 (이벤트가 발생한 컴포넌트)
                 KeyEvent.KEY_PRESSED,     // 이벤트 타입 (KEY_PRESSED)
                 System.currentTimeMillis(), // 이벤트가 발생한 시간
                 0,                          // 수정자 키 (예: Shift, Ctrl 등의 상태)
@@ -52,7 +54,7 @@ public class PauseTest {
         );
         // KeyEvent 객체 생성
         r = new KeyEvent(
-                new java.awt.TextField(), // 소스 객체 (이벤트가 발생한 컴포넌트)
+                mockField, // 소스 객체 (이벤트가 발생한 컴포넌트)
                 KeyEvent.KEY_PRESSED,     // 이벤트 타입 (KEY_PRESSED)
                 System.currentTimeMillis(), // 이벤트가 발생한 시간
                 0,                          // 수정자 키 (예: Shift, Ctrl 등의 상태)
@@ -61,7 +63,7 @@ public class PauseTest {
         );
         // KeyEvent 객체 생성
         m = new KeyEvent(
-                new java.awt.TextField(), // 소스 객체 (이벤트가 발생한 컴포넌트)
+                mockField, // 소스 객체 (이벤트가 발생한 컴포넌트)
                 KeyEvent.KEY_PRESSED,     // 이벤트 타입 (KEY_PRESSED)
                 System.currentTimeMillis(), // 이벤트가 발생한 시간
                 0,                          // 수정자 키 (예: Shift, Ctrl 등의 상태)
@@ -70,7 +72,7 @@ public class PauseTest {
         );
         // KeyEvent 객체 생성
         q = new KeyEvent(
-                new java.awt.TextField(), // 소스 객체 (이벤트가 발생한 컴포넌트)
+                mockField, // 소스 객체 (이벤트가 발생한 컴포넌트)
                 KeyEvent.KEY_PRESSED,     // 이벤트 타입 (KEY_PRESSED)
                 System.currentTimeMillis(), // 이벤트가 발생한 시간
                 0,                          // 수정자 키 (예: Shift, Ctrl 등의 상태)
