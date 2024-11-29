@@ -1058,22 +1058,26 @@ public class GameScreen extends Screen {
         return this.lives == 0 && (!this.twoPlayerMode || this.livestwo == 0);
     }
 
-    public void drawPauseOverlay() {
+    /**
+     * Draw pause menu overlay, if game is paused.
+     */
+    protected void drawPauseOverlay() {
         drawManager.initDrawing(this);
         if (this.isPaused) {
-            // 일시 정지 UI 그리기
             drawManager.drawPauseOverlay(this);
         }
         drawManager.completeDrawing(this);
     }
 
-    public void pauseGame() {
+    /**
+     * Pause a game.
+     * pause menu 제어
+     * 게임을 일시 정지 상태로 전환하고, 재개, 재시작, 종료 로직을 제어
+     */
+    protected void pauseGame() {
         this.isPaused = true;
         try {
-            // 특정 키가 눌릴 때까지 대기
             while (this.isPaused) {
-                if (isTestMode) break;
-
                 drawPauseOverlay();
 
                 if (inputManager.isKeyDown(KeyEvent.VK_R)) {
@@ -1086,66 +1090,103 @@ public class GameScreen extends Screen {
                     exitGame();
                     break;
                 }
-                Thread.sleep(100); // 0.1초 동안 대기
+                if (isTestMode) break;
+                Thread.sleep(100);
                 pausedTime += 100;
             }
         } catch (InterruptedException e) {
-            Thread.currentThread().interrupt();  // 스레드의 인터럽트 상태를 재설정
-            // 필요 시 로그를 남깁니다.
-            logger.warning("Thread was interrupted");
+            Thread.currentThread().interrupt();
+            logger.warning("Thread interrupted.");
         }
     }
 
-    public void resumeGame() {
-        logger.info("Game resumed.");
-        this.isPaused = false; // 사용자가 일시 정지 키를 다시 누르면 게임을 재개함
+    /**
+     * Resume a game
+     * 일시 정지 상태에서 게임을 다시 실행 상태로 전환
+     */
+    protected void resumeGame() {
+        logger.info("Resume a game.");
+        this.isPaused = false;
     }
 
-    public void restartGame() {
-        logger.info("Game restarting.");
+    /**
+     * Restart a game
+     * 재시작을 나타내는 반환 코드를 설정
+     */
+    protected void restartGame() {
+        logger.info("Restart a game.");
         this.returnCode = 2;
         this.isRunning = false;
         this.isPaused = false;
     }
 
-    public void exitGame() {
+    /**
+     * Exit to main menu
+     * 게임을 종료하고 메인 메뉴로 나감
+     */
+    protected void exitGame() {
         logger.info("Exit to main menu.");
         this.returnCode = 1;
         this.isRunning = false;
         this.isPaused = false;
     }
 
-    // Getter for isPaused
+    /**
+     * Get isPaused
+     */
     public boolean getIsPaused() {
         return this.isPaused;
     }
 
-    // Setter for isPaused
+    /**
+     * Set isPaused
+     */
     public void setIsPaused(boolean isPaused) {
         this.isPaused = isPaused;
     }
 
-    // Getter for isRunning
+    /**
+     * Get isRunning
+     */
     public boolean getIsRunning() {
         return this.isRunning;
     }
 
-    // Setter for isRunning
+    /**
+     * Set isRunning
+     */
     public void setIsRunning(boolean isRunning) {
         this.isRunning = isRunning;
     }
 
+    /**
+     * Get returnCode
+     */
     public int getReturnCode() {
         return this.returnCode;
     }
 
-    public void setDrawManager(DrawManager drawManagerMock) {
+    /**
+     * Set InputManager (의존성 주입 또는 테스트 목적으로 사용).
+     */
+    protected void setInputManager(InputManager inputManager) {
+        this.inputManager = inputManager;
+    }
+
+    /**
+     * Set DrawManager (의존성 주입 또는 테스트 목적으로 사용).
+     */
+    protected void setDrawManager(DrawManager drawManagerMock) {
         this.drawManager = drawManagerMock;
     }
 
-    private boolean isTestMode = false;
+    protected boolean isTestMode = false;
 
-    public void setTestMode(boolean isTestMode) {
+    /**
+     * Set testMode
+     * 테스트 중 루프를 우회하는 데 사용
+     */
+    protected void setTestMode(boolean isTestMode) {
         this.isTestMode = isTestMode;
     }
 
