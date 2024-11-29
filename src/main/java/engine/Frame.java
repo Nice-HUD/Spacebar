@@ -45,6 +45,21 @@ public class Frame extends JFrame {
 		addKeyListener(Core.getInputManager());
 	}
 
+
+
+	/**
+	 * Updates the frame size to the specified width and height.
+	 *
+	 * @param width  New width of the frame.
+	 * @param height New height of the frame.
+	 */
+	public void updateSize(int width, int height){
+		this.setSize(width, height);
+		this.setPreferredSize(new Dimension(width, height));
+		this.pack(); // Apply the new size
+		this.setLocationRelativeTo(null); // Center the frame on the screen
+	}
+
 	/**
 	 * Sets current screen.
 	 * 
