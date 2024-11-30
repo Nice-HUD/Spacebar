@@ -431,6 +431,16 @@ public final class Core {
 					returnCode = frame.setScreen(currentScreen);
 					LOGGER.info("Closing Settings screen.");
 					break;
+				case 7: // 1인모드 스킨 선택 화면
+					currentScreen = new SkinSelectionScreen(width, height, FPS);
+					LOGGER.info("스킨 선택 화면 시작");
+					returnCode = frame.setScreen(currentScreen);
+					LOGGER.info("선택 화면 종료");
+				case 8: // 2인모드 스킨 선택 화면
+					currentScreen = new TwoPlayerSkinSelectionScreen(width, height, FPS);
+					LOGGER.info("2인 스킨 선택 화면 시작");
+					returnCode = frame.setScreen(currentScreen);
+					LOGGER.info("선택 화면 종료");
 				default:
 					break;
 			}
