@@ -899,4 +899,49 @@ public final class FileManager {
 
 		return defaultProperties;
 	}
+	
+	/**
+	 * 함선의 그래픽을 바꾸는 메서드 by 김승윤
+	 *
+	 * @param spriteMap 그레픽 비트맵의 집합
+	 * @param graphicsNum 그래픽 번호
+	 * @throws IOException
+	 */
+	public void changeShipSprite(Map<SpriteType, boolean[][]> spriteMap, int graphicsNum)
+			throws IOException {
+		
+		InputStream inputStream = DrawManager.class.getClassLoader()
+				.getResourceAsStream("shipGraphics");
+		
+		try {
+   
+			char c;
+			for (Map.Entry<SpriteType, boolean[][]> sprite : spriteMap
+					.entrySet()) {
+				if (sprite.getKey() == SpriteType.Ship) {
+					for (int k = -1; k < graphicsNum; k++) {
+						for (int i = 0; i < sprite.getValue().length; i++)
+							for (int j = 0; j < sprite.getValue()[i].length; j++) {
+								do
+									c = (char) inputStream.read();
+								while (c != '0' && c != '1');
+
+								if (c == '1')
+									sprite.getValue()[i][j] = true;
+								else
+									sprite.getValue()[i][j] = false;
+							}
+					}
+					logger.fine("Sprite " + "ship" + " changed.");
+					break;
+				}
+			}
+			if (inputStream != null)
+				inputStream.close();
+		} finally {
+			if (inputStream != null)
+				inputStream.close();
+		}
+	}
+
 }
