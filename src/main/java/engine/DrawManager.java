@@ -13,12 +13,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.logging.Logger;
 
-import entity.Gem;
-import entity.AddSign;
-import entity.Coin;
-import entity.Bomb;
+import entity.*;
 import screen.Screen;
-import entity.Entity;
 
 import javax.imageio.ImageIO;
 
@@ -121,6 +117,18 @@ public class DrawManager {
 		SubShipDestroyed,
 		
 	};
+	
+	/**
+	 * 테스트용 의존성 주입 생성자
+	 * @param backBufferGraphics
+	 * @param fileManager
+	 * @param logger
+	 */
+	public DrawManager(Graphics backBufferGraphics, FileManager fileManager, Logger logger) {
+		this.backBufferGraphics = backBufferGraphics;
+		this.fileManager = fileManager;
+		this.logger = logger;
+	}
 	
 	/**
 	 * Private constructor.
@@ -1374,7 +1382,7 @@ public class DrawManager {
 		String bulletSpeedText = String.format("BS : %d px/f ", bulletSpeed);
 		backBufferGraphics.drawString(bulletSpeedText, 500, screen.getHeight() - 15);
 	}
-	
+
 	/**
 	 * Draws 2P's speed on screen.
 	 *
@@ -1391,4 +1399,107 @@ public class DrawManager {
 		backBufferGraphics.setFont(fontRegular);
 		backBufferGraphics.drawString(speedString, 500, screen.getHeight() - 35);
 	}
+
+	/**
+	 * 함선 스킨 선택 메뉴를 그리는 메서드 by 김승윤
+	 *
+	 * @param screen 현재 화면
+	 *
+	 * @param skinCode 선택 중인 스킨 코드
+	 */
+	public void drawSkinSelectionMenu(final Screen screen, final int skinCode) {
+
+		String title = "Select Skin!";
+		Ship[] shipSkins = new Ship[7];
+
+		backBufferGraphics.setFont(fontBig);
+		backBufferGraphics.setColor(Color.green);
+		drawCenteredBigString(screen, title, screen.getHeight() / 8);
+
+		try {
+			fileManager.changeShipSprite(spriteMap, 0);
+		} catch (IOException e) {
+			logger.warning("Loading failed.");
+		}
+		for (int i = 0; i < 7; i++) {
+			Ship dummyShip = new Ship(0, 0, Color.GREEN);
+			shipSkins[i] = dummyShip;
+			// 예: ships[i] = new Ship(i * 50, 100, Color.GREEN, SpriteType.Ship, spriteData, false);
+			drawEntity(shipSkins[i], screen.getWidth() / 2 - 13, 172 + 50*i);
+			if(i !=6) {
+				try {
+					fileManager.changeShipSprite(spriteMap, i+1);
+				} catch (IOException e) {
+					logger.warning("Loading failed.");
+				}
+			}
+		}
+		if (skinCode == 0) {
+			backBufferGraphics.setColor(Color.GREEN);
+			backBufferGraphics.drawRect(screen.getWidth() / 2 - 15, 165, 30, 30);
+
+		} else {
+			backBufferGraphics.setColor(Color.WHITE);
+			backBufferGraphics.drawRect(screen.getWidth() / 2 - 15, 165, 30, 30);
+		}
+		if (skinCode == 1) {
+			backBufferGraphics.setColor(Color.GREEN);
+			backBufferGraphics.drawRect(screen.getWidth() / 2 - 15, 215, 30, 30);
+
+		} else {
+			backBufferGraphics.setColor(Color.WHITE);
+			backBufferGraphics.drawRect(screen.getWidth() / 2 - 15, 215, 30, 30);
+		}
+		if (skinCode == 2) {
+			backBufferGraphics.setColor(Color.GREEN);
+			backBufferGraphics.drawRect(screen.getWidth() / 2 - 15, 265, 30, 30);
+
+		} else {
+			backBufferGraphics.setColor(Color.WHITE);
+			backBufferGraphics.drawRect(screen.getWidth() / 2 - 15, 265, 30, 30);
+		}
+		if (skinCode == 3) {
+			backBufferGraphics.setColor(Color.GREEN);
+			backBufferGraphics.drawRect(screen.getWidth() / 2 - 15, 315, 30, 30);
+
+		} else {
+			backBufferGraphics.setColor(Color.WHITE);
+			backBufferGraphics.drawRect(screen.getWidth() / 2 - 15, 315, 30, 30);
+		}
+		if (skinCode == 4) {
+			backBufferGraphics.setColor(Color.GREEN);
+			backBufferGraphics.drawRect(screen.getWidth() / 2 - 15, 365, 30, 30);
+
+		} else {
+			backBufferGraphics.setColor(Color.WHITE);
+			backBufferGraphics.drawRect(screen.getWidth() / 2 - 15, 365, 30, 30);
+		}
+		if (skinCode == 5) {
+			backBufferGraphics.setColor(Color.GREEN);
+			backBufferGraphics.drawRect(screen.getWidth() / 2 - 15, 415, 30, 30);
+
+		} else {
+			backBufferGraphics.setColor(Color.WHITE);
+			backBufferGraphics.drawRect(screen.getWidth() / 2 - 15, 415, 30, 30);
+		}
+		if (skinCode == 6) {
+			backBufferGraphics.setColor(Color.GREEN);
+			backBufferGraphics.drawRect(screen.getWidth() / 2 - 15, 465, 30, 30);
+			
+		} else {
+			backBufferGraphics.setColor(Color.WHITE);
+			backBufferGraphics.drawRect(screen.getWidth() / 2 - 15, 465, 30, 30);
+		}
+		try {
+			fileManager.changeShipSprite(spriteMap, skinCode);
+		} catch (IOException e) {
+			logger.warning("Loading failed.");
+		}
+
+
+	}
+
+
+
+
 }
