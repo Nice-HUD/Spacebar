@@ -1387,107 +1387,84 @@ public class DrawManager {
 		backBufferGraphics.setFont(fontRegular);
 		backBufferGraphics.drawString(speedString, 500, screen.getHeight() - 35);
 	}
+	
+	private final String loadFailedMsg = "Loading failed.";
+	private static final int RECT_SIZE = 30;
+	private static final int SKIN_COUNT = 7;
+	private static final int SKIN_SPACING = 50;
+	private static final int SKIN_START_Y = 165;
+	private static final int RECT_OFFSET_X = 15;
 
 	/**
 	 * 함선 스킨 선택 메뉴를 그리는 메서드 by 김승윤
 	 *
-	 * @param screen 현재 화면
-	 *
+	 * @param screen   현재 화면
 	 * @param skinCode 선택 중인 스킨 코드
 	 */
 	public void drawSkinSelectionMenu(final Screen screen, final int skinCode) {
-
 		String title = "Select Skin!";
-		Ship[] shipSkins = new Ship[7];
+		Ship[] shipSkins = new Ship[SKIN_COUNT];
 
+		// 제목 표시
 		backBufferGraphics.setFont(fontBig);
-		backBufferGraphics.setColor(Color.green);
+		backBufferGraphics.setColor(Color.GREEN);
 		drawCenteredBigString(screen, title, screen.getHeight() / 8);
 
-		try {
-			fileManager.changeShipSprite(spriteMap, 0);
-		} catch (IOException e) {
-			logger.warning("Loading failed.");
-		}
-		for (int i = 0; i < 7; i++) {
-			Ship dummyShip = new Ship(0, 0, Color.GREEN);
-			shipSkins[i] = dummyShip;
-			// 예: ships[i] = new Ship(i * 50, 100, Color.GREEN, SpriteType.Ship, spriteData, false);
-			drawEntity(shipSkins[i], screen.getWidth() / 2 - 13, 172 + 50*i);
-			if(i !=6) {
-				try {
-					fileManager.changeShipSprite(spriteMap, i+1);
-				} catch (IOException e) {
-					logger.warning("Loading failed.");
-				}
-			}
-		}
-		if (skinCode == 0) {
-			backBufferGraphics.setColor(Color.GREEN);
-			backBufferGraphics.drawRect(screen.getWidth() / 2 - 15, 165, 30, 30);
+		// 스킨 그리기 및 Sprite 변경
+		drawShipSkins(screen, shipSkins);
 
-		} else {
-			backBufferGraphics.setColor(Color.WHITE);
-			backBufferGraphics.drawRect(screen.getWidth() / 2 - 15, 165, 30, 30);
-		}
-		if (skinCode == 1) {
-			backBufferGraphics.setColor(Color.GREEN);
-			backBufferGraphics.drawRect(screen.getWidth() / 2 - 15, 215, 30, 30);
+		// 선택된 스킨 강조
+		drawSkinHighlight(screen, skinCode);
 
-		} else {
-			backBufferGraphics.setColor(Color.WHITE);
-			backBufferGraphics.drawRect(screen.getWidth() / 2 - 15, 215, 30, 30);
-		}
-		if (skinCode == 2) {
-			backBufferGraphics.setColor(Color.GREEN);
-			backBufferGraphics.drawRect(screen.getWidth() / 2 - 15, 265, 30, 30);
-
-		} else {
-			backBufferGraphics.setColor(Color.WHITE);
-			backBufferGraphics.drawRect(screen.getWidth() / 2 - 15, 265, 30, 30);
-		}
-		if (skinCode == 3) {
-			backBufferGraphics.setColor(Color.GREEN);
-			backBufferGraphics.drawRect(screen.getWidth() / 2 - 15, 315, 30, 30);
-
-		} else {
-			backBufferGraphics.setColor(Color.WHITE);
-			backBufferGraphics.drawRect(screen.getWidth() / 2 - 15, 315, 30, 30);
-		}
-		if (skinCode == 4) {
-			backBufferGraphics.setColor(Color.GREEN);
-			backBufferGraphics.drawRect(screen.getWidth() / 2 - 15, 365, 30, 30);
-
-		} else {
-			backBufferGraphics.setColor(Color.WHITE);
-			backBufferGraphics.drawRect(screen.getWidth() / 2 - 15, 365, 30, 30);
-		}
-		if (skinCode == 5) {
-			backBufferGraphics.setColor(Color.GREEN);
-			backBufferGraphics.drawRect(screen.getWidth() / 2 - 15, 415, 30, 30);
-
-		} else {
-			backBufferGraphics.setColor(Color.WHITE);
-			backBufferGraphics.drawRect(screen.getWidth() / 2 - 15, 415, 30, 30);
-		}
-		if (skinCode == 6) {
-			backBufferGraphics.setColor(Color.GREEN);
-			backBufferGraphics.drawRect(screen.getWidth() / 2 - 15, 465, 30, 30);
-			
-		} else {
-			backBufferGraphics.setColor(Color.WHITE);
-			backBufferGraphics.drawRect(screen.getWidth() / 2 - 15, 465, 30, 30);
-		}
+		// 마지막으로 선택된 스킨의 Sprite 변경
 		try {
 			fileManager.changeShipSprite(spriteMap, skinCode);
 		} catch (IOException e) {
-			logger.warning("Loading failed.");
+			logger.warning(String.format("%s: Failed to load sprite for skin code %d", loadFailedMsg, skinCode));
 		}
-
-
 	}
-
-
-
-
+	
+	/**
+	 * 스킨 하이라이트를 그리는 메서드
+	 *
+	 * @param screen   현재 화면
+	 * @param skinCode 선택 중인 스킨 코드
+	 */
+	private void drawSkinHighlight(final Screen screen, final int skinCode) {
+		for (int i = 0; i < SKIN_COUNT; i++) {
+			int yPosition = SKIN_START_Y + SKIN_SPACING * i;
+			
+			if (i == skinCode) {
+				backBufferGraphics.setColor(Color.GREEN);
+			} else {
+				backBufferGraphics.setColor(Color.WHITE);
+			}
+			
+			backBufferGraphics.drawRect(screen.getWidth() / 2 - RECT_OFFSET_X, yPosition, RECT_SIZE, RECT_SIZE);
+		}
+	}
+	
+	/**
+	 * 함선 스킨을 화면에 그리는 메서드
+	 *
+	 * @param screen    현재 화면
+	 * @param shipSkins 스킨이 적용된 함선 배열
+	 */
+	private void drawShipSkins(final Screen screen, Ship[] shipSkins) {
+		for (int i = 0; i < SKIN_COUNT; i++) {
+			try {
+				fileManager.changeShipSprite(spriteMap, i);
+			} catch (IOException e) {
+				logger.warning(String.format("%s: Failed to load sprite for skin index %d", loadFailedMsg, i));
+			}
+			
+			Ship dummyShip = new Ship(0, 0, Color.GREEN);
+			shipSkins[i] = dummyShip;
+			
+			int xPosition = screen.getWidth() / 2 - RECT_OFFSET_X + 2;
+			int yPosition = SKIN_START_Y + 8 + SKIN_SPACING * i;
+			drawEntity(shipSkins[i], xPosition, yPosition);
+			
+		}
+	}
 }
