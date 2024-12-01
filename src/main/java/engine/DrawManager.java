@@ -501,7 +501,7 @@ public class DrawManager {
 				backBufferGraphics.setColor(Color.white);
 			}
 			backBufferGraphics.setFont(fontRegular);
-			backBufferGraphics.drawString(i+"", screen.getWidth()/2 + 30*i - 125, screen.getHeight() / 4 * 2 - fontRegularMetrics.getHeight());
+			backBufferGraphics.drawString(i+"", screen.getWidth()/2 + 30*i - 125, calculatePositionY(screen, 0.4)-fontRegularMetrics.getHeight());
 		}
 	}
 
