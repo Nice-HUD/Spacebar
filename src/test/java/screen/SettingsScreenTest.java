@@ -87,4 +87,33 @@ public class SettingsScreenTest {
 //        verify(drawManagerMock, times(1)).drawSettingsMenu(settingsScreen);
         verify(drawManagerMock, times(1)).completeDrawing(settingsScreen);
     }
+
+    @Test
+    public void testNextSettingMenu() {
+        // 초기 settingCode 확인 (0이어야 함)
+        int initialSettingCode = settingsScreen.getSettingCode();
+        assertEquals(0, initialSettingCode, "초기 settingCode는 0이어야 합니다.");
+
+        // 다음 메뉴로 이동
+        settingsScreen.nextSettingMenu();
+
+        // settingCode가 1로 변경되었는지 확인
+        int newSettingCode = settingsScreen.getSettingCode();
+        assertEquals(1, newSettingCode, "다음 설정 메뉴로 이동해야 합니다.");
+    }
+
+    @Test
+    public void testPreviousSettingMenu() {
+        // 초기 settingCode를 1로 설정한 뒤 이전 메뉴로 이동 테스트
+        settingsScreen.nextSettingMenu(); // settingCode를 1로 변경
+        int initialSettingCode = settingsScreen.getSettingCode();
+        assertEquals(1, initialSettingCode, "settingCode는 1이어야 합니다.");
+
+        // 이전 메뉴로 이동
+        settingsScreen.previousSettingMenu();
+
+        // settingCode가 0으로 변경되었는지 확인
+        int newSettingCode = settingsScreen.getSettingCode();
+        assertEquals(0, newSettingCode, "이전 설정 메뉴로 이동해야 합니다.");
+    }
 }

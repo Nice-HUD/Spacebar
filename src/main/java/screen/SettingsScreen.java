@@ -111,7 +111,7 @@ public class SettingsScreen extends Screen {
             if (settingCode == 1) {
                 if (inputManager.isKeyDown(KeyEvent.VK_LEFT)) {
                     // 볼륨 감소
-                    volume = Math.max(volume - 1, 1);
+                    volume = Math.max(volume - 1, 0);
                     float volumeValue = (volume - 1) * 6 - 60; // -60 ~ 0 사이의 값을 계산
                     SoundManager.getInstance().modifyAllVolume(volumeValue);
                     this.selectionCooldown.reset();
@@ -131,7 +131,7 @@ public class SettingsScreen extends Screen {
     /**
      * Shifts the focus to the next setting menu.
      */
-    private void nextSettingMenu() {
+    void nextSettingMenu() {
         if (this.settingCode == 1) // 소리조절에서 화면 해상도 변경으로 이동
             this.settingCode = 0;
         else
@@ -141,7 +141,7 @@ public class SettingsScreen extends Screen {
     /**
      * Shifts the focus to the previous setting menu.
      */
-    private void previousSettingMenu() {
+    void previousSettingMenu() {
         if (this.settingCode == 0)
             this.settingCode = 1; // 화면 해상도 변경에서 소리조절로 이동
         else
@@ -198,4 +198,11 @@ public class SettingsScreen extends Screen {
     }
 
     public void setInputDelay(Cooldown inputDelayMock) { this.inputDelay = inputDelayMock; }
+
+    public int getVolume(){return volume;}
+
+    public int getSettingCode(){return settingCode;}
+    public void setSettingCode(int settingCode){this.settingCode = settingCode;}
+
+    public void setSelectionCooldown(Cooldown selectionCooldown) {this.selectionCooldown = selectionCooldown;}
 }
