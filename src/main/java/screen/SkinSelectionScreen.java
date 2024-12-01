@@ -38,6 +38,7 @@ public class SkinSelectionScreen extends Screen {
      *
      * @return 다음 화면 코드
      */
+    @Override
     public final int run() {
         super.run();
         return this.returnCode;
@@ -46,6 +47,7 @@ public class SkinSelectionScreen extends Screen {
     /**
      * 화면 변화와 이벤트를 확인하고 업데이트 함.
      */
+    @Override
     protected final void update() {
         super.update();
         draw();
