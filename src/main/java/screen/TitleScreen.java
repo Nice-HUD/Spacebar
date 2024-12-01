@@ -81,9 +81,11 @@ public class TitleScreen extends Screen {
 
 		// produced by Starter
 		if (this.pnumSelectionCode == 0 && this.returnCode == 7) {
+			Core.setTwoPlayerMode(false);
 			return 7; // 스킨 설정 화면으로 넘어가는 returnCode
 		} else if (this.pnumSelectionCode == 1 && this.returnCode == 7) {
-			return 8; // 2인스킨 선택 화면으로 넘어가는 returnCode
+			Core.setTwoPlayerMode(true);
+			return 7;
 		}
 
 		if (this.returnCode == 6) {

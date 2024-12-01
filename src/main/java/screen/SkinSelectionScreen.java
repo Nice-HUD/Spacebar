@@ -27,8 +27,8 @@ public class SkinSelectionScreen extends Screen {
      */
     public SkinSelectionScreen(final int width, final int height, final int fps) {
         super(width, height, fps);
-
-        this.returnCode = 2;
+        
+        this.returnCode = Core.isTwoPlayerMode() ? 4 : 2;
         this.inputDelay = Core.getCooldown(200);
         this.inputDelay.reset();
     }
