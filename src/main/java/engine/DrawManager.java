@@ -757,9 +757,7 @@ public class DrawManager {
 	 *
 	 * @param screen Screen to draw on.
 	 */
-	public void drawSettingsMenu(final Screen screen,final String[] resolutions, final int selectedResolutionIndex) {
-
-
+	public void drawSettingsMenu(final Screen screen, final int option, final String[] resolutions, final int selectedResolutionIndex, final int volume) {
 		String settingsTitle = "Settings";
 
 		backBufferGraphics.setColor(Color.WHITE);
@@ -770,16 +768,30 @@ public class DrawManager {
 		backBufferGraphics.setColor(Color.LIGHT_GRAY);
 		drawCenteredRegularString(screen, instructions, calculatePositionY(screen, 0.9));
 
-
-		// 선택된 해상도 출력
-		String leftArrow = "<- ";
-		String rightArrow = " ->";
+		//해상도
 		String selectedResolution = resolutions[selectedResolutionIndex];
-
-		// 선택된 해상도를 중앙에 표시, 양옆에 화살표
-		String resolutionDisplay = leftArrow + selectedResolution + rightArrow;
-		backBufferGraphics.setColor(Color.GREEN); // 선택된 해상도는 초록색으로 표시
+		String resolutionDisplay = selectedResolution;
+		if(option == 0) {
+			// 선택된 해상도를 중앙에 표시, 양옆에 화살표
+			resolutionDisplay = "<- " + selectedResolution + " ->";
+			backBufferGraphics.setColor(Color.GREEN); // 선택된 해상도는 초록색으로 표시
+		}
+		else{
+			backBufferGraphics.setColor(Color.white);
+		}
 		drawCenteredRegularString(screen, resolutionDisplay, calculatePositionY(screen, 0.3)); // 화면 중앙 30% 위치에 표시
+
+		//소리조절
+		String volumeDisplay = "Volume: " + volume;
+		if(option == 1) {
+			backBufferGraphics.setColor(Color.GREEN);
+			volumeDisplay = "<- Volume: " + volume + " ->";
+		}
+		else{
+			backBufferGraphics.setColor(Color.WHITE);
+		}
+		drawCenteredRegularString(screen, volumeDisplay, calculatePositionY(screen, 0.3)+fontRegularMetrics.getHeight() * 2); //
+
 	}
 
 	/**

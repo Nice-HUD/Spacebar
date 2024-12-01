@@ -239,35 +239,44 @@ public class SoundManager {
     }
 
     /**
-     * get BGM volume
+     * modify BGM, ES volume
      *
-     * @param name
-     *      BGM name
-     * @return
-     *      BGM volume
+     * @param volume
+     *          volume size to be changed
      */
-    public float getBGMVolume(String name) {
-        if (BGMs.containsKey(name)) {
-            Clip clip = BGMs.get(name);
-            FloatControl volumeControl = (FloatControl) clip.getControl(FloatControl.Type.MASTER_GAIN);
-            return volumeControl.getValue();
+    public void modifyAllVolume(float volume) {
+        if (volume > 6 || volume < -60) {
+            logger.info("Error: Volume is out of range! Input volume: " + volume);
+            return;
         }
-        return 0f; // BGM이 없으면 기본값 반환
+
+        // 모든 BGM 볼륨 조절
+        for (String bgmName : BGMs.keySet()) {
+            modifyBGMVolume(bgmName, volume);
+        }
+
+        // 모든 ES 볼륨 조절
+        for (String esName : EffectSounds.keySet()) {
+            modifyESVolume(esName, volume);
+        }
     }
 
     /**
-     * get ES volume
-     *
-     * @param name
-     *      ES name
-     * @return
-     *      ES volume
+     * initialize sound settings
      */
-    public float getESVolume(String name) {
-        if (EffectSounds.containsKey(name)) {
-            return Float.parseFloat(EffectSounds.get(name)[1]);
+    public void initializeSoundSettings() {
+        int initialVolume = 5; // 초기 볼륨 값 (1-10 사이의 값)
+        float initialVolumeValue = (initialVolume - 1) * 6 - 60; // 초기 볼륨 값을 계산
+        modifyAllVolume(initialVolumeValue); // 모든 사운드에 동일한 초기 볼륨 값 설정
+    }
+
+    public float getCurrentVolume() {
+        if (!BGMs.isEmpty()) {
+            Clip clip = BGMs.values().iterator().next(); // 첫 번째 BGM을 가져옴
+            FloatControl volumeControl = (FloatControl) clip.getControl(FloatControl.Type.MASTER_GAIN);
+            return volumeControl.getValue(); // 현재 볼륨 값 반환
         }
-        return 0f; // 효과음이 없으면 기본값 반환
+        return -60.0f; // BGM이 없으면 기본값 반환
     }
 
     // ksm

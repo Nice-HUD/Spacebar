@@ -23,6 +23,7 @@ public class SettingsScreen extends Screen {
     private boolean resolutionChanged = false; // 해상도 변경 플래그
 
     private int settingCode;
+    private int volume;
 
 
     /**
@@ -40,6 +41,7 @@ public class SettingsScreen extends Screen {
         this.settingCode = 0;
         this.selectionCooldown = Core.getCooldown(SELECTION_TIME);
         this.selectionCooldown.reset();
+        this.volume = (int) ((SoundManager.getInstance().getCurrentVolume() + 60) / 6) + 1;
     }
 
     /**
@@ -69,7 +71,7 @@ public class SettingsScreen extends Screen {
 
         draw();
 
-        if (this.inputDelay.checkFinished()) {
+        if (this.selectionCooldown.checkFinished()&&this.inputDelay.checkFinished()) {
             if (inputManager.isKeyDown(KeyEvent.VK_ESCAPE)) {
                 // 메인 메뉴로 돌아가기
                 this.isRunning = false;
@@ -86,20 +88,41 @@ public class SettingsScreen extends Screen {
                 this.selectionCooldown.reset();
                 SoundManager.getInstance().playES("menuSelect_es");
             }
+
             if(settingCode == 0){
                 if (inputManager.isKeyDown(KeyEvent.VK_LEFT)) {
                     // 이전 해상도 선택
                     selectedResolutionIndex = (selectedResolutionIndex - 1 + resolutions.length) % resolutions.length;
-                    this.inputDelay.reset();
+                    this.selectionCooldown.reset();
+                    SoundManager.getInstance().playES("menuSelect_es");
                 } else if (inputManager.isKeyDown(KeyEvent.VK_RIGHT)) {
                     // 다음 해상도 선택
                     selectedResolutionIndex = (selectedResolutionIndex + 1) % resolutions.length;
-                    this.inputDelay.reset();
+                    this.selectionCooldown.reset();
+                    SoundManager.getInstance().playES("menuSelect_es");
                 } else if (inputManager.isKeyDown(KeyEvent.VK_ENTER)) {
                     // 설정 적용
                     applyResolution();
                     resolutionChanged = true; // 해상도 변경 플래그 설정
                     this.inputDelay.reset();
+                }
+            }
+
+            if (settingCode == 1) {
+                if (inputManager.isKeyDown(KeyEvent.VK_LEFT)) {
+                    // 볼륨 감소
+                    volume = Math.max(volume - 1, 1);
+                    float volumeValue = (volume - 1) * 6 - 60; // -60 ~ 0 사이의 값을 계산
+                    SoundManager.getInstance().modifyAllVolume(volumeValue);
+                    this.selectionCooldown.reset();
+                    SoundManager.getInstance().playES("menuSelect_es");
+                } else if (inputManager.isKeyDown(KeyEvent.VK_RIGHT)) {
+                    // 볼륨 증가
+                    volume = Math.min(volume + 1, 10);
+                    float volumeValue = (volume - 1) * 6 - 60; // -60 ~ 0 사이의 값을 계산
+                    SoundManager.getInstance().modifyAllVolume(volumeValue);
+                    this.selectionCooldown.reset();
+                    SoundManager.getInstance().playES("menuSelect_es");
                 }
             }
         }
@@ -109,20 +132,20 @@ public class SettingsScreen extends Screen {
      * Shifts the focus to the next setting menu.
      */
     private void nextSettingMenu() {
-        if (this.returnCode == 1) // 소리조절에서 화면크기 변경으로 이동
-            this.returnCode = 0;
+        if (this.settingCode == 1) // 소리조절에서 화면 해상도 변경으로 이동
+            this.settingCode = 0;
         else
-            this.returnCode++; // 다음 항목으로 이동
+            this.settingCode++; // 다음 항목으로 이동
     }
 
     /**
      * Shifts the focus to the previous setting menu.
      */
     private void previousSettingMenu() {
-        if (this.returnCode == 0)
-            this.returnCode = 1; // 화면 크기 변경에서 소리조절로 이동
+        if (this.settingCode == 0)
+            this.settingCode = 1; // 화면 해상도 변경에서 소리조절로 이동
         else
-            this.returnCode--; // 이전 항목으로 이동
+            this.settingCode--; // 이전 항목으로 이동
     }
 
     /**
@@ -131,7 +154,7 @@ public class SettingsScreen extends Screen {
     private void draw() {
         drawManager.initDrawing(this);
 
-        drawManager.drawSettingsMenu(this, resolutions, selectedResolutionIndex);
+        drawManager.drawSettingsMenu(this, settingCode, resolutions, selectedResolutionIndex, volume);
 
 
         drawManager.completeDrawing(this);
