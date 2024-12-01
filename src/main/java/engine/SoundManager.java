@@ -266,7 +266,7 @@ public class SoundManager {
      */
     public void initializeSoundSettings() {
         int initialVolume = 5; // 초기 볼륨 값 (1-10 사이의 값)
-        float initialVolumeValue = (initialVolume - 1) * 6 - 60; // 초기 볼륨 값을 계산
+        float initialVolumeValue = (initialVolume - 1) * 6 - 60.0f; // 초기 볼륨 값을 계산
         modifyAllVolume(initialVolumeValue); // 모든 사운드에 동일한 초기 볼륨 값 설정
     }
 
