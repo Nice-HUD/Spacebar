@@ -119,18 +119,6 @@ public class DrawManager {
 	};
 	
 	/**
-	 * 테스트용 의존성 주입 생성자
-	 * @param backBufferGraphics
-	 * @param fileManager
-	 * @param logger
-	 */
-	public DrawManager(Graphics backBufferGraphics, FileManager fileManager, Logger logger) {
-		this.backBufferGraphics = backBufferGraphics;
-		this.fileManager = fileManager;
-		this.logger = logger;
-	}
-	
-	/**
 	 * Private constructor.
 	 *
 	 * Modifying Access Restrictor to public
