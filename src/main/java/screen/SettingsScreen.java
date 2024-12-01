@@ -112,14 +112,14 @@ public class SettingsScreen extends Screen {
                 if (inputManager.isKeyDown(KeyEvent.VK_LEFT)) {
                     // 볼륨 감소
                     volume = Math.max(volume - 1, 0);
-                    float volumeValue = (volume - 1) * 6 - 60; // -60 ~ 0 사이의 값을 계산
+                    float volumeValue = (volume - 1) * 6 - 60.0f; // -60 ~ 0 사이의 값을 계산
                     SoundManager.getInstance().modifyAllVolume(volumeValue);
                     this.selectionCooldown.reset();
                     SoundManager.getInstance().playES("menuSelect_es");
                 } else if (inputManager.isKeyDown(KeyEvent.VK_RIGHT)) {
                     // 볼륨 증가
                     volume = Math.min(volume + 1, 10);
-                    float volumeValue = (volume - 1) * 6 - 60; // -60 ~ 0 사이의 값을 계산
+                    float volumeValue = (volume - 1) * 6 - 60.0f; // -60 ~ 0 사이의 값을 계산
                     SoundManager.getInstance().modifyAllVolume(volumeValue);
                     this.selectionCooldown.reset();
                     SoundManager.getInstance().playES("menuSelect_es");
