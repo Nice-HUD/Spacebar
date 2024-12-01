@@ -238,6 +238,38 @@ public class SoundManager {
         }
     }
 
+    /**
+     * get BGM volume
+     *
+     * @param name
+     *      BGM name
+     * @return
+     *      BGM volume
+     */
+    public float getBGMVolume(String name) {
+        if (BGMs.containsKey(name)) {
+            Clip clip = BGMs.get(name);
+            FloatControl volumeControl = (FloatControl) clip.getControl(FloatControl.Type.MASTER_GAIN);
+            return volumeControl.getValue();
+        }
+        return 0f; // BGM이 없으면 기본값 반환
+    }
+
+    /**
+     * get ES volume
+     *
+     * @param name
+     *      ES name
+     * @return
+     *      ES volume
+     */
+    public float getESVolume(String name) {
+        if (EffectSounds.containsKey(name)) {
+            return Float.parseFloat(EffectSounds.get(name)[1]);
+        }
+        return 0f; // 효과음이 없으면 기본값 반환
+    }
+
     // ksm
     public void playShipDieSounds() {
         playES("ally_airship_destroy_explosion");
