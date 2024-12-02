@@ -18,6 +18,7 @@ public class SoundControlTest {
 
     @BeforeEach
     public void setUp() {
+        System.setProperty("java.awt.headless", "true");
         // SoundManager 초기화
         soundManager = SoundManager.getInstance();
         soundManager.initializeSoundSettings(); // 초기화: volume = 5의 값으로 설정
