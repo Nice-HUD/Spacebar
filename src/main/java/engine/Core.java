@@ -81,6 +81,16 @@ public final class Core {
 	private static AchievementManager achievementManager; // Team CLOVER
 
 	private static final Properties properties = new Properties(); // application.properties에서 값 가져오기
+	
+	private static boolean TwoPlayerMode = false;
+	
+	public static boolean isTwoPlayerMode() {
+		return TwoPlayerMode;
+	}
+	
+	public static void setTwoPlayerMode(boolean twoPlayerMode) {
+		Core.TwoPlayerMode = twoPlayerMode;
+	}
 
 	/**
 	 * Test implementation.
@@ -424,12 +434,17 @@ public final class Core {
 					returnCode = frame.setScreen(currentScreen);
 					LOGGER.info("Closing recent record screen.");
 					break;
-
 				case 6: // Settings 화면
 					currentScreen = new SettingsScreen(width, height, FPS,frame);
 					LOGGER.info("Starting Settings screen.");
 					returnCode = frame.setScreen(currentScreen);
 					LOGGER.info("Closing Settings screen.");
+					break;
+				case 7: // 스킨 선택 화면
+					currentScreen = new SkinSelectionScreen(width, height, FPS);
+					LOGGER.info("스킨 선택 화면 시작");
+					returnCode = frame.setScreen(currentScreen);
+					LOGGER.info("선택 화면 종료");
 					break;
 				default:
 					break;
