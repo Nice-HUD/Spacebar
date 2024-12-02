@@ -24,3 +24,20 @@ jobs:
     
     - name: Build with Gradle
       run: ./gradlew build
+
+    - name: Jacoco Report to PR
+      id: jacoco
+      uses: madrapps/jacoco-report@v1.6.1
+      with:
+        paths: ${{ github.workspace }}/build/reports/jacoco/test/jacocoTestReport.xml
+        token: ${{ secrets.GITHUB_TOKEN }}
+        min-coverage-overall: 0     # 전체 코드 커버리지 제한 없음
+        min-coverage-changed-files: 60  # 변경된 파일만 60% 커버리지 요구
+        title: Code Coverage
+        update-comment: true
+
+    - name: Upload jacoco HTML report
+      uses: actions/upload-artifact@v4
+      with:
+        name: jacoco-html-report
+        path: ${{ github.workspace }}/build/reports/jacoco/test/html
