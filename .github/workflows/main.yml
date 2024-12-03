@@ -2,7 +2,7 @@ name: Java CI
 
 on:
   push:
-    branches: [ master, develop]
+    branches: [ master, develop, NTSWDP-107-JaCoCo-Github-Action-CI]
   pull_request:
     branches: [ master, develop ]
 
@@ -32,7 +32,7 @@ jobs:
         paths: ${{ github.workspace }}/build/reports/jacoco/test/jacocoTestReport.xml
         token: ${{ secrets.GITHUB_TOKEN }}
         min-coverage-overall: 0     # 전체 코드 커버리지 제한 없음
-        min-coverage-changed-files: 60  # 변경된 파일만 60% 커버리지 요구
+        min-coverage-changed-files: 60  # 변경된 파일에 대해서는 60% 커버리지 요구 - 의견 반영하여 설정하였습니다
         title: Code Coverage
         update-comment: true
 

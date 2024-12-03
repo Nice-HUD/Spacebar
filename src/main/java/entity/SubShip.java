@@ -62,4 +62,9 @@ public class SubShip extends Entity {
     public final double getSpeed() {
         return MOVEMENT_SPEED;
     }
+
+    // 테스트 커버리지 검사 확인을 위한 메서드 추가
+    public boolean isMovingFast() {
+        return MOVEMENT_SPEED > 1;
+    }
 }
