@@ -17,7 +17,7 @@ public class SettingsScreen extends Screen {
     private final Frame frame; // Frame 객체
     private boolean resolutionChanged = false; // 해상도 변경 플래그
     private final String[] themeColors = {"Green", "Blue", "Red", "Yellow", "Purple"}; // 변경 가능한 테마 색상
-    private int selectedColorIndex = 0; // 선택된 테마 색상 옵션
+    int selectedColorIndex = 0; // 선택된 테마 색상 옵션
     private int selectedOptionIndex = 0; // 현재 선택된 옵션 (0: 해상도, 1: 소리 조절, 2: 테마 색상)
     private Cooldown selectionCooldown;
     private int settingCode;
@@ -199,7 +199,7 @@ public class SettingsScreen extends Screen {
     /**
      * Applies the selected theme color to the game.
      */
-    private void applyThemeColor() {
+    void applyThemeColor() {
         switch (themeColors[selectedColorIndex]) {
             case "Green":
                 currentThemeColor = Color.GREEN;
@@ -221,7 +221,8 @@ public class SettingsScreen extends Screen {
         }
 
         // Pass the selected theme color to the DrawManager
-        DrawManager.getInstance().setThemeColor(currentThemeColor);
+//        DrawManager.getInstance().setThemeColor(currentThemeColor);
+        drawManager.setThemeColor(currentThemeColor);
     }
 
     public void setInputManager(InputManager inputManagerMock) {
@@ -241,4 +242,11 @@ public class SettingsScreen extends Screen {
     }
 
     public void setInputDelay(Cooldown inputDelayMock) { this.inputDelay = inputDelayMock; }
+
+    public void setSelectionCooldown(Cooldown selectionCooldownMock) { this.selectionCooldown = selectionCooldownMock; }
+
+    public int getSelectedColorIndex() { return this.selectedColorIndex; }
+
+    public void setSettingCode(int i) { this.settingCode = i; }
+
 }

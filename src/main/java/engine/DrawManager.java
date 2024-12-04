@@ -579,9 +579,10 @@ public class DrawManager {
 		backBufferGraphics.setColor(new Color(0, 0, 0, 150)); // 150은 투명도 (0-255)
 		backBufferGraphics.fillRect(0, 0, screen.getWidth(), screen.getHeight());
 
-		backBufferGraphics.setColor(Color.WHITE);
+		backBufferGraphics.setColor(themeColor);
 		drawCenteredBigString(screen, pauseTitle, screen.getHeight() / 4);
 
+		backBufferGraphics.setColor(Color.white);
 		drawCenteredRegularString(screen, resumeOption, screen.getHeight() / 2);
 		drawCenteredRegularString(screen, restartOption, screen.getHeight() / 2 + 50);
 		drawCenteredRegularString(screen, exitOption, screen.getHeight() / 2 + 100);
@@ -798,10 +799,10 @@ public class DrawManager {
 
 		// 선택된 해상도 출력
 		String selectedResolution = resolutions[selectedResolutionIndex];
-		String resolutionDisplay = selectedResolution;
+		String resolutionDisplay = "Resolution: " + selectedResolution;
 		if(option == 0) {
 			// 선택된 해상도를 중앙에 표시, 양옆에 화살표
-			resolutionDisplay = "<- " + selectedResolution + " ->";
+			resolutionDisplay = "<- Resolution: " + selectedResolution + " ->";
 			backBufferGraphics.setColor(themeColor); // 선택된 해상도는 초록색으로 표시
 		}
 		else{
@@ -822,10 +823,10 @@ public class DrawManager {
 
 		// 테마 색상 조절
         String selectedThemeColor = themeColors[selectedColorIndex];
-        String themeColorDisplay = selectedThemeColor;
+        String themeColorDisplay = "Theme Color: " + selectedThemeColor;
 		if(option == 2) {
 			// 선택된 테마 색상을 중앙에 표시, 양옆에 화살표
-			themeColorDisplay = "<- " + selectedThemeColor + " ->";
+			themeColorDisplay = "<- Theme Color: " + selectedThemeColor + " ->";
 			backBufferGraphics.setColor(themeColor);
 		}
 		else{

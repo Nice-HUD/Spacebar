@@ -7,6 +7,7 @@ import engine.InputManager;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.awt.*;
 import java.awt.event.KeyEvent;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -36,11 +37,11 @@ public class SettingsScreenTest {
         settingsScreen.setInputManager(inputManagerMock);
         settingsScreen.setDrawManager(drawManagerMock);
         settingsScreen.setInputDelay(inputDelayMock);
-        settingsScreen.setSelectionCooldown(selectionCooldownMock);  // 추가된 부분
+        settingsScreen.setSelectionCooldown(selectionCooldownMock);
 
         // Mock Cooldown 설정
         when(inputDelayMock.checkFinished()).thenReturn(true);
-        when(selectionCooldownMock.checkFinished()).thenReturn(true);  // 추가된 부분
+        when(selectionCooldownMock.checkFinished()).thenReturn(true);
     }
 /*
     @Test
@@ -111,4 +112,56 @@ public class SettingsScreenTest {
         assertEquals(0, newSettingCode, "이전 설정 메뉴로 이동해야 합니다.");
     }
  */
+
+    @Test
+    public void testThemeColorChangeOnRightKey() {
+        settingsScreen.setSettingCode(2);
+        // Arrange: 초기 테마 색상 인덱스 확인
+        int initialColorIndex = settingsScreen.getSelectedColorIndex();
+        assertEquals(0, initialColorIndex, "초기 테마 색상 인덱스는 0 (Green)이어야 합니다.");
+
+        // Mock 오른쪽 키 입력
+        when(inputManagerMock.isKeyDown(KeyEvent.VK_RIGHT)).thenReturn(true);
+
+        // Act: update 호출
+        settingsScreen.update();
+
+        // Assert: 테마 색상 인덱스가 변경되었는지 확인
+        int newColorIndex = settingsScreen.getSelectedColorIndex();
+        assertEquals(1, newColorIndex, "오른쪽 키 입력 시 테마 색상 인덱스가 다음 값으로 변경되어야 합니다.");
+    }
+
+    @Test
+    public void testThemeColorChangeOnLeftKey() {
+        settingsScreen.setSettingCode(2);
+        // Arrange: 초기 테마 색상 인덱스를 1로 설정
+        settingsScreen.selectedColorIndex = 1; // 초기 색상 인덱스를 1로 설정
+        assertEquals(1, settingsScreen.getSelectedColorIndex(), "초기 테마 색상 인덱스는 1이어야 합니다.");
+
+        // Mock 왼쪽 키 입력
+        when(inputManagerMock.isKeyDown(KeyEvent.VK_LEFT)).thenReturn(true);
+
+        // Act: update 호출
+        settingsScreen.update();
+
+        // Assert: 테마 색상 인덱스가 이전 값으로 변경되었는지 확인
+        int newColorIndex = settingsScreen.getSelectedColorIndex();
+        assertEquals(0, newColorIndex, "왼쪽 키 입력 시 테마 색상 인덱스가 이전 값으로 변경되어야 합니다.");
+    }
+
+    @Test
+    public void testThemeColorAppliedToDrawManager() {
+        settingsScreen.setSettingCode(2);
+        // Arrange: 특정 테마 색상 인덱스를 선택
+        settingsScreen.selectedColorIndex = 2; // "Red" 선택
+        settingsScreen.applyThemeColor();
+
+        // Act: DrawManager의 테마 색상 확인
+        verify(drawManagerMock, times(1)).setThemeColor(Color.RED);
+
+        // Assert: 색상이 제대로 설정되었는지 확인
+        Color currentColor = drawManagerMock.getThemeColor();
+        assertEquals(Color.RED, currentColor, "테마 색상이 Red로 설정되어야 합니다.");
+    }
+
 }
