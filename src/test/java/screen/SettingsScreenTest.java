@@ -42,6 +42,14 @@ public class SettingsScreenTest {
         // Mock Cooldown 설정
         when(inputDelayMock.checkFinished()).thenReturn(true);
         when(selectionCooldownMock.checkFinished()).thenReturn(true);
+
+        // DrawManager Mock 동작 설정
+        doAnswer(invocation -> {
+            // 전달된 Color 값을 저장
+            Color color = invocation.getArgument(0);
+            when(drawManagerMock.getThemeColor()).thenReturn(color);
+            return null;
+        }).when(drawManagerMock).setThemeColor(any(Color.class));
     }
 /*
     @Test
@@ -160,8 +168,7 @@ public class SettingsScreenTest {
         verify(drawManagerMock, times(1)).setThemeColor(Color.RED);
 
         // Assert: 색상이 제대로 설정되었는지 확인
-        Color currentColor = drawManagerMock.getThemeColor();
-        assertEquals(Color.RED, currentColor, "테마 색상이 Red로 설정되어야 합니다.");
+        assertEquals(Color.RED, drawManagerMock.getThemeColor(),"테마 색상이 Red로 설정되어야 합니다.");
     }
 
 }
