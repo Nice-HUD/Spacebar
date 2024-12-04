@@ -18,7 +18,10 @@ public class SettingsScreen extends Screen {
     private boolean resolutionChanged = false; // 해상도 변경 플래그
     private final String[] themeColors = {"Green", "Blue", "Red", "Yellow", "Purple"}; // 변경 가능한 테마 색상
     private int selectedColorIndex = 0; // 선택된 테마 색상 옵션
-    private int selectedOptionIndex = 0; // 현재 선택된 옵션 (0: 해상도, 1: 테마 색상)
+    private int selectedOptionIndex = 0; // 현재 선택된 옵션 (0: 해상도, 1: 소리 조절, 2: 테마 색상)
+    private Cooldown selectionCooldown;
+    private int settingCode;
+    private int volume;
 
 
     /**
@@ -33,6 +36,7 @@ public class SettingsScreen extends Screen {
         this.frame = frame;
         this.isRunning = true; // 초기 상태 활성화
         this.returnCode = 1; // Return to main menu by default
+        this.selectionCooldown = Core.getCooldown(200);
     }
 
     /**
@@ -62,44 +66,94 @@ public class SettingsScreen extends Screen {
 
         draw();
 
-        if (this.inputDelay.checkFinished()) {
+        if (this.selectionCooldown.checkFinished()&&this.inputDelay.checkFinished()) {
             if (inputManager.isKeyDown(KeyEvent.VK_ESCAPE)) {
                 // 메인 메뉴로 돌아가기
                 this.isRunning = false;
-            } else if (inputManager.isKeyDown(KeyEvent.VK_UP)) {
-                // 옵션 이동: 해상도 선택 -> 테마 색상 선택
-                selectedOptionIndex = Math.max(0, selectedOptionIndex - 1);
-                this.inputDelay.reset();
-            } else if (inputManager.isKeyDown(KeyEvent.VK_DOWN)) {
-                // 옵션 이동: 테마 색상 선택 -> 해상도 선택
-                selectedOptionIndex = Math.min(1, selectedOptionIndex + 1);
-                this.inputDelay.reset();
-            } else if (inputManager.isKeyDown(KeyEvent.VK_LEFT)) {
-                // 현재 선택된 옵션의 값을 이전으로 변경
-                if (selectedOptionIndex == 0) {
+            }
+            if ((inputManager.isKeyDown(KeyEvent.VK_UP)
+                    || inputManager.isKeyDown(KeyEvent.VK_W))) {
+                previousSettingMenu();
+                this.selectionCooldown.reset();
+                SoundManager.getInstance().playES("menuSelect_es");
+            }
+            if (inputManager.isKeyDown(KeyEvent.VK_DOWN)
+                    || inputManager.isKeyDown(KeyEvent.VK_S)) {
+                nextSettingMenu();
+                this.selectionCooldown.reset();
+                SoundManager.getInstance().playES("menuSelect_es");
+            }
+
+            if(settingCode == 0){
+                if (inputManager.isKeyDown(KeyEvent.VK_LEFT)) {
+                    // 이전 해상도 선택
                     selectedResolutionIndex = (selectedResolutionIndex - 1 + resolutions.length) % resolutions.length;
-                } else if (selectedOptionIndex == 1) {
+                    this.selectionCooldown.reset();
+                    SoundManager.getInstance().playES("menuSelect_es");
+                } else if (inputManager.isKeyDown(KeyEvent.VK_RIGHT)) {
+                    // 다음 해상도 선택
+                    selectedResolutionIndex = (selectedResolutionIndex + 1) % resolutions.length;
+                    this.selectionCooldown.reset();
+                    SoundManager.getInstance().playES("menuSelect_es");
+                } else if (inputManager.isKeyDown(KeyEvent.VK_ENTER)) {
+                    // 설정 적용
+                    applyResolution();
+                    resolutionChanged = true; // 해상도 변경 플래그 설정
+                    this.inputDelay.reset();
+                }
+            }
+
+            if (settingCode == 1) {
+                if (inputManager.isKeyDown(KeyEvent.VK_LEFT)) {
+                    // 볼륨 감소
+                    volume = Math.max(volume - 1, 0);
+                    float volumeValue = (volume - 1) * 6 - 60.0f; // -60 ~ 0 사이의 값을 계산
+                    SoundManager.getInstance().modifyAllVolume(volumeValue);
+                    this.selectionCooldown.reset();
+                    SoundManager.getInstance().playES("menuSelect_es");
+                } else if (inputManager.isKeyDown(KeyEvent.VK_RIGHT)) {
+                    // 볼륨 증가
+                    volume = Math.min(volume + 1, 10);
+                    float volumeValue = (volume - 1) * 6 - 60.0f; // -60 ~ 0 사이의 값을 계산
+                    SoundManager.getInstance().modifyAllVolume(volumeValue);
+                    this.selectionCooldown.reset();
+                    SoundManager.getInstance().playES("menuSelect_es");
+                }
+            }
+
+            if (settingCode == 2) {
+                if (inputManager.isKeyDown(KeyEvent.VK_LEFT)) {
                     selectedColorIndex = (selectedColorIndex - 1 + themeColors.length) % themeColors.length;
                     applyThemeColor();
-                }
-                this.inputDelay.reset();
-            } else if (inputManager.isKeyDown(KeyEvent.VK_RIGHT)) {
-                // 현재 선택된 옵션의 값을 다음으로 변경
-                if (selectedOptionIndex == 0) {
-                    selectedResolutionIndex = (selectedResolutionIndex + 1) % resolutions.length;
-                } else if (selectedOptionIndex == 1) {
+                    SoundManager.getInstance().playES("menuSelect_es");
+                    this.inputDelay.reset();
+                } else if (inputManager.isKeyDown(KeyEvent.VK_RIGHT)) {
                     selectedColorIndex = (selectedColorIndex + 1) % themeColors.length;
                     applyThemeColor();
+                    SoundManager.getInstance().playES("menuSelect_es");
+                    this.inputDelay.reset();
+                } else if (inputManager.isKeyDown(KeyEvent.VK_ENTER)) {
+                    SoundManager.getInstance().playES("menuApply_es");
+                    applyThemeColor();
+                    this.inputDelay.reset();
                 }
-                this.inputDelay.reset();
-            } else if (inputManager.isKeyDown(KeyEvent.VK_ENTER)) {
-                // 설정 적용
-                applyResolution();
-                applyThemeColor();
-                resolutionChanged = true; // 해상도 변경 플래그 설정
-                this.inputDelay.reset();
+
             }
         }
+    }
+
+    /**
+     * Shifts the focus to the next setting menu.
+     */
+    void nextSettingMenu() {
+        settingCode = (settingCode + 1) % 3; // 0, 1, 2 순환s
+    }
+
+    /**
+     * Shifts the focus to the previous setting menu.
+     */
+    void previousSettingMenu() {
+        settingCode = (settingCode - 1 + 3) % 3; // 2 -> 1 -> 0 순환    }
     }
 
     /**
@@ -108,7 +162,9 @@ public class SettingsScreen extends Screen {
     private void draw() {
         drawManager.initDrawing(this);
 
-        drawManager.drawSettingsMenu(this, resolutions, selectedResolutionIndex, themeColors, selectedColorIndex, selectedOptionIndex);
+        drawManager.drawSettingsMenu(this,
+                        resolutions, selectedResolutionIndex, themeColors, selectedColorIndex,
+                        selectedOptionIndex, settingCode, volume);
 
         drawManager.completeDrawing(this);
     }

@@ -143,6 +143,7 @@ public final class Core {
 			consoleHandler.setFormatter(new MinimalFormatter());
 			// Sound Operator
 			sm = SoundManager.getInstance();
+			sm.initializeSoundSettings();
 			
 			LOGGER.addHandler(fileHandler);
 			LOGGER.addHandler(consoleHandler);

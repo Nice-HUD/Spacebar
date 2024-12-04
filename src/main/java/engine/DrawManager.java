@@ -519,7 +519,7 @@ public class DrawManager {
 				backBufferGraphics.setColor(Color.white);
 			}
 			backBufferGraphics.setFont(fontRegular);
-			backBufferGraphics.drawString(i+"", screen.getWidth()/2 + 30*i - 125, screen.getHeight() / 4 * 2 - fontRegularMetrics.getHeight());
+			backBufferGraphics.drawString(i+"", screen.getWidth()/2 + 30*i - 125, calculatePositionY(screen, 0.4)-fontRegularMetrics.getHeight());
 		}
 	}
 
@@ -780,8 +780,10 @@ public class DrawManager {
 	 * @param selectedColorIndex     Index of the selected theme color.
 	 * @param selectedOptionIndex    Index of the currently selected option (0: resolution, 1: theme color).
 	 */
-	public void drawSettingsMenu(final Screen screen,final String[] resolutions, final int selectedResolutionIndex, final String[] themeColors, final int selectedColorIndex, final int selectedOptionIndex) {
-
+	public void drawSettingsMenu(
+			final Screen screen, final String[] resolutions, final int selectedResolutionIndex,
+			final String[] themeColors, final int selectedColorIndex, final int selectedOptionIndex,
+			final int option, final int volume) {
 
 		String settingsTitle = "Settings";
 
@@ -795,19 +797,41 @@ public class DrawManager {
 
 
 		// 선택된 해상도 출력
-		String leftArrow = "<- ";
-		String rightArrow = " ->";
 		String selectedResolution = resolutions[selectedResolutionIndex];
-
-		// 선택된 해상도를 중앙에 표시, 양옆에 화살표
-		String resolutionDisplay = leftArrow + selectedResolution + rightArrow;
-		backBufferGraphics.setColor(selectedOptionIndex == 0 ? themeColor : Color.WHITE); // 선택된 themeColor 적용
+		String resolutionDisplay = selectedResolution;
+		if(option == 0) {
+			// 선택된 해상도를 중앙에 표시, 양옆에 화살표
+			resolutionDisplay = "<- " + selectedResolution + " ->";
+			backBufferGraphics.setColor(themeColor); // 선택된 해상도는 초록색으로 표시
+		}
+		else{
+			backBufferGraphics.setColor(Color.white);
+		}
 		drawCenteredRegularString(screen, resolutionDisplay, calculatePositionY(screen, 0.3)); // 화면 중앙 30% 위치에 표시
 
-		// 선택된 테마 색상을 중앙에 표시
-		String themeColorDisplay = "<- " + themeColors[selectedColorIndex] + " ->";
-		backBufferGraphics.setColor(selectedOptionIndex == 1 ? themeColor : Color.WHITE); // 강조 표시
-		drawCenteredRegularString(screen, themeColorDisplay, calculatePositionY(screen, 0.5));
+		// 소리 조절
+		String volumeDisplay = "Volume: " + volume;
+		if(option == 1) {
+			backBufferGraphics.setColor(themeColor);
+			volumeDisplay = "<- Volume: " + volume + " ->";
+		}
+		else{
+			backBufferGraphics.setColor(Color.WHITE);
+		}
+		drawCenteredRegularString(screen, volumeDisplay, calculatePositionY(screen, 0.4)); //
+
+		// 테마 색상 조절
+        String selectedThemeColor = themeColors[selectedColorIndex];
+        String themeColorDisplay = selectedThemeColor;
+		if(option == 2) {
+			// 선택된 테마 색상을 중앙에 표시, 양옆에 화살표
+			themeColorDisplay = "<- " + selectedThemeColor + " ->";
+			backBufferGraphics.setColor(themeColor);
+		}
+		else{
+			backBufferGraphics.setColor(Color.white);
+		}
+		drawCenteredRegularString(screen, themeColorDisplay, calculatePositionY(screen, 0.5)); // 화면 중앙 30% 위치에 표시
 
 	}
 
