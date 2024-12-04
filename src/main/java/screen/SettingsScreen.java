@@ -16,8 +16,9 @@ public class SettingsScreen extends Screen {
     private int selectedResolutionIndex = 0;
     private final Frame frame; // Frame 객체
     private boolean resolutionChanged = false; // 해상도 변경 플래그
-
-
+    private final String[] themeColors = {"Green", "Blue", "Red", "Yellow", "Purple"}; // 변경 가능한 테마 색상
+    private int selectedColorIndex = 0; // 선택된 테마 색상 옵션
+    private int selectedOptionIndex = 0; // 현재 선택된 옵션 (0: 해상도, 1: 테마 색상)
 
 
     /**
@@ -65,17 +66,34 @@ public class SettingsScreen extends Screen {
             if (inputManager.isKeyDown(KeyEvent.VK_ESCAPE)) {
                 // 메인 메뉴로 돌아가기
                 this.isRunning = false;
+            } else if (inputManager.isKeyDown(KeyEvent.VK_UP)) {
+                // 옵션 이동: 해상도 선택 -> 테마 색상 선택
+                selectedOptionIndex = Math.max(0, selectedOptionIndex - 1);
+                this.inputDelay.reset();
+            } else if (inputManager.isKeyDown(KeyEvent.VK_DOWN)) {
+                // 옵션 이동: 테마 색상 선택 -> 해상도 선택
+                selectedOptionIndex = Math.min(1, selectedOptionIndex + 1);
+                this.inputDelay.reset();
             } else if (inputManager.isKeyDown(KeyEvent.VK_LEFT)) {
-                // 이전 해상도 선택
-                selectedResolutionIndex = (selectedResolutionIndex - 1 + resolutions.length) % resolutions.length;
+                // 현재 선택된 옵션의 값을 이전으로 변경
+                if (selectedOptionIndex == 0) {
+                    selectedResolutionIndex = (selectedResolutionIndex - 1 + resolutions.length) % resolutions.length;
+                } else if (selectedOptionIndex == 1) {
+                    selectedColorIndex = (selectedColorIndex - 1 + themeColors.length) % themeColors.length;
+                }
                 this.inputDelay.reset();
             } else if (inputManager.isKeyDown(KeyEvent.VK_RIGHT)) {
-                // 다음 해상도 선택
-                selectedResolutionIndex = (selectedResolutionIndex + 1) % resolutions.length;
+                // 현재 선택된 옵션의 값을 다음으로 변경
+                if (selectedOptionIndex == 0) {
+                    selectedResolutionIndex = (selectedResolutionIndex + 1) % resolutions.length;
+                } else if (selectedOptionIndex == 1) {
+                    selectedColorIndex = (selectedColorIndex + 1) % themeColors.length;
+                }
                 this.inputDelay.reset();
             } else if (inputManager.isKeyDown(KeyEvent.VK_ENTER)) {
                 // 설정 적용
                 applyResolution();
+                applyThemeColor();
                 resolutionChanged = true; // 해상도 변경 플래그 설정
                 this.inputDelay.reset();
             }
@@ -88,8 +106,7 @@ public class SettingsScreen extends Screen {
     private void draw() {
         drawManager.initDrawing(this);
 
-        drawManager.drawSettingsMenu(this, resolutions, selectedResolutionIndex);
-
+        drawManager.drawSettingsMenu(this, resolutions, selectedResolutionIndex, themeColors, selectedColorIndex, selectedOptionIndex);
 
         drawManager.completeDrawing(this);
     }
@@ -113,6 +130,40 @@ public class SettingsScreen extends Screen {
 
         DrawManager.getInstance().initDrawing(this); // 새로운 해상도에 맞게 초기화
 
+    }
+    
+
+    /**
+     * Current theme color applied to the game UI.
+     */
+    private Color currentThemeColor = Color.GREEN;
+
+    /**
+     * Applies the selected theme color to the game.
+     */
+    private void applyThemeColor() {
+        switch (themeColors[selectedColorIndex]) {
+            case "Green":
+                currentThemeColor = Color.GREEN;
+                break;
+            case "Blue":
+                currentThemeColor = Color.BLUE;
+                break;
+            case "Red":
+                currentThemeColor = Color.RED;
+                break;
+            case "Yellow":
+                currentThemeColor = Color.YELLOW;
+                break;
+            case "Purple":
+                currentThemeColor = new Color(128, 0, 128); // Purple
+                break;
+            default:
+                currentThemeColor = Color.GREEN;
+        }
+
+        // Pass the selected theme color to the DrawManager
+        DrawManager.getInstance().setThemeColor(currentThemeColor);
     }
 
     public void setInputManager(InputManager inputManagerMock) {
