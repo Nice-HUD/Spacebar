@@ -785,7 +785,7 @@ public class DrawManager {
 
 		String settingsTitle = "Settings";
 
-		backBufferGraphics.setColor(Color.WHITE);
+		backBufferGraphics.setColor(themeColor);
 		drawCenteredBigString(screen, settingsTitle, calculatePositionY(screen, 0.2));
 
 		// 사용자 안내 메시지
@@ -801,7 +801,7 @@ public class DrawManager {
 
 		// 선택된 해상도를 중앙에 표시, 양옆에 화살표
 		String resolutionDisplay = leftArrow + selectedResolution + rightArrow;
-		backBufferGraphics.setColor(themeColor); // 선택된 themeColor 적용
+		backBufferGraphics.setColor(selectedOptionIndex == 0 ? themeColor : Color.WHITE); // 선택된 themeColor 적용
 		drawCenteredRegularString(screen, resolutionDisplay, calculatePositionY(screen, 0.3)); // 화면 중앙 30% 위치에 표시
 
 		// 선택된 테마 색상을 중앙에 표시

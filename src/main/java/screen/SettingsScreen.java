@@ -80,6 +80,7 @@ public class SettingsScreen extends Screen {
                     selectedResolutionIndex = (selectedResolutionIndex - 1 + resolutions.length) % resolutions.length;
                 } else if (selectedOptionIndex == 1) {
                     selectedColorIndex = (selectedColorIndex - 1 + themeColors.length) % themeColors.length;
+                    applyThemeColor();
                 }
                 this.inputDelay.reset();
             } else if (inputManager.isKeyDown(KeyEvent.VK_RIGHT)) {
@@ -88,6 +89,7 @@ public class SettingsScreen extends Screen {
                     selectedResolutionIndex = (selectedResolutionIndex + 1) % resolutions.length;
                 } else if (selectedOptionIndex == 1) {
                     selectedColorIndex = (selectedColorIndex + 1) % themeColors.length;
+                    applyThemeColor();
                 }
                 this.inputDelay.reset();
             } else if (inputManager.isKeyDown(KeyEvent.VK_ENTER)) {
