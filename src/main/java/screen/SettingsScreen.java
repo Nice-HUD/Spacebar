@@ -249,4 +249,8 @@ public class SettingsScreen extends Screen {
 
     public void setSettingCode(int i) { this.settingCode = i; }
 
+    public int getSettingCode() { return this.settingCode; }
+
+
+    public int getVolume() { return this.volume; }
 }
