@@ -1,10 +1,7 @@
 package engine;
 
 import javax.sound.sampled.*;
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
@@ -37,9 +34,17 @@ public class SoundManager {
     private SoundManager() {
         try {
             logger = Core.getLogger();
-            BufferedReader br = new BufferedReader(new FileReader("src/main/resources/sound"));
-            int ESFileCount = Objects.requireNonNull((new File("src/main/resources/Sound.assets/ES")).listFiles()).length;
-            int BGMFileCount = Objects.requireNonNull((new File("src/main/resources/Sound.assets/BGM")).listFiles()).length;
+            InputStream soundFileStream = getClass().getClassLoader().getResourceAsStream("sound");
+            if (soundFileStream == null) {
+                throw new FileNotFoundException("Sound file not found in resources.");
+            }
+            BufferedReader br = new BufferedReader(new InputStreamReader(soundFileStream));
+            
+            File esDir = new File(getClass().getClassLoader().getResource("Sound.assets/ES").toURI());
+            File bgmDir = new File(getClass().getClassLoader().getResource("Sound.assets/BGM").toURI());
+            
+            int ESFileCount = Objects.requireNonNull(esDir.listFiles()).length;
+            int BGMFileCount = Objects.requireNonNull(bgmDir.listFiles()).length;
 
             EffectSounds = new HashMap<String, String[]>(ESFileCount);
             BGMs = new HashMap<String, Clip>(BGMFileCount);
@@ -57,18 +62,22 @@ public class SoundManager {
                     ESFiles[idx][0] = data[1];
                     ESFiles[idx][1] = data[2];
                     ESFiles[idx][2] = data[3];
-                    this.presetEffectSound(ESFiles[idx][0], "src/main/resources/Sound.assets/ES/"+ESFiles[idx][1], Float.parseFloat(ESFiles[idx][2]));
+                    this.presetEffectSound(ESFiles[idx][0],
+                            getClass().getClassLoader().getResource("Sound.assets/ES/" + ESFiles[idx][1]).toURI().getPath(),
+                            Float.parseFloat(ESFiles[idx][2]));
                     idx += 1;
                 }else if(data[0].equals("bgm")){
                     BGMFiles[idy][0] = data[1];
                     BGMFiles[idy][1] = data[2];
                     BGMFiles[idy][2] = data[3];
-                    this.preloadBGM(BGMFiles[idy][0], "src/main/resources/Sound.assets/BGM/"+BGMFiles[idy][1], Float.parseFloat(BGMFiles[idy][2]));
+                    this.preloadBGM(BGMFiles[idy][0],
+                            getClass().getClassLoader().getResource("Sound.assets/BGM/" + BGMFiles[idy][1]).toURI().getPath(),
+                            Float.parseFloat(BGMFiles[idy][2]));
                     idy += 1;
                 }
             }
-        } catch (IOException e) {
-            logger.info(String.valueOf(e));
+        } catch (Exception e) {
+            logger.info("Error initializing SoundManager: " + e.getMessage());
         }
     }
 

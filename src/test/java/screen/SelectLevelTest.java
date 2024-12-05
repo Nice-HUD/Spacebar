@@ -45,7 +45,7 @@ public class SelectLevelTest {
         when(mockCooldown.checkFinished()).thenReturn(true);
         selectionCooldownField.set(titleScreen, mockCooldown);
     }
-/*
+
     @Test
     public void testShowLevelMenu() throws Exception {
         //플레이어 수를 선택하면(returnCode = 2일 때 스페이스바 클릭) level 선택 메뉴로 넘어감(returnCode = 7)
@@ -102,5 +102,4 @@ public class SelectLevelTest {
         moveLevelRightMethod.invoke(titleScreen);
         assertEquals(1, titleScreen.getSelectedLevel());
     }
-*/
 }
