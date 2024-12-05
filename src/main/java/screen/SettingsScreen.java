@@ -12,7 +12,7 @@ import java.awt.event.KeyEvent;
  */
 public class SettingsScreen extends Screen {
 
-    private final String[] resolutions = {"1024x576", "960x540", "800x600","630x720"};
+    private final String[] resolutions = {"630x720", "1024x576", "960x540", "800x600"};
     private int selectedResolutionIndex = 0;
     private final Frame frame; // Frame 객체
     private boolean resolutionChanged = false; // 해상도 변경 플래그
