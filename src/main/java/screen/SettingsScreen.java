@@ -12,16 +12,14 @@ import java.awt.event.KeyEvent;
  */
 public class SettingsScreen extends Screen {
 
-    /** Milliseconds between changes in user selection. */
-    private static final int SELECTION_TIME = 200;
-    /** Time between changes in user selection. */
-    private Cooldown selectionCooldown;
-
-    private final String[] resolutions = {"1024x576", "960x540", "800x600","630x720"};
+    private final String[] resolutions = {"630x720", "1024x576", "960x540", "800x600"};
     private int selectedResolutionIndex = 0;
     private final Frame frame; // Frame 객체
     private boolean resolutionChanged = false; // 해상도 변경 플래그
-
+    private final String[] themeColors = {"Green", "Blue", "Red", "Yellow", "Purple"}; // 변경 가능한 테마 색상
+    int selectedColorIndex = 0; // 선택된 테마 색상 옵션
+    private int selectedOptionIndex = 0; // 현재 선택된 옵션 (0: 해상도, 1: 소리 조절, 2: 테마 색상)
+    private Cooldown selectionCooldown;
     private int settingCode;
     private int volume;
 
@@ -38,10 +36,7 @@ public class SettingsScreen extends Screen {
         this.frame = frame;
         this.isRunning = true; // 초기 상태 활성화
         this.returnCode = 1; // Return to main menu by default
-        this.settingCode = 0;
-        this.selectionCooldown = Core.getCooldown(SELECTION_TIME);
-        this.selectionCooldown.reset();
-        this.volume = (int) ((SoundManager.getInstance().getCurrentVolume() + 60) / 6) + 1;
+        this.selectionCooldown = Core.getCooldown(200);
     }
 
     /**
@@ -125,6 +120,25 @@ public class SettingsScreen extends Screen {
                     SoundManager.getInstance().playES("menuSelect_es");
                 }
             }
+
+            if (settingCode == 2) {
+                if (inputManager.isKeyDown(KeyEvent.VK_LEFT)) {
+                    selectedColorIndex = (selectedColorIndex - 1 + themeColors.length) % themeColors.length;
+                    applyThemeColor();
+                    SoundManager.getInstance().playES("menuSelect_es");
+                    this.inputDelay.reset();
+                } else if (inputManager.isKeyDown(KeyEvent.VK_RIGHT)) {
+                    selectedColorIndex = (selectedColorIndex + 1) % themeColors.length;
+                    applyThemeColor();
+                    SoundManager.getInstance().playES("menuSelect_es");
+                    this.inputDelay.reset();
+                } else if (inputManager.isKeyDown(KeyEvent.VK_ENTER)) {
+                    SoundManager.getInstance().playES("menuApply_es");
+                    applyThemeColor();
+                    this.inputDelay.reset();
+                }
+
+            }
         }
     }
 
@@ -132,20 +146,14 @@ public class SettingsScreen extends Screen {
      * Shifts the focus to the next setting menu.
      */
     void nextSettingMenu() {
-        if (this.settingCode == 1) // 소리조절에서 화면 해상도 변경으로 이동
-            this.settingCode = 0;
-        else
-            this.settingCode++; // 다음 항목으로 이동
+        settingCode = (settingCode + 1) % 3; // 0, 1, 2 순환s
     }
 
     /**
      * Shifts the focus to the previous setting menu.
      */
     void previousSettingMenu() {
-        if (this.settingCode == 0)
-            this.settingCode = 1; // 화면 해상도 변경에서 소리조절로 이동
-        else
-            this.settingCode--; // 이전 항목으로 이동
+        settingCode = (settingCode - 1 + 3) % 3; // 2 -> 1 -> 0 순환    }
     }
 
     /**
@@ -154,8 +162,9 @@ public class SettingsScreen extends Screen {
     private void draw() {
         drawManager.initDrawing(this);
 
-        drawManager.drawSettingsMenu(this, settingCode, resolutions, selectedResolutionIndex, volume);
-
+        drawManager.drawSettingsMenu(this,
+                        resolutions, selectedResolutionIndex, themeColors, selectedColorIndex,
+                        selectedOptionIndex, settingCode, volume);
 
         drawManager.completeDrawing(this);
     }
@@ -180,6 +189,41 @@ public class SettingsScreen extends Screen {
         DrawManager.getInstance().initDrawing(this); // 새로운 해상도에 맞게 초기화
 
     }
+    
+
+    /**
+     * Current theme color applied to the game UI.
+     */
+    private Color currentThemeColor = Color.GREEN;
+
+    /**
+     * Applies the selected theme color to the game.
+     */
+    void applyThemeColor() {
+        switch (themeColors[selectedColorIndex]) {
+            case "Green":
+                currentThemeColor = Color.GREEN;
+                break;
+            case "Blue":
+                currentThemeColor = Color.BLUE;
+                break;
+            case "Red":
+                currentThemeColor = Color.RED;
+                break;
+            case "Yellow":
+                currentThemeColor = Color.YELLOW;
+                break;
+            case "Purple":
+                currentThemeColor = new Color(128, 0, 128); // Purple
+                break;
+            default:
+                currentThemeColor = Color.GREEN;
+        }
+
+        // Pass the selected theme color to the DrawManager
+//        DrawManager.getInstance().setThemeColor(currentThemeColor);
+        drawManager.setThemeColor(currentThemeColor);
+    }
 
     public void setInputManager(InputManager inputManagerMock) {
         this.inputManager = inputManagerMock;
@@ -199,10 +243,14 @@ public class SettingsScreen extends Screen {
 
     public void setInputDelay(Cooldown inputDelayMock) { this.inputDelay = inputDelayMock; }
 
-    public int getVolume(){return volume;}
+    public void setSelectionCooldown(Cooldown selectionCooldownMock) { this.selectionCooldown = selectionCooldownMock; }
 
-    public int getSettingCode(){return settingCode;}
-    public void setSettingCode(int settingCode){this.settingCode = settingCode;}
+    public int getSelectedColorIndex() { return this.selectedColorIndex; }
 
-    public void setSelectionCooldown(Cooldown selectionCooldown) {this.selectionCooldown = selectionCooldown;}
+    public void setSettingCode(int i) { this.settingCode = i; }
+
+    public int getSettingCode() { return this.settingCode; }
+
+
+    public int getVolume() { return this.volume; }
 }
