@@ -1,4 +1,4 @@
-
+![빌드 상태](https://github.com/Nice-HUD/Spacebar/actions/workflows/main.yml/badge.svg)
 - # Space Invaders
 
   > Course: Software Development Practices (CES2024) - Monday Class (24-2-23821)
