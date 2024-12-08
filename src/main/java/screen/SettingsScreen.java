@@ -37,6 +37,8 @@ public class SettingsScreen extends Screen {
         this.isRunning = true; // 초기 상태 활성화
         this.returnCode = 1; // Return to main menu by default
         this.selectionCooldown = Core.getCooldown(200);
+        this.settingCode = 0;
+        this.volume = (int) ((SoundManager.getInstance().getCurrentVolume() + 60) / 6) + 1;
     }
 
     /**
