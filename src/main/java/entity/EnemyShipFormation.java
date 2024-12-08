@@ -162,6 +162,13 @@ public class EnemyShipFormation implements Iterable<EnemyShip> {
 		this.positionY = INIT_POS_Y;
 		this.shooters = new ArrayList<EnemyShip>();
 		this.shipCount = 0;
+
+		// 크기 검증 추가
+		if (this.nShipsWide <= 0 || this.nShipsHigh <= 0) {
+			logger.warning("Formation dimensions are zero or less. No ships initialized.");
+			return;
+		}
+
 		SpriteType spriteType = null;
 		int hp=1;// Edited by Enemy
 		Random rand= new Random();
@@ -514,6 +521,30 @@ public class EnemyShipFormation implements Iterable<EnemyShip> {
 		}
 		return enemyShipsList.iterator();
 	}
+
+	/**
+	 * Checks if any enemy ship in the formation has reached the bottom line of the screen.
+	 *
+	 * @param screenHeight The height of the screen (bottom boundary).
+	 * @return {@code true} if any enemy ship has reached the bottom boundary;
+	 *         {@code false} otherwise.
+	 */
+	public boolean hasEnemyReachedBottom(int screenHeight) {
+		for (List<EnemyShip> column : this.enemyShips) {
+			for (EnemyShip enemyShip : column) {
+				if (!enemyShip.isDestroyed()
+						&& enemyShip.getPositionY() + enemyShip.getHeight() >= screenHeight) {
+					return true;
+				}
+			}
+		}
+		return false;
+	}
+
+	public List<List<EnemyShip>> getEnemyShips() {
+		return this.enemyShips;
+	}
+
 
 	/**
 	 * Checks if there are any ships remaining.

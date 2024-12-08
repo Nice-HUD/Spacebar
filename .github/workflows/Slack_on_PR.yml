@@ -2,7 +2,7 @@ name: Notify Slack on PR Event and Review Event
 
 on:
   pull_request:
-    types: [opened, review_requested, submitted]
+    types: [opened, review_requested, submitted, closed]
   pull_request_review:
     types: [submitted]
 
@@ -82,6 +82,47 @@ jobs:
                       {
                         "title": "🛜 URL",
                         "value": "<${{ github.event.review.html_url }}|확인하러 가기>",
+                        "short": true
+                      }
+                  ]
+                }
+              ]
+            }
+            
+  notify-on-merge:
+    runs-on: ubuntu-latest
+    steps:
+      - name: PR 머지 시 Slack 알림 보냄
+        if: github.event_name == 'pull_request' && github.event.action == 'closed' && github.event.pull_request.merged == true
+        uses: slackapi/slack-github-action@v2.0.0
+        with:
+          webhook-type: incoming-webhook
+          webhook: ${{ secrets.SLACK_WEBHOOK_URL }}
+          payload: |
+            {
+              "attachments": [
+                {
+                  "title": "*🎉 PR 머지 완료:*",
+                  "color": "#008000",
+                  "fields": [
+                      {
+                        "title": "📑 PR 제목",
+                        "value": "${{ github.event.pull_request.title }}",
+                        "short": true
+                      },
+                      {
+                        "title": "🧑‍💻 PR 작성자",
+                        "value": "${{ github.event.pull_request.user.login }}",
+                        "short": true
+                      },
+                      {
+                        "title": "🧑‍💻 머지한 사람",
+                        "value": "${{ github.actor }}",
+                        "short": true
+                      },
+                      {
+                        "title": "🛜 URL",
+                        "value": "<${{ github.event.pull_request.html_url }}|PR 확인하러 가기>",
                         "short": true
                       }
                   ]

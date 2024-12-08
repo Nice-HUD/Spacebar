@@ -1,8 +1,10 @@
 package engine;
 
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Properties;
 import java.util.logging.ConsoleHandler;
 import java.util.logging.FileHandler;
 import java.util.logging.Handler;
@@ -13,6 +15,7 @@ import engine.achievement.AchievementManager;
 import engine.achievement.Statistics;
 import screen.ReceiptScreen;
 import screen.*;
+import io.sentry.Sentry;
 
 
 /**
@@ -24,9 +27,10 @@ import screen.*;
 public final class Core {
 	
 	/** Width of current screen. */
-	private static final int WIDTH = 630;
+	private static int WIDTH = 630;
 	/** Height of current screen. */
-	private static final int HEIGHT = 720;
+	private static int HEIGHT = 720;
+
 	/** Max fps of current screen. */
 	private static final int FPS = 60;
 	
@@ -75,7 +79,19 @@ public final class Core {
 	// Sound Operator
 	private static SoundManager sm;
 	private static AchievementManager achievementManager; // Team CLOVER
+
+	private static final Properties properties = new Properties(); // application.properties에서 값 가져오기
 	
+	private static boolean TwoPlayerMode = false;
+	
+	public static boolean isTwoPlayerMode() {
+		return TwoPlayerMode;
+	}
+	
+	public static void setTwoPlayerMode(boolean twoPlayerMode) {
+		Core.TwoPlayerMode = twoPlayerMode;
+	}
+
 	/**
 	 * Test implementation.
 	 *
@@ -84,6 +100,40 @@ public final class Core {
 	 */
 	public static void main(final String[] args) {
 		try {
+			properties.load(new FileInputStream("application.properties")); //
+			Sentry.init(options -> {
+				String dsn = System.getenv("SENTRY_DSN");
+				if (dsn == null) {
+					// 환경변수가 없으면 properties에서 읽기
+					dsn = properties.getProperty("sentry.dsn");
+				}
+				options.setDsn(dsn);
+				options.setTracesSampleRate(1.0);  // 성능 모니터링을 위한 샘플링 비율 추가
+				options.setDebug(true);
+				options.setEnvironment("development"); // 개발 환경
+			});
+//			try {
+//				throw new RuntimeException("Sentry 연동 테스트 에러");
+//			} catch (Exception e) {
+//				Sentry.captureException(e);
+//				LOGGER.severe("Test Error: " + e.getMessage());
+//			}
+//			// Sentry 테스트를 위한 강제 에러
+//			GameState nullState = null;
+//			try {
+//				// NullPointerException 발생
+//				nullState.getLevel();
+//			} catch (Exception e) {
+//				Sentry.captureException(e);
+//				LOGGER.severe("Game State Error: " + e.getMessage());
+//			}
+//			// ArrayIndexOutOfBoundsException 발생
+//			try {
+//				gameSettings.get(999);
+//			} catch (Exception e) {
+//				Sentry.captureException(e);
+//				LOGGER.severe("Settings Error: " + e.getMessage());
+//			}
 			LOGGER.setUseParentHandlers(false);
 			
 			fileHandler = new FileHandler("log");
@@ -93,6 +143,7 @@ public final class Core {
 			consoleHandler.setFormatter(new MinimalFormatter());
 			// Sound Operator
 			sm = SoundManager.getInstance();
+			sm.initializeSoundSettings();
 			
 			LOGGER.addHandler(fileHandler);
 			LOGGER.addHandler(consoleHandler);
@@ -120,7 +171,7 @@ public final class Core {
 		DrawManager.getInstance().setFrame(frame);
 		int width = frame.getWidth();
 		int height = frame.getHeight();
-		
+
 		/** ### TEAM INTERNATIONAL ###*/
 		/** Initialize singleton instance of a background*/
 		Background.getInstance().initialize(frame);
@@ -384,12 +435,17 @@ public final class Core {
 					returnCode = frame.setScreen(currentScreen);
 					LOGGER.info("Closing recent record screen.");
 					break;
-
 				case 6: // Settings 화면
-					currentScreen = new SettingsScreen(width, height, FPS);
+					currentScreen = new SettingsScreen(width, height, FPS,frame);
 					LOGGER.info("Starting Settings screen.");
 					returnCode = frame.setScreen(currentScreen);
 					LOGGER.info("Closing Settings screen.");
+					break;
+				case 7: // 스킨 선택 화면
+					currentScreen = new SkinSelectionScreen(width, height, FPS);
+					LOGGER.info("스킨 선택 화면 시작");
+					returnCode = frame.setScreen(currentScreen);
+					LOGGER.info("선택 화면 종료");
 					break;
 				default:
 					break;
@@ -488,5 +544,22 @@ public final class Core {
 	// Team-Ctrl-S(Currency)
 	public static UpgradeManager getUpgradeManager() {
 		return UpgradeManager.getInstance();
+	}
+
+  public static int getWidth(){
+		return WIDTH;
+	}
+
+	public static int getHeight(){
+		return HEIGHT;
+	}
+
+
+	public static void setWidth(int width){
+		WIDTH = width;
+	}
+
+	public static void setHeight(int height){
+		HEIGHT = height;
 	}
 }

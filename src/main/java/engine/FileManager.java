@@ -899,4 +899,67 @@ public final class FileManager {
 
 		return defaultProperties;
 	}
+	
+	/**
+	 * 함선의 그래픽을 바꾸는 메서드 by 김승윤
+	 *
+	 * @param spriteMap 그레픽 비트맵의 집합
+	 * @param graphicsNum 그래픽 번호
+	 * @throws IOException
+	 */
+	public void changeShipSprite(Map<SpriteType, boolean[][]> spriteMap, int graphicsNum) throws IOException {
+		try (InputStream inputStream = DrawManager.class.getClassLoader().getResourceAsStream("shipGraphics")) {
+			if (inputStream == null) {
+				throw new IOException("리소스 'shipGraphics'를 찾을 수 없습니다.");
+			}
+			
+			for (Map.Entry<SpriteType, boolean[][]> sprite : spriteMap.entrySet()) {
+				if (sprite.getKey() == SpriteType.Ship) {
+					updateSprite(sprite.getValue(), inputStream, graphicsNum);
+					logger.fine("성공적으로 Ship의 spirte를 바꿨습니다.");
+					break;
+				}
+			}
+		}
+	}
+	
+	/**
+	 * 스프라이트 데이터를 업데이트하는 메서드
+	 *
+	 * @param spriteData  스프라이트 배열
+	 * @param inputStream 입력 스트림
+	 * @param graphicsNum 그래픽 번호
+	 * @throws IOException 읽기 오류 발생 시
+	 */
+	private void updateSprite(boolean[][] spriteData, InputStream inputStream, int graphicsNum) throws IOException {
+		for (int k = 0; k <= graphicsNum; k++) {
+			for (int i = 0; i < spriteData.length; i++) {
+				for (int j = 0; j < spriteData[i].length; j++) {
+					char c = readValidChar(inputStream);
+					spriteData[i][j] = (c == '1');
+				}
+			}
+		}
+	}
+	
+	/**
+	 * 유효한 문자('0' 또는 '1')를 읽는 메서드
+	 *
+	 * @param inputStream 입력 스트림
+	 * @return 읽어들인 문자 ('0' 또는 '1')
+	 * @throws IOException 읽기 오류 발생 시
+	 */
+	private char readValidChar(InputStream inputStream) throws IOException {
+		char c;
+		do {
+			int read = inputStream.read();
+			if (read == -1) {
+				throw new IOException("스프라이트 데이터를 읽는 중 파일이 예상치 못하게 끝났습니다.");
+			}
+			c = (char) read;
+		} while (c != '0' && c != '1');
+		return c;
+	}
+
+
 }

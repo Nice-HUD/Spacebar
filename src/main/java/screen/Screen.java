@@ -125,7 +125,7 @@ public class Screen {
 	 * @return Screen width.
 	 */
 	public final int getWidth() {
-		return this.width;
+		return Core.getWidth();
 	}
 
 	/**
@@ -134,7 +134,7 @@ public class Screen {
 	 * @return Screen height.
 	 */
 	public final int getHeight() {
-		return this.height;
+		return Core.getHeight();
 	}
 	public final boolean isTwoPlayerMode() {
 		return this.isTwoPlayerMode;
