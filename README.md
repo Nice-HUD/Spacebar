@@ -1,4 +1,4 @@
-
+[![build](https://github.com/Nice-HUD/Spacebar/actions/workflows/main.yml/badge.svg)](https://github.com/Nice-HUD/Spacebar/actions/workflows/main.yml)
 - # Space Invaders
 
   > Course: Software Development Practices (CES2024) - Monday Class (24-2-23821)

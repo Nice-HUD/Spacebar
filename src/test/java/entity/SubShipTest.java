@@ -78,4 +78,10 @@ public class SubShipTest {
         // SubShip의 이동 속도 확인
         assertEquals(subShip.getSpeed(), subShip.getSpeed());
     }
+
+    //테스트 커버리지 검사 확인을 위한 메서드의 테스트 코드
+    @Test
+    public void testIsMovingFast() {
+        assertTrue(subShip.isMovingFast());
+    }
 }

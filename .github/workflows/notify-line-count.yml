@@ -3,6 +3,8 @@ name: notify line count
 on:
   pull_request:
     types: [opened, reopened]
+    branches:
+      - develop
 
 jobs:
   notify:
@@ -16,4 +18,4 @@ jobs:
           slackChannelId: "C07UWE43Y2J"
           maxChanges: "300"
           ext: ".java"
-          glob: "packages/**, !**/node_modules/*"
+          glob: "src/main/java/**"
